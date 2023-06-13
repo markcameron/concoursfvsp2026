@@ -4,11 +4,14 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use Spatie\Tags\Tag;
 use App\Models\Document;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\DocumentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -42,7 +45,7 @@ class DocumentResource extends Resource
                     ->schema([
                         Forms\Components\Card::make()
                             ->schema([
-                                SpatieTagsInput::make('tags'),
+                                SpatieTagsInput::make('tags')->type('documents')->suggestions(['PV', 'Liste']),
                             ]),
                     ])
             ])
@@ -57,12 +60,22 @@ class DocumentResource extends Resource
                     ->searchable()
                     ->label(__('fields.name')),
 
+                SpatieTagsColumn::make('tags')->type('documents'),
+
                 // Tables\Columns\TextColumn::make('file')->label(__('fields.file')),
                 Tables\Columns\TextColumn::make('created_at')->label(__('fields.created_at'))
                     ->dateTime(),
             ])
             ->filters([
                 // Tables\Filters\TrashedFilter::make(),
+                SelectFilter::make('tags')
+                    ->multiple()
+                    ->options(Tag::getWithType('documents')->pluck('name', 'name'))
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query->when($data['values'], function (Builder $query, $data): Builder {
+                            return $query->withAnyTags(array_values($data), 'documents');
+                        });
+                    })
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
