@@ -1,0 +1,16 @@
+node_modules
+.git
+.gitignore
+.gitattributes
+.github
+.env
+.env.example
+.editorconfig
+.docker
+docker-compose.yml
+*.config.js
+phpunit.xml
+artifacts.tar
+timestamps
+storage
+public/storage
