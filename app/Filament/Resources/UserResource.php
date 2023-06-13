@@ -60,6 +60,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                // Tables\Columns\ImageColumn::make('avatar')->grow(false),
                 Tables\Columns\TextColumn::make('first_name')->label(__('fields.first_name')),
                 Tables\Columns\TextColumn::make('last_name')->label(__('fields.last_name')),
                 Tables\Columns\TextColumn::make('alias')->label(__('fields.alias')),
@@ -78,14 +79,14 @@ class UserResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -94,8 +95,8 @@ class UserResource extends Resource
             'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
