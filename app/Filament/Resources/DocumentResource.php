@@ -39,13 +39,16 @@ class DocumentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label(__('fields.name')),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->label(__('fields.name')),
+
                 // Tables\Columns\TextColumn::make('file')->label(__('fields.file')),
                 Tables\Columns\TextColumn::make('created_at')->label(__('fields.created_at'))
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                // Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -57,14 +60,14 @@ class DocumentResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -73,13 +76,18 @@ class DocumentResource extends Resource
             'view' => Pages\ViewDocument::route('/{record}'),
             'edit' => Pages\EditDocument::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name',];
     }
 }
