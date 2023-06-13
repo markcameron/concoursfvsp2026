@@ -17,30 +17,42 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('alias')
-                    ->required()
-                    ->maxLength(3),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\Grid::make(3)
+                            ->schema([
+                                Forms\Components\TextInput::make('first_name')
+                                    ->label(__('fields.first_name'))
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('last_name')
+                                    ->label(__('fields.last_name'))
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('alias')
+                                    ->label(__('fields.alias'))
+                                    ->required()
+                                    ->maxLength(3),
+                            ]),
+
+                        Forms\Components\TextInput::make('email')
+                            ->label(__('fields.email'))
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('password')
+                            ->label(__('fields.password'))
+                            ->password()
+                            ->required()
+                            ->maxLength(255)
+                            ->hiddenOn('edit'),
+                    ])
             ]);
     }
 
@@ -48,18 +60,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('first_name'),
-                Tables\Columns\TextColumn::make('last_name'),
-                Tables\Columns\TextColumn::make('alias'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('first_name')->label(__('fields.first_name')),
+                Tables\Columns\TextColumn::make('last_name')->label(__('fields.last_name')),
+                Tables\Columns\TextColumn::make('alias')->label(__('fields.alias')),
+                Tables\Columns\TextColumn::make('email')->label(__('fields.email')),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
