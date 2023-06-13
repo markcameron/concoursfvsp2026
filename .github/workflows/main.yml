@@ -1,0 +1,82 @@
+name: CI/CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    # # Cache Docker layers for faster builds
+    # - uses: satackey/action-docker-layer-caching@v0.0.11
+    #   # Ignore the failure of a step and avoid terminating the job.
+    #   continue-on-error: true
+    # Install PHP Vendor packages
+    # - name: fake private key #Needed to fake key for composer
+    #   run: touch api/storage/oauth-private.key
+    - name: Copy ENV Laravel Configuration for CI
+      run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+    - name: Install Dependencies (PHP vendors)
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    # Install NPM packages
+    - name: npm and node versions
+      run: |
+        npm -v
+        node -v
+    - name: Install packages
+      run: npm install -f
+    - name: Run vite build script
+      run: npm run build
+    - name: Create tar ball with artifacts
+      run: tar -cf artifacts.tar public/ vendor/
+    - name: Upload artifacts for deployment job
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: artifacts.tar
+        retention-days: 1
+
+  deployProduction:
+    name: Deploy to Production
+    # permissions:
+    #   contents: none
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: "production"
+      url: https://www.fvsp-terre-sainte-2026.ch
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Download build artifacts from `build` job
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+      - name: Extract artifact tarball
+        run: tar -xf artifacts.tar
+
+      - name: Debug folder
+        run: ls -la
+
+      # rsync deploy
+      - name: rsync deployment staging
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -rtu --delete --specials --exclude-from='.rsyncignore'
+          path: .
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_KEY }}
