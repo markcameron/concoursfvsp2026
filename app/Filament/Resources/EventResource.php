@@ -9,7 +9,6 @@ use App\Models\Event;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use App\Filament\Resources\EventResource;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\SpatieTagsColumn;

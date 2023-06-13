@@ -13,6 +13,8 @@ class LatestDocuments extends BaseWidget
 {
     protected static ?string $heading = 'Documents récents';
 
+    protected static ?int $sort = 2;
+
     public function getDefaultTableRecordsPerPageSelectOption(): int
     {
         return 5;
