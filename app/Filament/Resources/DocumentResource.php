@@ -45,7 +45,7 @@ class DocumentResource extends Resource
                     ->schema([
                         Forms\Components\Card::make()
                             ->schema([
-                                SpatieTagsInput::make('tags')->type('documents')->suggestions(['PV', 'Liste']),
+                                SpatieTagsInput::make('tags')->type('documents'),
                             ]),
                     ])
             ])
