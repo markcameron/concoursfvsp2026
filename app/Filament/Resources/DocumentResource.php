@@ -9,6 +9,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\DocumentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -24,15 +25,28 @@ class DocumentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->label(__('fields.name'))
-                    ->required()
-                    ->maxLength(255),
-                SpatieMediaLibraryFileUpload::make('file')
-                    ->preserveFilenames()
-                    ->enableDownload(),
-                // Forms\Components\FileUpload::make('file')->label(__('fields.file'))
-                //     ->preserveFilenames(),
-            ]);
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')->label(__('fields.name'))
+                                    ->required()
+                                    ->maxLength(255),
+
+                                SpatieMediaLibraryFileUpload::make('file')
+                                    ->preserveFilenames()
+                                    ->enableDownload(),
+                            ]),
+                    ])->columnSpan(['lg' => 2]),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                SpatieTagsInput::make('tags'),
+                            ]),
+                    ])
+            ])
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
