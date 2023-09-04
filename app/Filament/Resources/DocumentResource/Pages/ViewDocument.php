@@ -10,7 +10,7 @@ class ViewDocument extends ViewRecord
 {
     protected static string $resource = DocumentResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

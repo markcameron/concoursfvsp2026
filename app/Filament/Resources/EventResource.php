@@ -6,8 +6,8 @@ use Filament\Forms;
 use Filament\Tables;
 use Spatie\Tags\Tag;
 use App\Models\Event;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,7 +22,7 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Panel;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Notifications\Notifiable;
@@ -51,7 +52,7 @@ class User extends Authenticatable implements FilamentUser, HasName
         'email_verified_at' => 'datetime',
     ];
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
         return $this->hasVerifiedEmail();
     }
