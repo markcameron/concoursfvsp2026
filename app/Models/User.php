@@ -83,10 +83,18 @@ class User extends Authenticatable implements FilamentUser, HasName
     }
 
     /**
-     * Get all of the posts that are assigned this tag.
+     * Get all of the events that are assigned this user.
      */
     public function events(): MorphToMany
     {
         return $this->morphedByMany(Event::class, 'userable');
+    }
+
+    /**
+     * Get all of the committees that are assigned this user.
+     */
+    public function committees(): MorphToMany
+    {
+        return $this->morphedByMany(Committee::class, 'userable');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommitteeResource\Pages;
 use App\Filament\Resources\CommitteeResource\RelationManagers;
+use App\Filament\Resources\CommitteeResource\RelationManagers\UsersRelationManager;
 use App\Models\Committee;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -80,7 +81,7 @@ class CommitteeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            UsersRelationManager::class,
         ];
     }
 

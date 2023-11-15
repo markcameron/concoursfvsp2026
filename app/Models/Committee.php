@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Committee extends Model
 {
@@ -20,4 +21,12 @@ class Committee extends Model
         'name',
         'color',
     ];
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function users(): MorphToMany
+    {
+        return $this->morphToMany(User::class, 'userable');
+    }
 }
