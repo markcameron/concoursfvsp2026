@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/finaliser-compte', function () {
+    return view('admin/finalize_account/{{token}}');
+})->name('finalize_account');

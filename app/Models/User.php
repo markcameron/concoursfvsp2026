@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
@@ -30,7 +32,9 @@ class User extends Authenticatable implements FilamentUser, HasName
         'last_name',
         'alias',
         'email',
+        'email_verified_at',
         'password',
+        'create_token',
     ];
 
     /**
@@ -41,6 +45,7 @@ class User extends Authenticatable implements FilamentUser, HasName
     protected $hidden = [
         'password',
         'remember_token',
+        'create_token',
     ];
 
     /**
@@ -50,6 +55,15 @@ class User extends Authenticatable implements FilamentUser, HasName
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'password' => 'asdasdasd', //Hash::make(Str::random(20)),
     ];
 
     public function canAccessPanel(Panel $panel): bool

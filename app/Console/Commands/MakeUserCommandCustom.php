@@ -32,6 +32,7 @@ class MakeUserCommandCustom extends Command
             'last_name' => $this->validateInput(fn () => $this->options['last_name'] ?? $this->ask('Last Name'), 'last_name', ['required'], fn () => $this->options['last_name'] = null),
             'email' => $this->validateInput(fn () => $this->options['email'] ?? $this->ask('Email address'), 'email', ['required', 'email', 'unique:' . $this->getUserModel()], fn () => $this->options['email'] = null),
             'password' => Hash::make($this->validateInput(fn () => $this->options['password'] ?? $this->secret('Password'), 'password', ['required', 'min:8'], fn () => $this->options['password'] = null)),
+            'email_verified_at' => now(),
         ];
     }
 
