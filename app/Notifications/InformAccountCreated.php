@@ -36,10 +36,11 @@ class InformAccountCreated extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-                    ->line("Un compte a été créé sur le site du Councours FVSP 2026 à Terre Sainte, pour l'addresse " . $this->user->email)
-                    ->line("Il vous suffit de cliquer sur le bouton ci dessous pour finaliser la création de votre compte")
-                    ->action('Finaliser votre compte', route('filament.account.pages.finalize-account', ['token' => $this->user->create_token]))
-                    ->line('Merci!');
+            ->subject('Votre compte pour fvsp-terre-sainte-2026.ch')
+            ->line("Un compte a été créé sur le site du Councours FVSP 2026 à Terre Sainte, pour l'addresse " . $this->user->email)
+            ->line("Il vous suffit de cliquer sur le bouton ci dessous pour finaliser la création de votre compte")
+            ->action('Finaliser votre compte', route('filament.account.pages.finalize-account', ['token' => $this->user->create_token]))
+            ->line('Merci!');
     }
 
     /**
