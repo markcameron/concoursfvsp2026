@@ -61,4 +61,14 @@ class Event extends Model
             get: fn ($value): string => Helpers::formatDateRange($this->started_at, $this->ended_at),
         );
     }
+
+    /**
+     * @return Attribute<int, never>
+     */
+    protected function participantCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value): int => $this->users->count(),
+        );
+    }
 }

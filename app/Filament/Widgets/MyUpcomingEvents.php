@@ -25,13 +25,18 @@ class MyUpcomingEvents extends BaseWidget
     {
         return [
             Tables\Columns\Layout\Split::make([
-                Tables\Columns\TextColumn::make('name')
-                    ->weight('medium')
-                    ->label(__('fields.name')),
                 Tables\Columns\Layout\Stack::make([
-                    Tables\Columns\TextColumn::make('started_at')->dateTime("d M Y"),
-                    Tables\Columns\TextColumn::make('started_at')->dateTime("H:i"),
-                ])->grow(false)
+                    Tables\Columns\TextColumn::make('name')
+                        ->weight('medium')
+                        ->label(__('fields.name')),
+                    Tables\Columns\TextColumn::make('started_at')
+                        ->formatStateUsing(fn (Event $record) => $record->date),
+                ]),
+                Tables\Columns\TextColumn::make('participant_count')
+                    ->badge()
+                    ->prefix('Convoquées : ')
+                    ->color(static fn ($state): string => $state > 1 ? 'success' : 'danger')
+                    ->alignEnd(),
             ])
         ];
     }
