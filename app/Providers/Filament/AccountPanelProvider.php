@@ -26,6 +26,7 @@ class AccountPanelProvider extends PanelProvider
         return $panel
             ->id('account')
             ->path('account')
+            ->darkMode(false)
             ->colors([
                 'primary' => Color::Amber,
             ])
