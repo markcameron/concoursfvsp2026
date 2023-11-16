@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Filament\Actions\Tables\DocumentDownloadAction;
 use Closure;
 use Filament\Tables;
 use App\Models\Document;
@@ -49,13 +50,12 @@ class LatestDocuments extends BaseWidget
         ];
     }
 
-    // protected function getTableActions(): array
-    // {
-    //     return [
-    //         Tables\Actions\Action::make('voir')
-    //             ->url(fn (Document $record): string => DocumentResource::getUrl('edit', ['record' => $record])),
-    //     ];
-    // }
+    protected function getTableActions(): array
+    {
+        return [
+            DocumentDownloadAction::make(),
+        ];
+    }
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
