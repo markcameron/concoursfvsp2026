@@ -2,6 +2,7 @@
 
 return [
     'view' => 'Voir',
+    'download' => 'Télécharger',
     'created_at' => 'Crée le',
     'updated_at' => 'Mis à jour le',
     'deleted_at' => 'Effacé le',
