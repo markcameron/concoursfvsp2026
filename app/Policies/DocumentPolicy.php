@@ -37,7 +37,15 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document): bool
     {
-        return $user->can('update Document');
+        if (!$user->can('update Document')) {
+            return false;
+        };
+
+        if ($document->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -45,7 +53,15 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): bool
     {
-        return $user->can('delete Document');
+        if (!$user->can('delete Document')) {
+            return false;
+        };
+
+        if ($document->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

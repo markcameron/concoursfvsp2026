@@ -37,7 +37,15 @@ class CommitteePolicy
      */
     public function update(User $user, Committee $committee): bool
     {
-        return $user->can('update Committee');
+        if (!$user->can('update Committee')) {
+            return false;
+        };
+
+        if ($committee->users()->where('users.id', $user->id)->first()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

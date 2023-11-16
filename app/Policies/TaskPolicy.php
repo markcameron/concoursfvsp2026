@@ -37,7 +37,19 @@ class TaskPolicy
      */
     public function update(User $user, Task $task): bool
     {
-        return $user->can('update Task');
+        if (!$user->can('update Task')) {
+            return false;
+        };
+
+        if ($task->user_id === $user->id) {
+            return true;
+        }
+
+        if ($task->users()->where('users.id', $user->id)->first()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -45,7 +57,15 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task): bool
     {
-        return $user->can('delete Task');
+        if (!$user->can('delete Task')) {
+            return false;
+        };
+
+        if ($task->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
