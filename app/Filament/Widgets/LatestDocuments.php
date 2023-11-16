@@ -42,9 +42,10 @@ class LatestDocuments extends BaseWidget
             Tables\Columns\Layout\Split::make([
                 Tables\Columns\Layout\Stack::make([
                     Tables\Columns\TextColumn::make('name')
-                        ->weight('medium')
+                        ->weight('semibold')
                         ->label(__('fields.name')),
-                    Tables\Columns\TextColumn::make('created_at')->dateTime("d M Y"),
+                    Tables\Columns\TextColumn::make('created_at')
+                        ->dateTime("d M Y"),
                 ])
             ])
         ];

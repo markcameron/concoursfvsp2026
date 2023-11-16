@@ -3,21 +3,23 @@
 namespace App\Filament\Widgets;
 
 use Closure;
+use App\Models\Task;
 use Filament\Tables;
 use App\Models\Event;
-use App\Filament\Resources\EventResource;
+use App\Enums\StatusTask;
+use App\Filament\Resources\TaskResource;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Widgets\TableWidget as BaseWidget;
 
-class MyUpcomingEvents extends BaseWidget
+class MyOpenTasks extends BaseWidget
 {
-    protected static ?string $heading = 'Mes convocations';
+    protected static ?string $heading = 'Mes tâches';
 
     protected static ?int $sort = 1;
 
     protected function getTableQuery(): Builder
     {
-        return EventResource::getEloquentQuery()
+        return TaskResource::getEloquentQuery()
             ->whereHas('users', fn ($q) => $q->where('user_id', auth()->user()->id));
     }
 
@@ -29,13 +31,17 @@ class MyUpcomingEvents extends BaseWidget
                     Tables\Columns\TextColumn::make('name')
                         ->weight('semibold')
                         ->label(__('fields.name')),
-                    Tables\Columns\TextColumn::make('started_at')
-                        ->formatStateUsing(fn (Event $record) => $record->date),
+                    Tables\Columns\TextColumn::make('status')
+                        ->label(__('fields.status'))
+                        ->badge()
+                        ->color(fn (StatusTask $state) => $state->color())
+                        ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
                 ]),
-                Tables\Columns\TextColumn::make('participant_count')
+                Tables\Columns\TextColumn::make('deadline')
+                    ->label(__('fields.deadline'))
                     ->badge()
-                    ->prefix('Convoquées : ')
-                    ->color(static fn ($state): string => $state > 1 ? 'success' : 'danger')
+                    ->color(fn (Task $task) => $task->deadlineColor())
+                    ->date()
                     ->alignEnd(),
             ])
         ];
@@ -43,7 +49,7 @@ class MyUpcomingEvents extends BaseWidget
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Event $record): string => EventResource::getUrl('edit', ['record' => $record]);
+        return fn (Task $record): string => TaskResource::getUrl('view', ['record' => $record]);
     }
 
     protected function isTablePaginationEnabled(): bool
