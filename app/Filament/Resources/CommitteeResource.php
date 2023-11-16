@@ -43,7 +43,7 @@ class CommitteeResource extends Resource
                             ->maxLength(255),
                         Forms\Components\Select::make('color')
                             ->label(__('fields.color'))
-                            ->options(fn (Committee $record) => $record->colors())
+                            ->options(fn () => (new Committee())->colors())
                             ->searchable()
                             ->allowHtml(),
                     ])
