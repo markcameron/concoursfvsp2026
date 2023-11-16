@@ -10,6 +10,7 @@ class Helpers {
         ?Carbon $end,
         string $dateFormat = "ddd D MMM, YYYY",
         string $timeFormat = "HH:mm",
+        string $timezone = 'Europe/Zurich',
     ) {
         $dateTimeFormat = $dateFormat . ' ' . $timeFormat;
 
@@ -17,11 +18,14 @@ class Helpers {
 
         if ($start->isSameDay($end)) {
             return collect([
-                $start->isoFormat($format),
-                $end->isoFormat($timeFormat),
+                $start->timezone($timezone)->isoFormat($format),
+                $end->timezone($timezone)->isoFormat($timeFormat),
             ])->implode('-');
         }
 
-        return $start->isoFormat($format) . ' - ' . $end->isoFormat($format);
+        return collect([
+            $start->timezone($timezone)->isoFormat($format),
+            $end->timezone($timezone)->isoFormat($format),
+        ])->implode('-');
     }
 }
