@@ -10,6 +10,8 @@ use App\Models\Task;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Infolists\Components;
+use Filament\Infolists\Infolist;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,11 +42,10 @@ class TaskResource extends Resource
                             ->required(),
                         Forms\Components\DateTimePicker::make('deadline')
                             ->label(__('fields.deadline')),
-                        Forms\Components\Textarea::make('description')
+                        Forms\Components\MarkdownEditor::make('description')
                             ->label(__('fields.description'))
                             ->maxLength(65535)
-                            ->columnSpanFull()
-                            ->rows(10),
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -64,7 +65,9 @@ class TaskResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deadline')
                     ->label(__('fields.deadline'))
-                    ->dateTime()
+                    ->badge()
+                    ->color(fn (Task $task) => $task->deadlineColor())
+                    ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))
@@ -93,6 +96,44 @@ class TaskResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Components\Section::make()
+                    ->schema([
+                        Components\Split::make([
+                            Components\Grid::make(4)
+                                ->schema([
+                                    Components\TextEntry::make('name'),
+                                    Components\Group::make([
+                                    ]),
+                                    // Components\Group::make([
+                                        Components\TextEntry::make('deadline')
+                                            ->badge()
+                                            ->date()
+                                            ->color(fn (Task $task) => $task->deadlineColor()),
+                                        Components\TextEntry::make('status')
+                                            ->label(__('fields.status'))
+                                            ->badge()
+                                            ->color(fn (StatusTask $state) => $state->color())
+                                            ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
+
+                                    // ]),
+                                ]),
+                        ])->from('lg'),
+                    ]),
+                Components\Section::make(__('fields.description'))
+                    ->schema([
+                        Components\TextEntry::make('description')
+                            ->prose()
+                            ->markdown()
+                            ->hiddenLabel(),
+                    ])
+                    ->collapsible(),
             ]);
     }
 

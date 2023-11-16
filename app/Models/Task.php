@@ -32,6 +32,7 @@ class Task extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'deadline' => 'datetime',
         'status' => StatusTask::class,
     ];
 
@@ -41,5 +42,21 @@ class Task extends Model
     public function users(): MorphToMany
     {
         return $this->morphToMany(User::class, 'userable');
+    }
+
+    public function complete(): bool
+    {
+        return $this->status === StatusTask::COMPLETE;
+    }
+
+    public function deadlineColor(): string
+    {
+        if ($this->complete()) {
+            return 'gray';
+        }
+
+        return $this->deadline->isAfter(now())
+            ? 'success'
+            : 'danger';
     }
 }
