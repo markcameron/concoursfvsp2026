@@ -15,6 +15,7 @@ use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\DocumentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Actions\Tables\DocumentDownloadAction;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\DocumentResource\RelationManagers;
 
@@ -80,6 +81,7 @@ class DocumentResource extends Resource
                     })
             ])
             ->actions([
+                DocumentDownloadAction::make(),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])

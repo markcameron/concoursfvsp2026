@@ -16,6 +16,7 @@ use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\EventResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EventResource\RelationManagers;
+use App\Filament\Resources\EventResource\RelationManagers\DocumentsRelationManager;
 use App\Filament\Resources\EventResource\RelationManagers\UsersRelationManager;
 
 class EventResource extends Resource
@@ -98,6 +99,7 @@ class EventResource extends Resource
     public static function getRelations(): array
     {
         return [
+            DocumentsRelationManager::class,
             UsersRelationManager::class,
         ];
     }

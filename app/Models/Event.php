@@ -25,10 +25,18 @@ class Event extends Model
     ];
 
     /**
-     * Get all of the users for the event.
+     * Get all of the users for this event.
      */
     public function users(): MorphToMany
     {
         return $this->morphToMany(User::class, 'userable');
+    }
+
+    /**
+     * Get all of the documents for this event.
+     */
+    public function documents(): MorphToMany
+    {
+        return $this->morphToMany(Document::class, 'documentable');
     }
 }

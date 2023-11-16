@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Document extends Model implements HasMedia
 {
@@ -33,5 +34,13 @@ class Document extends Model implements HasMedia
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the events this document belongs to.
+     */
+    public function committees(): MorphToMany
+    {
+        return $this->morphedByMany(Event::class, 'documentable');
     }
 }
