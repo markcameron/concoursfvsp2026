@@ -2,18 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Committee;
+use Filament\Tables\Table;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
+use Filament\Infolists\Components;
+use Filament\Support\Colors\Color;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CommitteeResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CommitteeResource\RelationManagers;
 use App\Filament\Resources\CommitteeResource\RelationManagers\TasksRelationManager;
 use App\Filament\Resources\CommitteeResource\RelationManagers\UsersRelationManager;
-use App\Models\Committee;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CommitteeResource extends Resource
 {
@@ -32,12 +36,11 @@ class CommitteeResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->maxLength(255),
                         Forms\Components\Select::make('color')
-                            ->options([
-                                'blue-500' => '<span class="text-blue-500">blue-500</span>',
-                                'green-500' => '<span class="text-green-500">green-500</span>',
-                                'red-500' => '<span class="text-red-500">red-500</span>',
-                            ])
+                            ->options(fn (Committee $record) => $record->colors())
                             ->searchable()
                             ->allowHtml(),
                     ])
@@ -78,6 +81,30 @@ class CommitteeResource extends Resource
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Components\Section::make()
+                    ->schema([
+                        Components\Split::make([
+                            Components\Grid::make(4)
+                                ->schema([
+                                    Components\TextEntry::make('name')
+                                        ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
+                                        ->html(),
+                                    Components\Group::make([
+                                    ]),
+                                    Components\TextEntry::make('email')
+                                        ->formatStateUsing(fn (string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
+                                        ->html()
+                                        ->color('primary'),
+                                ]),
+                        ])->from('lg'),
+                    ]),
             ]);
     }
 

@@ -16,6 +16,8 @@ class TasksRelationManager extends RelationManager
 {
     protected static string $relationship = 'tasks';
 
+    protected static ?string $title = 'Tâches';
+
     public function form(Form $form): Form
     {
         return $form
