@@ -25,7 +25,7 @@ class CommitteeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $modelLabel = 'Comité';
+    protected static ?string $modelLabel = 'Commission';
 
     public static function form(Form $form): Form
     {
@@ -56,6 +56,8 @@ class CommitteeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('fields.name'))
+                    ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
+                    ->html()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('member_count')
                     ->label(__('fields.member_count'))
@@ -92,7 +94,8 @@ class CommitteeResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('name', 'asc');
+            ->defaultSort('name', 'asc')
+            ->paginated(false);
     }
 
     public static function infolist(Infolist $infolist): Infolist
