@@ -15,7 +15,7 @@ class MyOpenTasks extends BaseWidget
 {
     protected static ?string $heading = 'Mes tâches';
 
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 2;
 
     protected function getTableQuery(): Builder
     {

@@ -45,10 +45,12 @@ class EventResource extends Resource
                                     ->maxLength(65535),
                                 Forms\Components\DateTimePicker::make('started_at')
                                     ->label(__('fields.started_at'))
-                                    ->required(),
+                                    ->required()
+                                    ->timezone('Europe/Zurich'),
                                 Forms\Components\DateTimePicker::make('ended_at')
                                     ->label(__('fields.ended_at'))
-                                    ->required(),
+                                    ->required()
+                                    ->timezone('Europe/Zurich'),
                             ])
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()

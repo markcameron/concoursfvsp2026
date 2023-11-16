@@ -46,6 +46,7 @@ class UserResource extends Resource
                             ->maxLength(255),
                         Forms\Components\DateTimePicker::make('email_verified_at')
                             ->label(__('fields.email_verified_at'))
+                            ->timezone('Europe/Zurich')
                             ->hiddenOn(['edit', 'create']),
                         Forms\Components\Select::make('roles')
                             ->label(__('fields.roles'))

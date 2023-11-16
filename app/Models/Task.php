@@ -62,9 +62,15 @@ class Task extends Model
         if ($this->complete()) {
             return 'gray';
         }
+        // dd(now(), $this->deadline);
+        if (now()->isAfter($this->deadline)) {
+            return 'danger';
+        }
 
-        return $this->deadline->isAfter(now())
-            ? 'success'
-            : 'danger';
+        if (now()->addDays(3)->isAfter($this->deadline)) {
+            return 'warning';
+        }
+
+        return 'success';
     }
 }

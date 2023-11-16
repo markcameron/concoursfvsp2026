@@ -18,7 +18,8 @@ class MyUpcomingEvents extends BaseWidget
     protected function getTableQuery(): Builder
     {
         return EventResource::getEloquentQuery()
-            ->whereHas('users', fn ($q) => $q->where('user_id', auth()->user()->id));
+            ->whereHas('users', fn ($q) => $q->where('user_id', auth()->user()->id))
+            ->whereDate('started_at', '>=', now());
     }
 
     protected function getTableColumns(): array

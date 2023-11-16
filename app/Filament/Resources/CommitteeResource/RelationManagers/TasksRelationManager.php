@@ -36,7 +36,8 @@ class TasksRelationManager extends RelationManager
                     ->options(__('fields.status_task'))
                     ->required(),
                 Forms\Components\DateTimePicker::make('deadline')
-                    ->label(__('fields.deadline')),
+                    ->label(__('fields.deadline'))
+                    ->timezone('Europe/Zurich'),
                 Forms\Components\MarkdownEditor::make('description')
                     ->label(__('fields.description'))
                     ->maxLength(65535)
