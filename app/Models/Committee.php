@@ -29,4 +29,12 @@ class Committee extends Model
     {
         return $this->morphToMany(User::class, 'userable');
     }
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function tasks(): MorphToMany
+    {
+        return $this->morphToMany(Task::class, 'taskable');
+    }
 }

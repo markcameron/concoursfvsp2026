@@ -44,6 +44,14 @@ class Task extends Model
         return $this->morphToMany(User::class, 'userable');
     }
 
+    /**
+     * Get all of the committees that are assigned this tasks.
+     */
+    public function committees(): MorphToMany
+    {
+        return $this->morphedByMany(Committee::class, 'taskable');
+    }
+
     public function complete(): bool
     {
         return $this->status === StatusTask::COMPLETE;
