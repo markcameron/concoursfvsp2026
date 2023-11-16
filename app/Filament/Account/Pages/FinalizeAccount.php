@@ -59,7 +59,8 @@ class FinalizeAccount extends Page implements HasForms
             Forms\Components\TextInput::make('password')
                 ->label(__('fields.password'))
                 ->password()
-                ->required(),
+                ->required()
+                ->minLength(8),
             Forms\Components\Hidden::make('token')
                 ->required(),
         ];
