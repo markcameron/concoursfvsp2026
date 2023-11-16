@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
+use App\Enums\StatusTask;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Event extends Model
+class Task extends Model
 {
     use HasFactory;
-    use HasTags;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,14 +19,24 @@ class Event extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'name',
+        'status',
+        'deadline',
         'description',
-        'started_at',
-        'ended_at',
     ];
 
     /**
-     * Get all of the users for the event.
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'status' => StatusTask::class,
+    ];
+
+    /**
+     * Get all of the users for the task.
      */
     public function users(): MorphToMany
     {

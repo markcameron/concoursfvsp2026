@@ -24,32 +24,35 @@ class EventResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $modelLabel = 'Événement';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Group::make()
-                ->schema([
-                    Forms\Components\Card::make()
-                        ->schema([
-                            Forms\Components\TextInput::make('name')
-                                ->label('Nom')
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\Textarea::make('description')
-                                ->required()
-                                ->maxLength(65535),
-                            Forms\Components\DateTimePicker::make('started_at')
-                                ->label('Début')
-                                ->required(),
-                            Forms\Components\DateTimePicker::make('ended_at')
-                                ->label('Fin')
-                                ->required(),
-                        ])
-                ])->columnSpan(['lg' => 2]),
+                    ->schema([
+                        Forms\Components\Section::make()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label(__('fields.name'))
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\Textarea::make('description')
+                                    ->label(__('fields.description'))
+                                    ->required()
+                                    ->maxLength(65535),
+                                Forms\Components\DateTimePicker::make('started_at')
+                                    ->label('Début')
+                                    ->required(),
+                                Forms\Components\DateTimePicker::make('ended_at')
+                                    ->label('Fin')
+                                    ->required(),
+                            ])
+                    ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()
                     ->schema([
-                        Forms\Components\Card::make()
+                        Forms\Components\Section::make()
                             ->schema([
                                 SpatieTagsInput::make('tags')->type('events'),
                             ]),

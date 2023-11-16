@@ -97,4 +97,12 @@ class User extends Authenticatable implements FilamentUser, HasName
     {
         return $this->morphedByMany(Committee::class, 'userable');
     }
+
+    /**
+     * Get all of the tasks that are assigned this user.
+     */
+    public function tasks(): MorphToMany
+    {
+        return $this->morphedByMany(Task::class, 'userable');
+    }
 }

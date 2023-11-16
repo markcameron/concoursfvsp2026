@@ -7,6 +7,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Document extends Model implements HasMedia
@@ -22,6 +23,15 @@ class Document extends Model implements HasMedia
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'name',
     ];
+
+    /**
+     * Get the user that created the document.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

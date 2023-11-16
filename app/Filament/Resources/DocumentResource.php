@@ -24,13 +24,15 @@ class DocumentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
+    protected static ?string $modelLabel = 'Document';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Group::make()
                     ->schema([
-                        Forms\Components\Card::make()
+                        Forms\Components\Section::make()
                             ->schema([
                                 Forms\Components\TextInput::make('name')->label(__('fields.name'))
                                     ->required()
@@ -38,12 +40,12 @@ class DocumentResource extends Resource
 
                                 SpatieMediaLibraryFileUpload::make('file')
                                     ->preserveFilenames()
-                                    ->enableDownload(),
+                                    ->downloadable(),
                             ]),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()
                     ->schema([
-                        Forms\Components\Card::make()
+                        Forms\Components\Section::make()
                             ->schema([
                                 SpatieTagsInput::make('tags')->type('documents'),
                             ]),
