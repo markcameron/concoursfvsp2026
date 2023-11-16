@@ -16,6 +16,8 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'full_name';
 
+    protected static ?string $title = 'Participants';
+
     public function form(Form $form): Form
     {
         return $form

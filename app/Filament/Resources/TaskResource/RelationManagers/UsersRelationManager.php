@@ -14,6 +14,10 @@ class UsersRelationManager extends RelationManager
 {
     protected static string $relationship = 'users';
 
+    protected static ?string $recordTitleAttribute = 'full_name';
+
+    protected static ?string $title = 'Agents';
+
     public function form(Form $form): Form
     {
         return $form
