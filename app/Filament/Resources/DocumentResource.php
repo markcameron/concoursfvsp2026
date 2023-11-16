@@ -35,11 +35,13 @@ class DocumentResource extends Resource
                     ->schema([
                         Forms\Components\Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('name')->label(__('fields.name'))
+                                Forms\Components\TextInput::make('name')
+                                    ->label(__('fields.name'))
                                     ->required()
                                     ->maxLength(255),
 
                                 SpatieMediaLibraryFileUpload::make('file')
+                                    ->label(__('fields.file'))
                                     ->preserveFilenames()
                                     ->downloadable(),
                             ]),
@@ -48,7 +50,9 @@ class DocumentResource extends Resource
                     ->schema([
                         Forms\Components\Section::make()
                             ->schema([
-                                SpatieTagsInput::make('tags')->type('documents'),
+                                SpatieTagsInput::make('tags')
+                                    ->label(__('fields.tags'))
+                                    ->type('documents'),
                             ]),
                     ])
             ])
@@ -60,14 +64,26 @@ class DocumentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable()
-                    ->label(__('fields.name')),
-
-                SpatieTagsColumn::make('tags')->type('documents'),
-
-                // Tables\Columns\TextColumn::make('file')->label(__('fields.file')),
-                Tables\Columns\TextColumn::make('created_at')->label(__('fields.created_at'))
-                    ->dateTime(),
+                    ->label(__('fields.name'))
+                    ->searchable(),
+                SpatieTagsColumn::make('tags')
+                    ->label(__('fields.tags'))
+                    ->type('documents'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('fields.created_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('fields.updated_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->label(__('fields.deleted_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 // Tables\Filters\TrashedFilter::make(),

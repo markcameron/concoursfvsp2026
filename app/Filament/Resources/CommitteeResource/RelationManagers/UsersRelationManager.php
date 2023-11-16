@@ -16,13 +16,18 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'full_name';
 
+    protected static ?string $label = 'utilisateur';
+
+    protected static ?string $labelPlural = 'utilisateurs';
+
     protected static ?string $title = 'Membres';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('role')->required(),
+                Forms\Components\TextInput::make('role')
+                    ->required(),
             ]);
     }
 
@@ -30,8 +35,11 @@ class UsersRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('full_name')->label(__('fields.name'))->searchable(),
-                Tables\Columns\TextColumn::make('alias')->label(__('fields.alias'))
+                Tables\Columns\TextColumn::make('full_name')
+                    ->label(__('fields.name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('alias')
+                    ->label(__('fields.alias'))
                     ->searchable()
                     ->badge(),
                 Tables\Columns\TextColumn::make('role')

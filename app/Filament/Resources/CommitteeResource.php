@@ -34,12 +34,15 @@ class CommitteeResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('name')
+                            ->label(__('fields.name'))
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('email')
+                            ->label(__('fields.email'))
                             ->email()
                             ->maxLength(255),
                         Forms\Components\Select::make('color')
+                            ->label(__('fields.color'))
                             ->options(fn (Committee $record) => $record->colors())
                             ->searchable()
                             ->allowHtml(),
@@ -51,22 +54,27 @@ class CommitteeResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('fields.name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('color')
+                    ->label(__('fields.color'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('fields.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('fields.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->label(__('fields.deleted_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('color')
-                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -81,7 +89,8 @@ class CommitteeResource extends Resource
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('name', 'asc');
     }
 
     public static function infolist(Infolist $infolist): Infolist

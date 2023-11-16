@@ -60,10 +60,22 @@ class UserResource extends Resource
         return $table
             ->columns([
                 // Tables\Columns\ImageColumn::make('avatar')->grow(false),
-                Tables\Columns\TextColumn::make('first_name')->label(__('fields.first_name')),
-                Tables\Columns\TextColumn::make('last_name')->label(__('fields.last_name')),
-                Tables\Columns\TextColumn::make('alias')->label(__('fields.alias')),
-                Tables\Columns\TextColumn::make('email')->label(__('fields.email')),
+                Tables\Columns\TextColumn::make('first_name')
+                    ->label(__('fields.first_name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('last_name')
+                    ->label(__('fields.last_name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('alias')
+                    ->label(__('fields.alias'))
+                    ->badge()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label(__('fields.email'))
+                    ->formatStateUsing(fn (string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
+                    ->html()
+                    ->color('primary')
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -76,7 +88,8 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('last_name', 'asc');
     }
 
     public static function getRelations(): array

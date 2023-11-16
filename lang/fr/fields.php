@@ -3,11 +3,15 @@
 return [
     'view' => 'Voir',
     'download' => 'Télécharger',
+    'color' => 'Couleur',
     'created_at' => 'Crée le',
     'updated_at' => 'Mis à jour le',
     'deleted_at' => 'Effacé le',
+    'started_at' => 'Début',
+    'ended_at' => 'Fin',
     'name' => 'Nom',
     'file' => 'Fichier',
+    'tags' => 'Tags',
     'first_name' => 'Prénom',
     'last_name' => 'Nom',
     'email' => 'E-mail',
@@ -18,6 +22,7 @@ return [
     'deadline' => 'Échéance',
     'description' => 'Description',
     'role' => 'Rôle',
+    'roles' => 'Rôles',
     'status_task' => [
         'pending' => 'En suspens',
         'in_progress' => 'En cours',

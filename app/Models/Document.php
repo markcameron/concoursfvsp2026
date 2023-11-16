@@ -37,9 +37,17 @@ class Document extends Model implements HasMedia
     }
 
     /**
-     * Get all of the events this document belongs to.
+     * Get all of the committees this document belongs to.
      */
     public function committees(): MorphToMany
+    {
+        return $this->morphedByMany(Committee::class, 'documentable');
+    }
+
+    /**
+     * Get all of the events this document belongs to.
+     */
+    public function events(): MorphToMany
     {
         return $this->morphedByMany(Event::class, 'documentable');
     }

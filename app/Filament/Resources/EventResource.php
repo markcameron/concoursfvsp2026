@@ -44,10 +44,10 @@ class EventResource extends Resource
                                     ->required()
                                     ->maxLength(65535),
                                 Forms\Components\DateTimePicker::make('started_at')
-                                    ->label('Début')
+                                    ->label(__('fields.started_at'))
                                     ->required(),
                                 Forms\Components\DateTimePicker::make('ended_at')
-                                    ->label('Fin')
+                                    ->label(__('fields.ended_at'))
                                     ->required(),
                             ])
                     ])->columnSpan(['lg' => 2]),
@@ -55,7 +55,9 @@ class EventResource extends Resource
                     ->schema([
                         Forms\Components\Section::make()
                             ->schema([
-                                SpatieTagsInput::make('tags')->type('events'),
+                                SpatieTagsInput::make('tags')
+                                    ->label(__('fields.tags'))
+                                    ->type('events'),
                             ]),
                     ])
             ])
@@ -67,16 +69,31 @@ class EventResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Nom')
+                    ->label(__('fields.name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('started_at')
-                    ->label('Début')
+                    ->label(__('fields.started_at'))
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('ended_at')
-                    ->label('Fin')
+                    ->label(__('fields.ended_at'))
                     ->dateTime(),
                 SpatieTagsColumn::make('tags')->type('events'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('fields.created_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('fields.updated_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->label(__('fields.deleted_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('tags')
@@ -93,7 +110,8 @@ class EventResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
