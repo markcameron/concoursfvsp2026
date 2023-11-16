@@ -22,18 +22,7 @@ class UsersRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
-                    ->label(__('fields.first_name'))
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->label(__('fields.last_name'))
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('alias')
-                    ->label(__('fields.alias'))
-                    ->required()
-                    ->maxLength(3),
+                Forms\Components\TextInput::make('role')->required(),
             ]);
     }
 
@@ -45,14 +34,24 @@ class UsersRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('alias')->label(__('fields.alias'))
                     ->searchable()
                     ->badge(),
+                Tables\Columns\TextColumn::make('role')
+                    ->label(__('fields.role'))
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\AttachAction::make()->preloadRecordSelect(),
+                Tables\Actions\AttachAction::make()
+                    ->preloadRecordSelect()
+                    ->form(fn (Tables\Actions\AttachAction $action): array => [
+                        $action->getRecordSelect(),
+                        Forms\Components\TextInput::make('role')->required(),
+                    ]),
             ])
             ->actions([
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([

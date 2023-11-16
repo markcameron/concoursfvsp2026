@@ -30,7 +30,7 @@ class Committee extends Model
      */
     public function users(): MorphToMany
     {
-        return $this->morphToMany(User::class, 'userable');
+        return $this->morphToMany(User::class, 'userable')->withPivot('role');
     }
 
     /**

@@ -17,6 +17,7 @@ return [
     'status' => 'Statut',
     'deadline' => 'Échéance',
     'description' => 'Description',
+    'role' => 'Rôle',
     'status_task' => [
         'pending' => 'En suspens',
         'in_progress' => 'En cours',
