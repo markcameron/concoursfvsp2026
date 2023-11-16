@@ -7,6 +7,8 @@ use App\Models\Task;
 use Filament\Tables;
 use App\Models\Event;
 use App\Enums\StatusTask;
+use App\Models\Committee;
+use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\TaskResource;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Widgets\TableWidget as BaseWidget;
@@ -37,6 +39,11 @@ class MyOpenTasks extends BaseWidget
                         ->color(fn (StatusTask $state) => $state->color())
                         ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
                 ]),
+                Tables\Columns\TextColumn::make('committees')
+                    ->label(__('fields.committees'))
+                    ->formatStateUsing(fn (Task $record): string => $record->committees->map(fn ($committee) => $committee->badge())->implode(''))
+                    ->html()
+                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('deadline')
                     ->label(__('fields.deadline'))
                     ->badge()
