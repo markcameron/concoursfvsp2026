@@ -71,13 +71,12 @@ class EventResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('fields.name'))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('description')
+                    ->label(__('fields.description'))
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('started_at')
-                    ->label(__('fields.started_at'))
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('ended_at')
-                    ->label(__('fields.ended_at'))
-                    ->dateTime(),
+                    ->label(__('fields.when'))
+                    ->formatStateUsing(fn (Event $record) => $record->date),
                 SpatieTagsColumn::make('tags')->type('events'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))

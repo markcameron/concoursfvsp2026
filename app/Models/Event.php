@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Support\Helpers;
 use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -25,6 +27,16 @@ class Event extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
+    ];
+
+    /**
      * Get all of the users for this event.
      */
     public function users(): MorphToMany
@@ -38,5 +50,15 @@ class Event extends Model
     public function documents(): MorphToMany
     {
         return $this->morphToMany(Document::class, 'documentable');
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    protected function date(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value): string => Helpers::formatDateRange($this->started_at, $this->ended_at),
+        );
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -65,5 +66,15 @@ class Committee extends Model
         return '<span
             style="' . $cssVariables . '"
             class="' . $classes . '">' . strtolower($this->name) . '</span>';
+    }
+
+    /**
+     * @return Attribute<int, never>
+     */
+    protected function memberCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value): int => $this->users->count(),
+        );
     }
 }

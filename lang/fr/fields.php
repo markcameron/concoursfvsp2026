@@ -23,6 +23,8 @@ return [
     'description' => 'Description',
     'role' => 'Rôle',
     'roles' => 'Rôles',
+    'member_count' => 'Nbr. de membres',
+    'when' => 'Quand',
     'status_task' => [
         'pending' => 'En suspens',
         'in_progress' => 'En cours',
