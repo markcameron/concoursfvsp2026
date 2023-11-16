@@ -108,21 +108,20 @@ class TaskResource extends Resource
                         Components\Split::make([
                             Components\Grid::make(4)
                                 ->schema([
-                                    Components\TextEntry::make('name'),
+                                    Components\TextEntry::make('name')
+                                        ->label(__('fields.name')),
                                     Components\Group::make([
                                     ]),
-                                    // Components\Group::make([
-                                        Components\TextEntry::make('deadline')
-                                            ->badge()
-                                            ->date()
-                                            ->color(fn (Task $task) => $task->deadlineColor()),
-                                        Components\TextEntry::make('status')
-                                            ->label(__('fields.status'))
-                                            ->badge()
-                                            ->color(fn (StatusTask $state) => $state->color())
-                                            ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
-
-                                    // ]),
+                                    Components\TextEntry::make('deadline')
+                                        ->label(__('fields.deadline'))
+                                        ->badge()
+                                        ->date()
+                                        ->color(fn (Task $task) => $task->deadlineColor()),
+                                    Components\TextEntry::make('status')
+                                        ->label(__('fields.status'))
+                                        ->badge()
+                                        ->color(fn (StatusTask $state) => $state->color())
+                                        ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
                                 ]),
                         ])->from('lg'),
                     ]),
