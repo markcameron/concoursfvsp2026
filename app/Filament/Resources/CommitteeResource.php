@@ -56,36 +56,56 @@ class CommitteeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('fields.name'))
-                    ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
-                    ->html()
-                    ->searchable()
-                    ->sortable(),
+                Tables\Columns\Layout\Split::make([
 
-                Tables\Columns\TextColumn::make('member_count')
-                    ->label(__('fields.member_count'))
-                    ->badge()
-                    ->color(static fn ($state): string => $state ? 'success' : 'danger')
-                    ->alignCenter(),
+                    Tables\Columns\Layout\Stack::make([
 
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('fields.created_at'))
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                        Tables\Columns\TextColumn::make('name')
+                            ->label(__('fields.name'))
+                            ->html()
+                            ->weight('medium')
+                            ->searchable()
+                            ->sortable(),
 
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('fields.updated_at'))
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                        Tables\Columns\TextColumn::make('email')
+                            ->label(__('fields.email'))
+                            ->searchable()
+                            ->sortable(),
 
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->label(__('fields.deleted_at'))
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ]),
+
+                    Tables\Columns\TextColumn::make('name')
+                        ->label(__('fields.name'))
+                        ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
+                        ->html()
+                        ->searchable()
+                        ->sortable()
+                        ->alignCenter(),
+
+                    Tables\Columns\TextColumn::make('member_count')
+                        ->label(__('fields.member_count'))
+                        ->badge()
+                        ->color(static fn ($state): string => $state ? 'success' : 'danger')
+                        ->alignCenter(),
+
+                    // Tables\Columns\TextColumn::make('created_at')
+                    //     ->label(__('fields.created_at'))
+                    //     ->dateTime()
+                    //     ->sortable()
+                    //     ->toggleable(isToggledHiddenByDefault: true),
+
+                    // Tables\Columns\TextColumn::make('updated_at')
+                    //     ->label(__('fields.updated_at'))
+                    //     ->dateTime()
+                    //     ->sortable()
+                    //     ->toggleable(isToggledHiddenByDefault: true),
+
+                    // Tables\Columns\TextColumn::make('deleted_at')
+                    //     ->label(__('fields.deleted_at'))
+                    //     ->dateTime()
+                    //     ->sortable()
+                    //     ->toggleable(isToggledHiddenByDefault: true),
+                ]),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -112,13 +132,12 @@ class CommitteeResource extends Resource
                 Components\Section::make()
                     ->schema([
                         Components\Split::make([
-                            Components\Grid::make(4)
+                            Components\Grid::make(2)
                                 ->schema([
                                     Components\TextEntry::make('name')
                                         ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
                                         ->html(),
-                                    Components\Group::make([
-                                    ]),
+
                                     Components\TextEntry::make('email')
                                         ->formatStateUsing(fn (string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
                                         ->html()
