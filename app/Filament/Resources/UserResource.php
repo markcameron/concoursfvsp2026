@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\Role;
 
 class UserResource extends Resource
 {
@@ -94,6 +95,11 @@ class UserResource extends Resource
                         ->limitList(3)
                         ->badge()
                         ->color(fn (string $state) => Color::all()[Committee::where('name', $state)->first()->color]),
+
+                    Tables\Columns\TextColumn::make('roles.name')
+                        ->label(__('fields.roles'))
+                        ->limitList(3)
+                        ->badge(),
                 ]),
             ])
             ->filters([
@@ -117,6 +123,20 @@ class UserResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
                 Tables\Actions\ActionGroup::make([
+                    Tables\Actions\BulkAction::make('assignRole')
+                        ->form([
+                            Forms\Components\Select::make('roles')
+                                ->label(__('fields.roles'))
+                                ->multiple()
+                                ->options(Role::query()->pluck('name', 'id'))
+                                ->required(),
+                        ])
+                        ->action(fn (Collection $collection, $data) => $collection->each(
+                            fn (User $user) => $user->assignRole(Role::whereIn('id', $data['roles'])->get())
+                        ))
+                        ->visible(fn () => auth()->user()->can('create-user'))
+                        ->deselectRecordsAfterCompletion(),
+
                     Tables\Actions\BulkAction::make('informAccountCreated')
                         ->action(fn (Collection $collection) => $collection->each(
                             fn (User $user) => resolve(UserService::class)->informAccountCreated($user)
