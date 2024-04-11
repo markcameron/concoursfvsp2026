@@ -13,6 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -63,15 +64,6 @@ class User extends Authenticatable implements FilamentUser, HasName
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'password' => 'asdasdasd', //Hash::make(Str::random(20)),
-    ];
-
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->hasVerifiedEmail();
@@ -80,6 +72,16 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function getFilamentName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Determine if the user has visited the application recently.
+     *
+     * @return bool
+     */
+    public function hasLoggedInPreviously(): bool
+    {
+        return $this->last_seen !== null;
     }
 
     /**
@@ -104,5 +106,15 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function tasks(): MorphToMany
     {
         return $this->morphedByMany(Task::class, 'userable');
+    }
+
+    /**
+     * Get the user's first name.
+     */
+    protected function alias(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => strtoupper($value),
+        );
     }
 }

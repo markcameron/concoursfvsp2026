@@ -59,21 +59,25 @@ class CommitteeResource extends Resource
                     ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
                     ->html()
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('member_count')
                     ->label(__('fields.member_count'))
                     ->badge()
                     ->color(static fn ($state): string => $state ? 'success' : 'danger')
                     ->alignCenter(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('fields.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label(__('fields.deleted_at'))
                     ->dateTime()

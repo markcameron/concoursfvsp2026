@@ -14,6 +14,7 @@ return [
     'tags' => 'Tags',
     'first_name' => 'Prénom',
     'last_name' => 'Nom',
+    'full_name' => 'Nom',
     'email' => 'E-mail',
     'alias' => 'Alias',
     'email_verified_at' => 'E-Mail vérifié le',

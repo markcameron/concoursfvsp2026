@@ -2,16 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables\Table;
+use App\Models\User;
 use Filament\Tables;
+use Filament\Actions;
+use Filament\Forms\Form;
+use App\Models\Committee;
+use Filament\Tables\Table;
+use App\Services\UserService;
+use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -60,28 +66,44 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                // Tables\Columns\ImageColumn::make('avatar')->grow(false),
-                Tables\Columns\TextColumn::make('first_name')
-                    ->label(__('fields.first_name'))
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('last_name')
-                    ->label(__('fields.last_name'))
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('alias')
-                    ->label(__('fields.alias'))
-                    ->badge()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->label(__('fields.email'))
-                    ->formatStateUsing(fn (string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
-                    ->html()
-                    ->color('primary')
-                    ->searchable(),
+                Tables\Columns\Layout\Split::make([
+
+                    Tables\Columns\Layout\Stack::make([
+                        Tables\Columns\TextColumn::make('full_name')
+                            ->label(__('fields.full_name'))
+                            ->searchable()
+                            ->sortable()
+                            ->weight('medium')
+                            ->alignLeft(),
+
+                        Tables\Columns\TextColumn::make('email')
+                            ->label(__('fields.email'))
+                            ->searchable()
+                            ->sortable()
+                            ->color('gray')
+                            ->alignLeft(),
+                    ]),
+
+                    Tables\Columns\TextColumn::make('alias')
+                        ->label(__('fields.alias'))
+                        ->badge()
+                        ->searchable(),
+
+                    Tables\Columns\TextColumn::make('committees.name')
+                        ->label(__('fields.committees'))
+                        ->limitList(3)
+                        ->badge()
+                        ->color(fn (string $state) => Color::all()[Committee::where('name', $state)->first()->color]),
+                ]),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('E-mail')
+                    ->iconButton()
+                    ->icon('heroicon-o-envelope')
+                    ->url(fn (User $record) => 'mailto:'. $record->email),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
@@ -89,6 +111,13 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\BulkAction::make('informAccountCreated')
+                        ->action(fn (Collection $collection) => $collection->each(
+                            fn (User $user) => resolve(UserService::class)->informAccountCreated($user)
+                        ))
+                        ->deselectRecordsAfterCompletion(),
+                ])
             ])
             ->defaultSort('last_name', 'asc');
     }

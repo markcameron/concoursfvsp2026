@@ -31,6 +31,20 @@ class InformAccountCreated extends Notification
     }
 
     /**
+     * Determine if the notification should be sent.
+     *
+     * @param  mixed  $notifiable
+     * @param  string  $channel
+     * @return bool|null
+     */
+    public function shouldSend($notifiable, $channel)
+    {
+        if ($this->user->hasLoggedInPreviously()) {
+            return false;
+        }
+    }
+
+    /**
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
