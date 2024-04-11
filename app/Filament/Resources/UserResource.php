@@ -13,6 +13,7 @@ use App\Services\UserService;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\Collection;
+use App\Filament\Imports\UserImporter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
@@ -97,6 +98,11 @@ class UserResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+            ])
+            ->headerActions([
+                Tables\Actions\ImportAction::make()
+                    ->importer(UserImporter::class)
+                    ->visible(fn () => auth()->user()->hasRole('Super Admin')),
             ])
             ->actions([
                 Tables\Actions\Action::make('E-mail')
