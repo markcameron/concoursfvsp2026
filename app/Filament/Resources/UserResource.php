@@ -79,7 +79,6 @@ class UserResource extends Resource
                         Tables\Columns\TextColumn::make('email')
                             ->label(__('fields.email'))
                             ->searchable()
-                            ->sortable()
                             ->color('gray')
                             ->alignLeft(),
                     ]),
