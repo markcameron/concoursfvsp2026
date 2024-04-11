@@ -39,14 +39,17 @@ class EventResource extends Resource
                                     ->label(__('fields.name'))
                                     ->required()
                                     ->maxLength(255),
+
                                 Forms\Components\Textarea::make('description')
                                     ->label(__('fields.description'))
                                     ->required()
                                     ->maxLength(65535),
+
                                 Forms\Components\DateTimePicker::make('started_at')
                                     ->label(__('fields.started_at'))
                                     ->required()
                                     ->timezone('Europe/Zurich'),
+
                                 Forms\Components\DateTimePicker::make('ended_at')
                                     ->label(__('fields.ended_at'))
                                     ->required()
@@ -72,24 +75,33 @@ class EventResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('fields.name'))
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('description')
                     ->label(__('fields.description'))
-                    ->limit(50),
+                    ->limit(50)
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('started_at')
                     ->label(__('fields.when'))
-                    ->formatStateUsing(fn (Event $record) => $record->date),
+                    ->formatStateUsing(fn (Event $record) => $record->date)
+                    ->sortable(),
+
                 SpatieTagsColumn::make('tags')->type('events'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('fields.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label(__('fields.deleted_at'))
                     ->dateTime()

@@ -35,9 +35,7 @@ class MyOpenTasks extends BaseWidget
                         ->label(__('fields.name')),
                     Tables\Columns\TextColumn::make('status')
                         ->label(__('fields.status'))
-                        ->badge()
-                        ->color(fn (StatusTask $state) => $state->color())
-                        ->formatStateUsing(fn (StatusTask $state): string => $state->label()),
+                        ->badge(),
                 ]),
                 Tables\Columns\TextColumn::make('committees')
                     ->label(__('fields.committees'))

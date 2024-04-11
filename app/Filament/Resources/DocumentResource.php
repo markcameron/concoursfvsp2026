@@ -65,20 +65,25 @@ class DocumentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('fields.name'))
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 SpatieTagsColumn::make('tags')
                     ->label(__('fields.tags'))
                     ->type('documents'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: false),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('fields.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label(__('fields.deleted_at'))
                     ->dateTime()

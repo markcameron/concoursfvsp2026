@@ -37,10 +37,12 @@ class CommitteeResource extends Resource
                             ->label(__('fields.name'))
                             ->required()
                             ->maxLength(255),
+
                         Forms\Components\TextInput::make('email')
                             ->label(__('fields.email'))
                             ->email()
                             ->maxLength(255),
+
                         Forms\Components\Select::make('color')
                             ->label(__('fields.color'))
                             ->options(fn () => (new Committee())->colors())
@@ -58,7 +60,8 @@ class CommitteeResource extends Resource
                     ->label(__('fields.name'))
                     ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
                     ->html()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('member_count')
                     ->label(__('fields.member_count'))
