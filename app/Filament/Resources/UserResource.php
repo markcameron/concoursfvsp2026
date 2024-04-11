@@ -116,6 +116,7 @@ class UserResource extends Resource
                         ->action(fn (Collection $collection) => $collection->each(
                             fn (User $user) => resolve(UserService::class)->informAccountCreated($user)
                         ))
+                        ->visible(fn () => auth()->user()->can('create-user'))
                         ->deselectRecordsAfterCompletion(),
                 ])
             ])

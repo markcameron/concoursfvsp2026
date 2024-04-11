@@ -49,6 +49,14 @@ class EventPolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-any Event');
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Event $event): bool
@@ -57,10 +65,26 @@ class EventPolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore-any Event');
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Event $event): bool
     {
         return $user->can('force-delete Event');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force-delete-any Event');
     }
 }

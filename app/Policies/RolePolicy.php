@@ -49,6 +49,14 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-any Role');
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Role $role): bool
@@ -57,10 +65,26 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore-any Role');
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Role $role): bool
     {
         return $user->can('force-delete Role');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force-delete-any Role');
     }
 }

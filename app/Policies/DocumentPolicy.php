@@ -65,6 +65,14 @@ class DocumentPolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-any Document');
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Document $document): bool
@@ -73,10 +81,26 @@ class DocumentPolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore-any Document');
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Document $document): bool
     {
         return $user->can('force-delete Document');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force-delete-any Document');
     }
 }

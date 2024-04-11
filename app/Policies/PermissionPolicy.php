@@ -49,6 +49,14 @@ class PermissionPolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-any Permission');
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Permission $permission): bool
@@ -57,10 +65,26 @@ class PermissionPolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore-any Permission');
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Permission $permission): bool
     {
         return $user->can('force-delete Permission');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force-delete-any Permission');
     }
 }

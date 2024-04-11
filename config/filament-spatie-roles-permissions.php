@@ -56,8 +56,11 @@ return [
             'createPermission' => 'create',
             'updatePermission' => 'update',
             'deletePermission' => 'delete',
+            'deleteAnyPermission' => 'delete-any',
             'restorePermission' => 'restore',
+            'restoreAnyPermission' => 'restore-any',
             'forceDeletePermission' => 'force-delete',
+            'forceDeleteAnyPermission' => 'force-delete-any',
 
             /*
              * Additional Resource Permissions

@@ -69,6 +69,14 @@ class TaskPolicy
     }
 
     /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return $user->can('delete-any Task');
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Task $task): bool
@@ -77,10 +85,26 @@ class TaskPolicy
     }
 
     /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore-any Task');
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Task $task): bool
     {
         return $user->can('force-delete Task');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force-delete-any Task');
     }
 }
