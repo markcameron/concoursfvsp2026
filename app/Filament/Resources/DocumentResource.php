@@ -9,8 +9,10 @@ use App\Models\Document;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Support\Htmlable;
 use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\DocumentResource\Pages;
@@ -26,6 +28,11 @@ class DocumentResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $modelLabel = 'Document';
+
+    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    {
+        return $record->name;
+    }
 
     public static function form(Form $form): Form
     {
@@ -141,6 +148,11 @@ class DocumentResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name',];
+        return ['name'];
+    }
+
+    public static function getGlobalSearchResultUrl(Model $record): string
+    {
+        return DocumentResource::getUrl('view', ['record' => $record]);
     }
 }

@@ -13,6 +13,7 @@ use Filament\Infolists\Components;
 use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Resources\CommitteeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CommitteeResource\RelationManagers;
@@ -26,6 +27,11 @@ class CommitteeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $modelLabel = 'Commission';
+
+    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    {
+        return $record->name;
+    }
 
     public static function form(Form $form): Form
     {
@@ -172,5 +178,15 @@ class CommitteeResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
+    }
+
+    public static function getGlobalSearchResultUrl(Model $record): string
+    {
+        return CommitteeResource::getUrl('view', ['record' => $record]);
     }
 }

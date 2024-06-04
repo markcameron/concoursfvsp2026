@@ -9,15 +9,17 @@ use App\Models\Event;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Support\Htmlable;
 use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\EventResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EventResource\RelationManagers;
-use App\Filament\Resources\EventResource\RelationManagers\DocumentsRelationManager;
 use App\Filament\Resources\EventResource\RelationManagers\UsersRelationManager;
+use App\Filament\Resources\EventResource\RelationManagers\DocumentsRelationManager;
 
 class EventResource extends Resource
 {
@@ -26,6 +28,18 @@ class EventResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $modelLabel = 'Événement';
+
+    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    {
+        return $record->name;
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+{
+    return [
+        'Date' => $record->date,
+    ];
+}
 
     public static function form(Form $form): Form
     {
@@ -142,5 +156,10 @@ class EventResource extends Resource
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
     }
 }
