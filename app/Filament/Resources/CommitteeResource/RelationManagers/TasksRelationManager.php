@@ -22,6 +22,11 @@ class TasksRelationManager extends RelationManager
 
     protected static ?string $title = 'Tâches';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Form $form): Form
     {
         return $form
