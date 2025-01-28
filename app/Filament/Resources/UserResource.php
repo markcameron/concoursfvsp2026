@@ -123,6 +123,15 @@ class UserResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
                 Tables\Actions\ActionGroup::make([
+
+                    Tables\Actions\BulkAction::make('sendResetPasswordLink')
+                        ->action(fn (Collection $collection, $data) => $collection->each(function (User $user) {
+                                $token = app('auth.password.broker')->createToken($user);
+                                $notification = new \Filament\Notifications\Auth\ResetPassword($token);
+                                $notification->url = \Filament\Facades\Filament::getResetPasswordUrl($token, $user);
+                                $user->notify($notification);
+                            })),
+
                     Tables\Actions\BulkAction::make('assignRole')
                         ->form([
                             Forms\Components\Select::make('roles')
