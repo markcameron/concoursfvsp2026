@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\DocumentResource\Pages;
 
+use App\Filament\Actions\Header\DocumentDownloadAction;
 use App\Filament\Resources\DocumentResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
@@ -14,6 +15,7 @@ class ViewDocument extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            DocumentDownloadAction::make(),
         ];
     }
 }

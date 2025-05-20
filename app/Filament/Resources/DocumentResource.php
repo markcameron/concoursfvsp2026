@@ -49,8 +49,7 @@ class DocumentResource extends Resource
 
                                 SpatieMediaLibraryFileUpload::make('file')
                                     ->label(__('fields.file'))
-                                    ->preserveFilenames()
-                                    ->downloadable(),
+                                    ->preserveFilenames(),
                             ]),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()
