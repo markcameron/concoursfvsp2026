@@ -42,7 +42,7 @@ jobs:
     - name: Create tar ball with artifacts
       run: tar -cf artifacts.tar public/ vendor/
     - name: Upload artifacts for deployment job
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
         path: artifacts.tar
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/checkout@v3
       # Download build artifacts from `build` job
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
       - name: Extract artifact tarball
