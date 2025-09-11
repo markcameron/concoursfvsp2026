@@ -1,3 +1,183 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'figtree';
+  src: url('fonts/Figtree-300-900.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'scienceGothic';
+  src: url('fonts/science-gothic-400-800.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@theme {
+  --breakpoint-xs: 500px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1040px;
+  --breakpoint-xl: 1248px;
+  --breakpoint-2xl: initial;
+
+  --font-sans: figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-display: scienceGothic, var(--font-sans);
+
+  --color-theme-blue: #1246A1;
+  --color-theme-light-blue: #F3F7FC;
+  --color-theme-red: #B62020;
+
+  --color-gray-50:  #F8FAFC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CAD5E2;
+  --color-gray-400: #90A1B9;
+  --color-gray-500: #62748E;
+  --color-gray-600: #45556C;
+  --color-gray-700: #314158;
+  --color-gray-800: #1D293D;
+  --color-gray-900: #0F172B;
+  --color-gray-950: #020618;
+
+}
+
+
+:root {
+  /* Responsive size. https://utopia.fyi/clamp */
+  /* 56px à 150px */
+  --container-spacing: clamp(3.5rem, 1.0966rem + 10.6818vw, 9.375rem);
+}
+
+
+.hero-title {
+  /* color: white; */
+  /* font-size: 1.75rem; */
+  /* line-height: 1.2; */
+  /* font-weight: 500; */
+
+  @media (min-width: theme(--breakpoint-md)) {
+    /* font-size: 2rem; */
+  }
+}
+
+.section-spacing {
+  margin-block: var(--container-spacing);
+}
+
+.section-title {
+  font-size: 1.875rem;
+  font-family: var(--font-display);
+  color: var(--color-theme-blue);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.btn {
+  padding: 16px 40px;
+  display: inline-flex;
+  justify-content: center;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow .3s ease-out;
+
+  &:hover {
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+  }
+}
+
+
+.list-checkmark li {
+  display: flex;
+  column-gap: 10px;
+  margin-left: -15px;
+
+  &::before {
+    display: block;
+    margin-top: 3px;
+  }
+
+  @media (min-width: theme(--breakpoint-xl)) {
+    margin-left: 0;
+  }
+}
+
+.list-checkmark--blue li::before {
+  content: url("data:image/svg+xml,%3Csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.45 11.2l5.288-5.287-1.05-1.05L6.45 9.1 4.312 6.963l-1.05 1.05L6.45 11.2zm1.05 4.05a7.304 7.304 0 01-2.925-.59 7.575 7.575 0 01-2.381-1.604A7.574 7.574 0 01.59 10.675 7.303 7.303 0 010 7.75c0-1.037.197-2.013.59-2.925a7.574 7.574 0 011.604-2.381A7.574 7.574 0 014.575.84 7.303 7.303 0 017.5.25c1.037 0 2.012.197 2.925.59a7.574 7.574 0 012.381 1.604 7.575 7.575 0 011.603 2.381c.394.912.591 1.888.591 2.925a7.304 7.304 0 01-.59 2.925 7.575 7.575 0 01-1.604 2.381 7.575 7.575 0 01-2.381 1.603 7.304 7.304 0 01-2.925.591z' fill='%231246A1' /%3E%3C/svg%3E");
+}
+
+.list-checkmark--red li::before {
+  content: url("data:image/svg+xml,%3Csvg width='25' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.45 11.2l5.288-5.287-1.05-1.05L6.45 9.1 4.312 6.963l-1.05 1.05L6.45 11.2zm1.05 4.05a7.304 7.304 0 01-2.925-.59 7.575 7.575 0 01-2.381-1.604A7.574 7.574 0 01.59 10.675 7.303 7.303 0 010 7.75c0-1.037.197-2.013.59-2.925a7.574 7.574 0 011.604-2.381A7.574 7.574 0 014.575.84 7.303 7.303 0 017.5.25c1.037 0 2.012.197 2.925.59a7.574 7.574 0 012.381 1.604 7.575 7.575 0 011.603 2.381c.394.912.591 1.888.591 2.925a7.304 7.304 0 01-.59 2.925 7.575 7.575 0 01-1.604 2.381 7.575 7.575 0 01-2.381 1.603 7.304 7.304 0 01-2.925.591z' fill='%23B62020' /%3E%3C/svg%3E");
+}
+
+
+.sponsors-logo-sizing img {
+  zoom: 40%;
+  @media (min-width: theme(--breakpoint-xs)) { zoom: 50%; }
+  @media (min-width: theme(--breakpoint-sm)) { zoom: 60%; }
+  @media (min-width: theme(--breakpoint-md)) { zoom: 75%; }
+  @media (min-width: theme(--breakpoint-lg)) { zoom: 90%; }
+  @media (min-width: theme(--breakpoint-xl)) { zoom: 100%; }
+
+}
+
+
+.header-shadow {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  &:has(:popover-open) {
+    box-shadow: none;
+  }
+  .popover-shadow {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Logo animation */
+:root {
+  --size: clamp(10rem, 1rem + 40vmin, 30rem);
+  --gap: calc(var(--size) / 14);
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  gap: var(--gap);
+  mask-image: linear-gradient(var(--mask-direction, to right),
+      hsl(0 0% 0% / 0),
+      hsl(0 0% 0% / 1) 20%,
+      hsl(0 0% 0% / 1) 80%,
+      hsl(0 0% 0% / 0));
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll-x 20s linear infinite;
+}
+
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Element styles */
+.marquee img {
+  display: grid;
+  place-items: center;
+  max-width: var(--size);
+  padding-inline: calc(var(--size) / 10);
+}

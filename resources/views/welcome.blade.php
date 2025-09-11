@@ -1,49 +1,44 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div class="mx-auto max-w-4xl text-center">
-            <p class="text-base/7 font-semibold text-red-500">À Terre-Sainte le 8-9 mai</p>
-            <h2 class="mt-2 text-5xl font-semibold tracking-tight text-blue-800 sm:text-7xl">Concours FVSP 2026</h2>
-            <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">L'assemblé generale de la Fédération Vaudoise des Sapeurs Pompiers 2026 et son concours se déroulera à Terre-Sainte.L'assemblée générale de la Fédération Vaudoise des Sapeurs Pompiers et son concours se déroule à Terre-Sainte en 2026. Prenez un moment pour regarder la vidéo de présentation de notre magnifique région en attendant plus d'informations sur l'événement.</p>
+    <div class="bg-linear-to-b from-[#0C75DF]/12 to-blue-[#0C75DF]/0">
+        <div class="md:max-w-(--breakpoint-md) pt-18 container mx-auto px-4 pb-24">
+            <div class="mb-14 text-balance text-center">
+                <h1 class="font-display text-theme-blue mb-1 text-4xl font-semibold">CONCOURS FVSP 2026</h1>
+                <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Terre-sainte</div>
+                <p class="text-lg font-medium text-gray-500">En attendant plus d'informations sur l'événement, prenez un moment pour regarder la vidéo de présentation de notre magnifique région !</p>
+            </div>
+            <div class="overflow-hidden rounded-[12px]">
+                <iframe width="560" height="315" class="aspect-video h-auto w-full" src="https://www.youtube-nocookie.com/embed/jsXaugt-1O0?si=4coLe0FAc7l2DOcu?privacy_mode=1" title="YouTube video player" allow="" referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
-    <div class="flex h-screen w-full flex-col items-center justify-center text-white">
-
-        <div class="container mx-auto">
-            <div class="mb-8 flex w-full justify-center">
-                <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/jsXaugt-1O0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="container my-24 mx-auto px-4">
+      <div class="relative max-w-xs sm:max-w-xl lg:max-w-4xl before:absolute before:top-0 before:bottom-0 before:right-0 before:left-[-50vw] before:bg-theme-light-blue before:rounded-r-[24px] p-4">
+        <div class="relative lg:flex items-center gap-x-8">
+          <p class="font-semibold text-xl text-gray-600 py-4">Restez à l'écoute pour plus de détails sur l'événement</p>
+          <div class="shrink-0 w-max grid grid-cols-2 sm:grid-cols-4 justify-items-center gap-3">
+            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+              <div id="days" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
+              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">jours</div>
             </div>
+            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+              <div id="hours" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
+              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">heures</div>
+            </div>
+            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+              <div id="minutes" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
+              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">minutes</div>
+            </div>
+            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+              <div id="seconds" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
+              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">secondes</div>
+            </div>
+          </div>
         </div>
-
-        <p class="text-md text-slate-700 sm:text-xl">Rester à l'écoute pour plus de détails sur l'événement</p>
-
-        <div class="mt-10 grid grid-cols-2 gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-
-            <div class="border bg-transparent text-center text-slate-700">
-                <p class="px-10 py-5 text-2xl sm:text-5xl" id="days">00</p>
-                <hr>
-                <p class="px-10 py-5">jours</p>
-            </div>
-
-            <div class="border bg-transparent text-center text-slate-700">
-                <p class="px-10 py-5 text-2xl sm:text-5xl" id="hours">00</p>
-                <hr>
-                <p class="px-10 py-5">heures</p>
-            </div>
-
-            <div class="border bg-transparent text-center text-slate-700">
-                <p class="px-10 py-5 text-2xl sm:text-5xl" id="minutes">00</p>
-                <hr>
-                <p class="px-10 py-5">minutes</p>
-            </div>
-            <div class="border bg-transparent text-center text-slate-700">
-                <p class="px-10 py-5 text-2xl sm:text-5xl" id="seconds">00</p>
-                <hr>
-                <p class="px-10 py-5">secs</p>
-            </div>
-        </div>
-
+      </div>
     </div>
+
 @endsection
