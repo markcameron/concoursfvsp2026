@@ -9,10 +9,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/countdown.js'])
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -35,13 +31,13 @@
             <div class="font-display text-theme-blue hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12 xl:text-lg">
                 <div class="flex flex-1 items-center justify-end gap-x-8 xl:gap-x-12">
                     <a href="/">Accueil</a>
-                    <a href="organisation.html">Organisation</a>
+                    {{-- <a href="organisation.html">Organisation</a> --}}
                     {{-- <a href="programme.html">Programme</a> --}}
                 </div>
                 <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
                 <div class="justify-left flex flex-1 items-center gap-x-8 xl:gap-x-12">
                     {{-- <a href="">Sponsors</a> --}}
-                    <a href="contact.html" class="">Contact</a>
+                    <a href="{{ route('contact.index') }}" class="">Contact</a>
                     <a href="/admin">Login</a>
                 </div>
             </div>
@@ -51,10 +47,10 @@
             <div aria-hidden="true" class="popover-shadow absolute inset-0 top-1/2 bg-white ring-1 ring-gray-900/5"></div>
             <div class="font-display text-theme-blue relative grid justify-items-start gap-y-3 bg-white px-4 pb-5 pt-10 text-sm font-medium uppercase">
                 <a href="/">Accueil</a>
-                <a href="organisation.html">Organisation</a>
+                {{-- <a href="organisation.html">Organisation</a> --}}
                 {{-- <a href="programme.html">Programme</a> --}}
                 {{-- <a href="">Sponsors</a> --}}
-                <a href="contact.html">Contact</a>
+                <a href="{{ route('contact.index') }}">Contact</a>
                 <a href="/admin">Login</a>
             </div>
         </el-popover>
@@ -72,10 +68,10 @@
           <img src="{{ asset('images/logo.png') }}" width="150" height="150" class="size-[80px] sm:size-[110px] lg:size-[150px] shrink-0" alt="Logo FVSP Terre-Sainte 2026">
           <nav class="grid lg:grid-cols-[max-content_max-content] justify-items-start gap-y-2 gap-x-8 font-display font-medium text-theme-blue uppercase *:hover:underline">
             <a href="/">Accueil</a>
-            <a href="organisation.html">Organisation</a>
+            {{-- <a href="organisation.html">Organisation</a> --}}
             {{-- <a href="programme.html">Programme</a> --}}
             {{-- <a href="">Sponsors</a> --}}
-            <a href="contact.html">Contact</a>
+            <a href="{{ route('contact.index') }}">Contact</a>
             <a href="/admin">Login</a>
           </nav>
           <div class="flex-1 shrink-0 w-max space-y-5">

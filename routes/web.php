@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(ContactController::class)->group(function () {
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('contact', 'store')->name('store');
+    });
 });
 
 Route::get('/finaliser-compte', function () {
