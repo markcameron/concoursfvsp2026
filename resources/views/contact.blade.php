@@ -13,6 +13,12 @@
             </div>
         @endif
 
+        @if ($errors->has('cf-turnstile-response'))
+            <div class="mt-6 rounded-[8px] bg-red-50 p-4 text-red-800">
+                {{ $errors->first('cf-turnstile-response') }}
+            </div>
+        @endif
+
         <form action="{{ route('contact.store') }}" method="POST" class="mt-10 grid gap-y-5">
             @csrf
 
@@ -54,9 +60,19 @@
                 @endif
             </div>
 
+            <div class="mt-4 text-center">
+                <x-turnstile
+                    data-theme="light"
+                    />
+            </div>
+
             <div class="mt-8 text-center">
                 <button type="submit" class="btn bg-theme-blue text-white">Envoyer</button>
             </div>
         </form>
     </div>
+@endsection
+
+@section('top-scripts')
+    @turnstileScripts()
 @endsection
