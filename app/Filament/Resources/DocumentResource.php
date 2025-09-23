@@ -97,7 +97,7 @@ class DocumentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                // Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make(),
                 SelectFilter::make('tags')
                     ->multiple()
                     ->options(Tag::getWithType('documents')->pluck('name', 'name'))
