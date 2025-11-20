@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ Route::controller(ContactController::class)->group(function () {
     Route::prefix('contact')->name('contact.')->group(function () {
         Route::get('', 'index')->name('index');
         Route::post('contact', 'store')->name('store');
+    });
+});
+
+Route::controller(SponsorController::class)->group(function () {
+    Route::prefix('sponsor')->name('sponsor.')->group(function () {
+        Route::get('', 'index')->name('index');
     });
 });
 
