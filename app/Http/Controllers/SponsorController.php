@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\SponsorInfo;
 use App\Models\SponsorLevel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,6 +19,14 @@ class SponsorController extends Controller
 
         return view('sponsoring')
             ->with('sponsorLevels', $sponsorLevels);
+    }
+
+    public function info()
+    {
+        $sponsorInfo = SponsorInfo::first();
+
+        return view('sponsoring_info')
+            ->with('sponsorInfo', $sponsorInfo);
     }
 
     // public function store(ContactFormRequest $request)
