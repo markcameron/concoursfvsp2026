@@ -13,6 +13,12 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div class="mt-6 rounded-[8px] bg-red-50 p-4 text-red-800">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @if ($errors->has('cf-turnstile-response'))
             <div class="mt-6 rounded-[8px] bg-red-50 p-4 text-red-800">
                 {{ $errors->first('cf-turnstile-response') }}

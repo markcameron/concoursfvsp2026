@@ -36,11 +36,13 @@ class SponsorController extends Controller
 
     public function store(SponsorFormRequest $request)
     {
-        $contact = Contact::create(collect(['type' => ContactType::SPONSORING])->merge($request->safe()->except('cf-turnstile-response'))->toArray());
-
-        Mail::to(explode(',', config('site.sponsor_emails')))->send(new SponsorFormSubmission($contact));
-
-        Mail::to($contact->email)->send(new SponsorFormReply($contact));
+        try {
+            $contact = Contact::create(collect(['type' => ContactType::SPONSORING])->merge($request->safe()->except('cf-turnstile-response'))->toArray());
+            Mail::to(explode(',', config('site.sponsor_emails')))->send(new SponsorFormSubmission($contact));
+            Mail::to($contact->email)->send(new SponsorFormReply($contact));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard.");
+        }
 
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès !');
     }
