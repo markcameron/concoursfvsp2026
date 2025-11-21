@@ -7,4 +7,8 @@ return [
         'orange' => 'Orange',
         'yellow' => 'Jaune',
     ],
+    'contact_type' => [
+        'contact' => 'Contact',
+        'sponsoring' => 'Sponsoring',
+    ],
 ];
