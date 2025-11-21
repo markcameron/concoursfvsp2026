@@ -9,6 +9,7 @@ use Filament\Tables\Table;
 use App\Models\SponsorLevel;
 use Filament\Resources\Resource;
 use App\Enums\SponsorLevelColors;
+use App\Filament\Clusters\Sponsoring;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SponsorLevelResource\Pages;
@@ -19,6 +20,8 @@ class SponsorLevelResource extends Resource
     protected static ?string $model = SponsorLevel::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $cluster = Sponsoring::class;
 
     public static function form(Form $form): Form
     {

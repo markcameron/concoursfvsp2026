@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\SponsorInfo;
 use Filament\Resources\Resource;
+use App\Filament\Clusters\Sponsoring;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -20,6 +21,8 @@ class SponsorInfoResource extends Resource
     protected static ?string $model = SponsorInfo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $cluster = Sponsoring::class;
 
     public static function form(Form $form): Form
     {
