@@ -32,28 +32,59 @@ class SponsorInfoResource extends Resource
                     ->schema([
                         Forms\Components\Builder::make('content')
                             ->blocks([
+
+                                Builder\Block::make('markdown')
+                                    ->label('Texte libre')
+                                    ->schema([
+                                        Forms\Components\MarkdownEditor::make('body')
+                                            ->label('Texte')
+                                            ->required(),
+                                    ]),
+
                                 Builder\Block::make('download_file')
-                                    ->label('Download File Section')
+                                    ->label('Bloc avec fichier à télécharger')
                                     ->schema([
                                         Forms\Components\TextInput::make('title')
-                                            ->label('Heading')
+                                            ->label('Titre')
                                             ->required(),
 
                                         Forms\Components\MarkdownEditor::make('body')
-                                            ->label('Body')
+                                            ->label('Texte')
                                             ->required(),
 
                                         Forms\Components\TextInput::make('button_text')
-                                            ->label('Button Text')
+                                            ->label('Texte du bouton')
                                             ->required(),
 
                                         FileUpload::make('file')
-                                            ->label('File')
+                                            ->label('Fichier')
                                             ->preserveFilenames()
                                             ->directory('files/sponsor_info')
                                             ->required()
                                             ->downloadable(),
                                     ]),
+
+                                Builder\Block::make('text_with_link')
+                                    ->label('Bloc avec lien')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Titre')
+                                            ->required(),
+
+                                        Forms\Components\MarkdownEditor::make('body')
+                                            ->label('Texte')
+                                            ->required(),
+
+                                        Forms\Components\TextInput::make('button_text')
+                                            ->label('Texte du bouton')
+                                            ->required(),
+
+                                        Forms\Components\TextInput::make('url')
+                                            ->label('URL')
+                                            ->prefixIcon('heroicon-o-globe-alt')
+                                            ->required(),
+                                    ]),
+
                             ])
                     ]),
             ]);
