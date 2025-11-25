@@ -8,7 +8,7 @@
                     {!! \Str::of($block->body)->markdown() !!}
                 </h2>
                 <div class="mt-10 flex items-center gap-x-6 lg:mt-0 lg:shrink-0">
-                    <a href="/{{ $block->file }}" class="shadow-xs bg-theme-blue rounded-md px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+                    <a href="{{ \Storage::disk('public')->url($block->file) }}" class="shadow-xs bg-theme-blue rounded-md px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
                         {{ $block->button_text }}
                     </a>
                 </div>
