@@ -14,3 +14,4 @@ artifacts.tar
 timestamps
 storage
 public/storage
+public/files
