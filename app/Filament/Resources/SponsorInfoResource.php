@@ -59,8 +59,9 @@ class SponsorInfoResource extends Resource
                                         FileUpload::make('file')
                                             ->label('Fichier')
                                             ->preserveFilenames()
-                                            ->directory('files/sponsor_info')
+                                            ->directory('sponsor_info')
                                             ->required()
+                                            ->disk('public')
                                             ->downloadable(),
                                     ]),
 
