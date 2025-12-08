@@ -61,7 +61,7 @@ class SponsorInfoResource extends Resource
                                             ->preserveFilenames()
                                             ->directory('sponsor_info')
                                             ->required()
-                                            ->disk('public')
+                                            ->disk('front')
                                             ->downloadable(),
                                     ]),
 
