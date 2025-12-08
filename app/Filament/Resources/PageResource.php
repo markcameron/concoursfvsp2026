@@ -112,7 +112,7 @@ class PageResource extends Resource
                                                     ->email(),
 
                                                 FileUpload::make('photo')
-                                                    ->directory('sponsor_info')
+                                                    ->directory('section_people')
                                                     ->disk('front')
                                                     ->visibility('public')
                                                     ->image()
