@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SponsorController;
 
@@ -32,6 +33,12 @@ Route::controller(SponsorController::class)->group(function () {
         Route::get('devenir-sponsor', 'info')->name('info');
         Route::get('contact', 'form')->name('contact');
         Route::post('contact', 'store')->name('store');
+    });
+});
+
+Route::controller(PageController::class)->group(function () {
+    Route::name('pages.')->group(function () {
+        Route::get('comite', 'committee')->name('committee');
     });
 });
 
