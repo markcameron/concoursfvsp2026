@@ -114,6 +114,7 @@ class PageResource extends Resource
                                                 FileUpload::make('photo')
                                                     ->directory('sponsor_info')
                                                     ->disk('front')
+                                                    ->visibility('public')
                                                     ->image()
                                                     ->imageResizeMode('cover')
                                                     ->imageCropAspectRatio('27:41')
