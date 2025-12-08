@@ -99,6 +99,7 @@ class PageResource extends Resource
                                             ->required(),
 
                                         Forms\Components\Repeater::make('people')
+                                            ->grid(3)
                                             ->schema([
                                                 Forms\Components\TextInput::make('last_name')
                                                     ->required(),
