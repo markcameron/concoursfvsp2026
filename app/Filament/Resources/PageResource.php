@@ -108,6 +108,9 @@ class PageResource extends Resource
 
                                                 Forms\Components\TextInput::make('role'),
 
+                                                Forms\Components\TextInput::make('email')
+                                                    ->email(),
+
                                                 FileUpload::make('photo')
                                                     ->directory('sponsor_info')
                                                     ->disk('front')
