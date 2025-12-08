@@ -4,7 +4,11 @@
     <div class="xs:grid-cols-[repeat(auto-fit,_49%)] lg:gap-y-18 grid gap-x-2 gap-y-8 sm:grid-cols-[repeat(auto-fit,_33%)] md:grid-cols-[repeat(auto-fit,_24%)] lg:grid-cols-[repeat(auto-fit,_19%)] justify-center">
         @foreach ($block->people as $person)
             <figure>
+                @if ($person['photo'])
                 <img src="{{ \Storage::disk('front')->url($person['photo']) }}" width="270" height="410" alt="" class="aspect-contain mx-auto block rounded-sm px-5">
+                @else
+                <img src="{{ asset('images/anonymous.jpg') }}" width="270" height="410" alt="" class="aspect-contain mx-auto block rounded-sm px-5">
+                @endif
                 <figcaption class="mt-4 text-center text-gray-900">
                     <div class="font-semibold sm:text-lg lg:text-xl">{{ mb_strtoupper($person['last_name']) }} {{ $person['first_name'] }}</div>
                     <div class="">{{ $person['role'] }}</div>
