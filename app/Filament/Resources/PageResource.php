@@ -109,6 +109,8 @@ class PageResource extends Resource
                                                 Forms\Components\TextInput::make('role'),
 
                                                 FileUpload::make('photo')
+                                                    ->directory('sponsor_info')
+                                                    ->disk('front')
                                                     ->image()
                                                     ->imageResizeMode('cover')
                                                     ->imageCropAspectRatio('27:41')
