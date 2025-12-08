@@ -126,6 +126,33 @@ class PageResource extends Resource
                                             ])
                                             ->columns(1)
                                     ]),
+
+                                Builder\Block::make('program')
+                                    ->label('Bloc avec programme')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->required(),
+
+                                        Forms\Components\Repeater::make('friday')
+                                            ->schema([
+                                                Forms\Components\TimePicker::make('time')
+                                                    ->seconds(false),
+
+                                                Forms\Components\TextInput::make('title')
+                                                    ->required(),
+                                            ])
+                                            ->columns(2),
+
+                                        Forms\Components\Repeater::make('saturday')
+                                            ->schema([
+                                                Forms\Components\TimePicker::make('time')
+                                                    ->seconds(false),
+
+                                                Forms\Components\TextInput::make('title')
+                                                    ->required(),
+                                            ])
+                                            ->columns(2)
+                                    ]),
                             ]),
                     ]),
             ]);

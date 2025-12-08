@@ -15,30 +15,80 @@
         </div>
     </div>
 
-    <div class="container my-24 mx-auto px-4">
-      <div class="relative max-w-xs sm:max-w-xl lg:max-w-4xl before:absolute before:top-0 before:bottom-0 before:right-0 before:left-[-50vw] before:bg-theme-light-blue before:rounded-r-[24px] p-4">
-        <div class="relative lg:flex items-center gap-x-8">
-          <p class="font-semibold text-xl text-gray-600 py-4">Restez à l'écoute pour plus de détails sur l'événement</p>
-          <div class="shrink-0 w-max grid grid-cols-2 sm:grid-cols-4 justify-items-center gap-3">
-            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
-              <div id="days" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
-              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">jours</div>
+    <div class="container mx-auto my-24 px-4">
+        <div class="before:bg-theme-light-blue relative max-w-xs p-4 before:absolute before:bottom-0 before:left-[-50vw] before:right-0 before:top-0 before:rounded-r-[24px] sm:max-w-xl lg:max-w-4xl">
+            <div class="relative items-center gap-x-8 lg:flex">
+                <p class="py-4 text-xl font-semibold text-gray-600">Restez à l'écoute pour plus de détails sur l'événement</p>
+                <div class="grid w-max shrink-0 grid-cols-2 justify-items-center gap-3 sm:grid-cols-4">
+                    <div class="font-display min-w-[110px] overflow-hidden rounded-[12px] text-center font-semibold text-white shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+                        <div id="days" class="bg-theme-blue px-2 py-4 text-3xl tabular-nums">00</div>
+                        <div class="bg-theme-blue px-2 py-2 text-sm shadow-[0_0_60px_rgba(255,255,255,0.12)]">jours</div>
+                    </div>
+                    <div class="font-display min-w-[110px] overflow-hidden rounded-[12px] text-center font-semibold text-white shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+                        <div id="hours" class="bg-theme-blue px-2 py-4 text-3xl tabular-nums">00</div>
+                        <div class="bg-theme-blue px-2 py-2 text-sm shadow-[0_0_60px_rgba(255,255,255,0.12)]">heures</div>
+                    </div>
+                    <div class="font-display min-w-[110px] overflow-hidden rounded-[12px] text-center font-semibold text-white shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+                        <div id="minutes" class="bg-theme-blue px-2 py-4 text-3xl tabular-nums">00</div>
+                        <div class="bg-theme-blue px-2 py-2 text-sm shadow-[0_0_60px_rgba(255,255,255,0.12)]">minutes</div>
+                    </div>
+                    <div class="font-display min-w-[110px] overflow-hidden rounded-[12px] text-center font-semibold text-white shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
+                        <div id="seconds" class="bg-theme-blue px-2 py-4 text-3xl tabular-nums">00</div>
+                        <div class="bg-theme-blue px-2 py-2 text-sm shadow-[0_0_60px_rgba(255,255,255,0.12)]">secondes</div>
+                    </div>
+                </div>
             </div>
-            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
-              <div id="hours" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
-              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">heures</div>
-            </div>
-            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
-              <div id="minutes" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
-              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">minutes</div>
-            </div>
-            <div class="min-w-[110px] font-display font-semibold text-white text-center rounded-[12px] overflow-hidden shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
-              <div id="seconds" class="tabular-nums text-3xl bg-theme-blue px-2 py-4">00</div>
-              <div class="text-sm bg-theme-blue shadow-[0_0_60px_rgba(255,255,255,0.12)] px-2 py-2">secondes</div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+
+    @if ($programBlock)
+        <section class="bg-theme-light-blue py-14">
+            <div class="lg:max-w-(--breakpoint-lg) container mx-auto px-4">
+                <h2 class="section-title mb-12 text-center">{!! $programBlock['data']['title'] !!}</h2>
+                <div class="grid items-start gap-8 lg:grid-cols-2">
+                    <div class="overflow-hidden rounded-[16px] shadow-[0_1px_4px_rgba(0,0,0,0.2)]">
+                        <div class="bg-theme-red px-6 py-3">
+                            <h3 class="font-display text-xl font-semibold uppercase text-white">Vendredi 8 mai</h3>
+                        </div>
+                        <ul class="divide-y divide-gray-200 bg-white px-6 py-2 text-lg font-medium text-gray-600">
+                            @foreach ($programBlock['data']['friday'] as $event)
+                                @if ($event['time'])
+                                    <li class="flex gap-x-6 py-3">
+                                        <time class="w-[60px]" datetime="{{ $event['time'] }}">{{ \Carbon\Carbon::parse($event['time'])->format('H\hi') }}</time>
+                                        <span class="flex-1">{{ $event['title'] }}</span>
+                                    </li>
+                                @else
+                                    <li class="flex gap-x-6 py-3">
+                                        <span class="flex-1 italic text-light-gray">{{ $event['title'] }}</span>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <div class="overflow-hidden rounded-[16px] shadow-[0_1px_4px_rgba(0,0,0,0.2)]">
+                        <div class="bg-theme-red px-6 py-3">
+                            <h3 class="font-display text-xl font-semibold uppercase text-white">Samedi 9 mai</h3>
+                        </div>
+                        <ul class="divide-y divide-gray-200 bg-white px-6 py-2 text-lg font-medium text-gray-600">
+                            @foreach ($programBlock['data']['saturday'] as $event)
+                                @if ($event['time'])
+                                    <li class="flex gap-x-6 py-3">
+                                        <time class="w-[60px]" datetime="{{ $event['time'] }}">{{ \Carbon\Carbon::parse($event['time'])->format('H\hi') }}</time>
+                                        <span class="flex-1">{{ $event['title'] }}</span>
+                                    </li>
+                                @else
+                                    <li class="flex gap-x-6 py-3">
+                                        <span class="flex-1 italic text-light-gray">{{ $event['title'] }}</span>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    @endif
 
 @endsection
