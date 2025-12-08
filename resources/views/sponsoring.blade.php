@@ -20,7 +20,7 @@
                         @endforeach
                     </ul>
                     <div class="w-full">
-                        <a href="" class="btn text-theme-blue w-full bg-white">Sponsoriser</a>
+                        <a href="{{ route('sponsor.info') }}" class="btn text-theme-blue w-full bg-white">Sponsoriser</a>
                     </div>
                 </div>
             @endforeach
