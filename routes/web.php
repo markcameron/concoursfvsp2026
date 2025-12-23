@@ -38,6 +38,7 @@ Route::controller(SponsorController::class)->group(function () {
 Route::controller(PageController::class)->group(function () {
     Route::name('pages.')->group(function () {
         Route::get('comite', 'committee')->name('committee');
+        Route::get('benevoles', 'volunteers')->name('volunteers');
     });
 });
 

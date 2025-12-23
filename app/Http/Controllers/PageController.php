@@ -21,4 +21,12 @@ class PageController extends Controller
         return view('pages.committee')
             ->with('page', $page);
     }
+
+    public function volunteers()
+    {
+        $page = Page::where('machine_name', 'volunteers')->first();
+
+        return view('pages.basic')
+            ->with('page', $page);
+    }
 }
