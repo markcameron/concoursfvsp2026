@@ -40,7 +40,7 @@
                 <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
                 </a>
                 <div class="justify-left flex flex-1 items-center gap-x-8 xl:gap-x-12">
-                    {{-- <a href="">Sponsors</a> --}}
+                    <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                     <a href="{{ route('contact.index') }}" class="">Contact</a>
                     <a href="/admin">Login</a>
                 </div>
@@ -54,6 +54,7 @@
                 <a href="{{ route('pages.committee') }}">Organisation</a>
                 {{-- <a href="programme.html">Programme</a> --}}
                 <a href="{{ route('sponsor.index') }}">Sponsors</a>
+                <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                 <a href="{{ route('contact.index') }}">Contact</a>
                 <a href="/admin">Login</a>
             </div>
@@ -77,6 +78,7 @@
                     <a href="{{ route('pages.committee') }}">Organisation</a>
                     {{-- <a href="programme.html">Programme</a> --}}
                     <a href="{{ route('sponsor.index') }}">Sponsors</a>
+                    <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                     <a href="{{ route('contact.index') }}">Contact</a>
                     <a href="/admin">Login</a>
                 </nav>
