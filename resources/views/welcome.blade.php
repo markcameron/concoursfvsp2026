@@ -15,21 +15,6 @@
         </div>
     </div>
 
-    <div class="bg-linear-to-b from-[#0C75DF]/12 to-blue-[#0C75DF]/0">
-        <div class="md:max-w-(--breakpoint-md) pt-18 container mx-auto px-4 pb-24">
-            <div class="mb-14 text-balance text-center">
-                <h2 class="font-display text-theme-blue mb-1 text-3xl font-semibold uppercase">Bonnes fêtes</h2>
-            </div>
-            <div>
-                <img src="{{ asset('images/carte-voeux.png') }}" alt="Carte de vœux 2025 FVSP" class="mx-auto mb-8 w-full max-w-lg rounded-[12px] shadow-[0_1px_4px_rgba(0,0,0,0.2)]">
-            </div>
-            <div class="overflow-hidden rounded-[12px]">
-                <iframe width="560" height="315" class="aspect-video h-auto w-full" src="https://www.youtube-nocookie.com/embed/LWN5Pg33SF0?si=4coLe0FAc7l2DOcu?privacy_mode=1" title="YouTube video player" allow="" referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
     <div class="container mx-auto my-24 px-4">
         <div class="before:bg-theme-light-blue relative max-w-xs p-4 before:absolute before:bottom-0 before:left-[-50vw] before:right-0 before:top-0 before:rounded-r-[24px] sm:max-w-xl lg:max-w-4xl">
             <div class="relative items-center gap-x-8 lg:flex">
