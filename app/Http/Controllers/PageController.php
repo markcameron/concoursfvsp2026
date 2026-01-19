@@ -29,4 +29,9 @@ class PageController extends Controller
         return view('pages.basic')
             ->with('page', $page);
     }
+
+    public function station()
+    {
+        return view('pages.station');
+    }
 }
