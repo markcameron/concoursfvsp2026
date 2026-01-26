@@ -34,4 +34,12 @@ class PageController extends Controller
     {
         return view('pages.station');
     }
+
+    public function donations()
+    {
+        $page = Page::where('machine_name', 'donations')->first();
+
+        return view('pages.basic')
+            ->with('page', $page);
+    }
 }
