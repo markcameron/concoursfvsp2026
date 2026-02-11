@@ -10,7 +10,7 @@
                 <img src="{{ asset('images/anonymous.jpg') }}" width="270" height="410" alt="" class="aspect-contain mx-auto block rounded-sm px-5">
                 @endif
                 <figcaption class="mt-4 text-center text-gray-900">
-                    <div class="font-semibold sm:text-lg lg:text-xl">{{ mb_strtoupper($person['last_name']) }} {{ $person['first_name'] }}</div>
+                    {{-- <div class="font-semibold sm:text-lg lg:text-xl">{{ mb_strtoupper($person['last_name']) }} {{ $person['first_name'] }}</div> --}}
                     <div class="">{{ $person['role'] }}</div>
                 </figcaption>
             </figure>
