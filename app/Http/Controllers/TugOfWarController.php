@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ContactType;
 use App\Http\Requests\TugOfWarFormRequest;
 use App\Mail\TugOfWarSubmission;
 use App\Models\Contact;
@@ -17,7 +18,7 @@ class TugOfWarController extends Controller
     public function store(TugOfWarFormRequest $request)
     {
         $contact = Contact::create([
-            'type' => 'tug-of-war',
+            'type' => ContactType::TUG_OF_WAR->value,
             'company_name' => $request->safe()->only('company_name')['company_name'] ?? null,
             'name' => $request->safe()->only('name')['name'],
             'email' => $request->safe()->only('email')['email'],

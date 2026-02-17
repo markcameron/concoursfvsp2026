@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ContactType;
 use App\Http\Requests\ContactFormRequest;
-use App\Models\Contact;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Mail\ContactFormSubmission;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -18,7 +17,10 @@ class ContactController extends Controller
 
     public function store(ContactFormRequest $request)
     {
-        $contact = Contact::create($request->safe()->except('cf-turnstile-response'));
+        $contact = Contact::create(array_merge(
+            $request->safe()->except('cf-turnstile-response'),
+            ['type' => ContactType::CONTACT->value]
+        ));
 
         Mail::to(explode(',', config('site.contact_emails')))->send(new ContactFormSubmission($contact));
 

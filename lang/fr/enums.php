@@ -10,5 +10,6 @@ return [
     'contact_type' => [
         'contact' => 'Contact',
         'sponsoring' => 'Sponsoring',
+        'tug_of_war' => 'Tir au tuyau',
     ],
 ];

@@ -31,4 +31,8 @@ return [
         'in_progress' => 'En cours',
         'complete' => 'Terminé',
     ],
+    'type' => 'Type',
+    'company_name' => 'Nom de la société',
+    'telephone' => 'Téléphone',
+    'message' => 'Message',
 ];
