@@ -7,6 +7,8 @@
     <div class="lg:max-w-(--breakpoint-xs) section-spacing container mx-auto px-4">
         <h2 class="text-center text-theme-red font-display mb-6 text-2xl font-semibold uppercase">Inscrivez-vous pour participer au Tir au tuyau.</h2>
 
+        <p class="text-center text-lg font-medium text-gray-600 mb-4">Dans le cadre du concours FVSP, nous avons le plaisir d’inviter les sociétés locales à s’inscrire à l’épreuve de tir au tuyau.</p>
+
         <p class="text-center text-lg font-medium text-gray-600 mb-4">Le tir débutera le <b>8 mai 2026</b> à <b>18h00</b>.</p>
 
         <p class="text-center text-lg font-medium text-gray-600 mb-4">Le paiement se fera sur place</p>

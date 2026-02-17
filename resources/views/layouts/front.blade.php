@@ -77,6 +77,8 @@
         </el-popover>
     </header>
 
+    <x-banner />
+
     <main>
 
         @yield('content')

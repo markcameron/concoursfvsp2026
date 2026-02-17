@@ -12,4 +12,8 @@ return [
         'sponsoring' => 'Sponsoring',
         'tug_of_war' => 'Tir au tuyau',
     ],
+    'banner_color' => [
+        'blue' => 'Theme Blue',
+        'red' => 'Theme Red',
+    ],
 ];
