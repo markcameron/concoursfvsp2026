@@ -5,7 +5,13 @@
         <h1 class="section-title text-center">Tir au tuyau</h1>
     </div>
     <div class="lg:max-w-(--breakpoint-xs) section-spacing container mx-auto px-4">
-        <p class="text-center text-lg font-medium text-gray-600">Inscrivez-vous pour participer au Tir au tuyau.</p>
+        <h2 class="text-center text-theme-red font-display mb-6 text-2xl font-semibold uppercase">Inscrivez-vous pour participer au Tir au tuyau.</h2>
+
+        <p class="text-center text-lg font-medium text-gray-600 mb-4">Le tir débutera le <b>8 mai 2026</b> à <b>18h00</b>.</p>
+
+        <p class="text-center text-lg font-medium text-gray-600 mb-4">Le paiement se fera sur place</p>
+
+        <p class="text-center text-lg font-medium text-gray-600 mb-32">Vous trouverez <a href="/files/Réglement-tir-au-tuyau.pdf" class="text-theme-blue font-bold hover:underline">ici le règlement de l’épreuve</a>, que nous vous remercions de bien vouloir consulter avant votre inscription.</p>
 
         @if (session('success'))
             <div class="mt-6 rounded-[8px] bg-green-50 p-4 text-green-800">
