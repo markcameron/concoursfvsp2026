@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\TugOfWarController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,13 @@ Route::controller(ContactController::class)->group(function () {
     Route::prefix('contact')->name('contact.')->group(function () {
         Route::get('', 'index')->name('index');
         Route::post('contact', 'store')->name('store');
+    });
+});
+
+Route::controller(TugOfWarController::class)->group(function () {
+    Route::prefix('tir-au-tuyau')->name('tir-au-tuyau.')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::post('', 'store')->name('store');
     });
 });
 
