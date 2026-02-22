@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SponsorType;
 use App\Models\Page;
+use App\Models\Sponsor;
 use App\Models\SponsorLevel;
+use App\Models\Variable;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -16,13 +19,23 @@ class HomepageController extends Controller
         $programBlock = collect(Page::where('machine_name', 'program')
             ->first()
             ?->content)
-            ?->firstWhere('type', 'program')
-            ;
+            ?->firstWhere('type', 'program');
 
         $sponsorLevels = SponsorLevel::orderBy('price', 'asc')->get();
 
+        $sponsors = Sponsor::where('type', SponsorType::COMMUNE)
+            ->where('active', true)
+            ->orderBy('sort', 'asc')
+            ->get();
+
+        $showMarqueeHomepage = Variable::where('key', 'sponsor_marquee_home')->first()?->value;
+        $showSponsorListHomepage = Variable::where('key', 'sponsor_list_home')->first()?->value;
+
         return view('welcome')
             ->with('programBlock', $programBlock)
-            ->with('sponsorLevels', $sponsorLevels);
+            ->with('sponsorLevels', $sponsorLevels)
+            ->with('sponsors', $sponsors)
+            ->with('showMarqueeHomepage', $showMarqueeHomepage)
+            ->with('showSponsorListHomepage', $showSponsorListHomepage);
     }
 }

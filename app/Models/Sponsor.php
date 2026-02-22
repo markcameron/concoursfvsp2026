@@ -30,12 +30,12 @@ class Sponsor extends Model implements HasMedia
     {
         $this->addMediaConversion('logo_small')
             ->height(62)
-            ->nonOptimized()
-            ->nonQueued();
+            ->nonQueued()
+            ->keepOriginalImageFormat();
 
         $this->addMediaConversion('logo_large')
             ->height(200)
-            ->nonOptimized()
-            ->nonQueued();
+            ->nonQueued()
+            ->keepOriginalImageFormat();
     }
 }

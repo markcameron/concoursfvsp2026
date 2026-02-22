@@ -21,4 +21,10 @@ return [
         'parrainage' => 'Sponsor Tuyau',
         'livret_fete' => 'Livret de fête',
     ],
+    'variable_type' => [
+        'string' => 'Texte',
+        'text' => 'Texte long',
+        'int' => 'Nombre entier',
+        'bool' => 'Booléen',
+    ],
 ];
