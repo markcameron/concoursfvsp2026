@@ -29,7 +29,7 @@ class Variable extends Model
     public function setValueAttribute(mixed $value): void
     {
         $this->attributes['value'] = match ($this->type) {
-            VariableType::BOOL => $value ? '1' : '0',
+            VariableType::BOOL => $value === 'true' ? '1' : '0',
             VariableType::INT => (string) $value,
             VariableType::STRING, VariableType::TEXT => $value,
             default => $value,
