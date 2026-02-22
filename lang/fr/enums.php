@@ -16,4 +16,9 @@ return [
         'blue' => 'Theme Blue',
         'red' => 'Theme Red',
     ],
+    'sponsor_type' => [
+        'commune' => 'Commune',
+        'livret_fete' => 'Livret de fête',
+        'parrainage' => 'Parrainage',
+    ],
 ];

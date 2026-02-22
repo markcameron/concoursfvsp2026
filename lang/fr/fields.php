@@ -35,4 +35,8 @@ return [
     'company_name' => 'Nom de la société',
     'telephone' => 'Téléphone',
     'message' => 'Message',
+    'sponsor_level' => 'Niveau de sponsoring',
+    'active' => 'Actif',
+    'logo' => 'Logo',
+    'url' => 'URL',
 ];
