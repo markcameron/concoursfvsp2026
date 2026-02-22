@@ -49,40 +49,26 @@
                 </div>
 
                 <p class="mt-6 text-lg font-medium text-gray-500">Merci pour votre soutien et votre engagement à nos côtés !</p>
-            </div>
-        </div>
 
-        @if ($showMarqueeHomepage)
-        <div>
-            <div class="marquee">
-                <div class="marquee__group">
-                    @foreach ($sponsors as $sponsor)
-                        <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
-                    @endforeach
-                </div>
-                <div aria-hidden="true" class="marquee__group">
-                    @foreach ($sponsors as $sponsor)
-                        <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        @endif
+                @if ($showMarqueeHomepage)
+                    <div class="mt-12">
+                        <div class="marquee">
+                            <div class="marquee__group">
+                                @foreach ($sponsors as $sponsor)
+                                <a href="{{ $sponsor->url }}" target="_blank">
+                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
+                                </a>
+                                @endforeach
+                            </div>
+                            <div aria-hidden="true" class="marquee__group">
+                                @foreach ($sponsors as $sponsor)
+                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
-        @if ($showSponsorListHomepage)
-        <section class="container mx-auto px-4">
-            <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
-                @foreach ($sponsors as $sponsor)
-                    <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
-                        <img src="{{ $sponsor->getFirstMediaUrl('logo') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
-                    </a>
-                @endforeach
-            </div>
-        </section>
-        @endif
-
-        <div class="md:max-w-(--breakpoint-md) pt-18 container mx-auto px-4 pb-24">
-            <div class="mb-14 text-balance text-center">
                 <p class="mt-12 text-lg font-medium text-gray-500">En attendant plus d'informations sur l'événement, prenez un moment pour regarder la vidéo de présentation de notre magnifique région !</p>
             </div>
             <div class="overflow-hidden rounded-[12px]">
@@ -186,6 +172,18 @@
                             <a href="{{ route('sponsor.info') }}" class="btn text-theme-blue w-full bg-white">Sponsoriser</a>
                         </div>
                     </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
+
+    @if ($showSponsorListHomepage)
+        <section class="container mx-auto px-4">
+            <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
+                @foreach ($sponsors as $sponsor)
+                    <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
+                        <img src="{{ $sponsor->getFirstMediaUrl('logo') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
+                    </a>
                 @endforeach
             </div>
         </section>
