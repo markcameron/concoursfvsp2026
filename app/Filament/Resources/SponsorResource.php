@@ -67,30 +67,43 @@ class SponsorResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('fields.name'))
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('type')
+                    ->label(__('fields.type'))
+                    ->badge()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('sponsorLevel.name')
+                    ->label(__('fields.sponsor_level'))
+                    ->searchable()
+                    ->sortable(),
+
                 SpatieMediaLibraryImageColumn::make('logo')
                     ->label(__('fields.logo'))
                     ->conversion('logo_small')
                     ->height(62)
                     ->grow(false),
 
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('fields.name'))
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('type')
-                    ->label(__('fields.type'))
-                    ->badge(),
-
-                Tables\Columns\TextColumn::make('sponsorLevel.name')
-                    ->label(__('fields.sponsor_level'))
-                    ->searchable(),
-
                 ToggleColumn::make('active')
                     ->label(__('fields.active')),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->label(__('fields.type'))
+                    ->options(SponsorType::class),
             ])
+            // ->groups([
+            //     Tables\Grouping\Group::make('type')
+            //         ->label(__('fields.type'))
+            //         ->collapsible(),
+            // ])
+            // ->defaultGroup('type')
+            ->reorderable('sort')
+            ->defaultSort('sort', 'asc')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

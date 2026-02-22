@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('sponsor_level_id')->nullable()->constrained()->nullOnDelete();
             $table->enum('type', ['commune', 'livret_fete', 'parrainage']);
             $table->boolean('active')->default(true);
+            $table->integer('sort')->default(0)->after('active');
         });
     }
 
