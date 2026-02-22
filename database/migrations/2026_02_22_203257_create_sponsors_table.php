@@ -12,12 +12,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
+            $table->foreignId('sponsor_level_id')->nullable()->constrained()->nullOnDelete();
+
             $table->string('name');
             $table->string('url')->nullable();
-            $table->foreignId('sponsor_level_id')->nullable()->constrained()->nullOnDelete();
-            $table->enum('type', ['commune', 'livret_fete', 'parrainage']);
+            $table->string('type');
             $table->boolean('active')->default(true);
-            $table->integer('sort')->default(0)->after('active');
+            $table->integer('sort')->default(0);
         });
     }
 

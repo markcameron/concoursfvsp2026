@@ -18,7 +18,7 @@ return [
     ],
     'sponsor_type' => [
         'commune' => 'Commune',
+        'parrainage' => 'Sponsor Tuyau',
         'livret_fete' => 'Livret de fête',
-        'parrainage' => 'Parrainage',
     ],
 ];

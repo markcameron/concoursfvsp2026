@@ -23,6 +23,8 @@ class SponsorResource extends Resource
 
     protected static ?string $cluster = Sponsoring::class;
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -39,15 +41,17 @@ class SponsorResource extends Resource
                             ->url()
                             ->maxLength(255),
 
-                        Forms\Components\Select::make('sponsor_level_id')
-                            ->label(__('fields.sponsor_level'))
-                            ->relationship('sponsorLevel', 'name')
-                            ->nullable(),
-
                         Forms\Components\Select::make('type')
                             ->label(__('fields.type'))
                             ->required()
-                            ->options(SponsorType::class),
+                            ->options(SponsorType::class)
+                            ->live(),
+
+                        Forms\Components\Select::make('sponsor_level_id')
+                            ->label(__('fields.sponsor_level'))
+                            ->relationship('sponsorLevel', 'name')
+                            ->nullable()
+                            ->visible(fn (Forms\Get $get) => $get('type') === SponsorType::PARRAINAGE->value),
 
                         Forms\Components\Toggle::make('active')
                             ->label(__('fields.active'))
@@ -80,7 +84,8 @@ class SponsorResource extends Resource
                 Tables\Columns\TextColumn::make('sponsorLevel.name')
                     ->label(__('fields.sponsor_level'))
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
 
                 SpatieMediaLibraryImageColumn::make('logo')
                     ->label(__('fields.logo'))

@@ -2,18 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use App\Models\SponsorLevel;
-use Filament\Resources\Resource;
 use App\Enums\SponsorLevelColors;
 use App\Filament\Clusters\Sponsoring;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SponsorLevelResource\Pages;
-use App\Filament\Resources\SponsorLevelResource\RelationManagers;
+use App\Models\SponsorLevel;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class SponsorLevelResource extends Resource
 {
@@ -22,6 +19,8 @@ class SponsorLevelResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $cluster = Sponsoring::class;
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

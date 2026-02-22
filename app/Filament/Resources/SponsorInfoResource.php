@@ -2,19 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use App\Models\SponsorInfo;
-use Filament\Resources\Resource;
 use App\Filament\Clusters\Sponsoring;
+use App\Filament\Resources\SponsorInfoResource\Pages;
+use App\Models\SponsorInfo;
+use Filament\Forms;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SponsorInfoResource\Pages;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\Resources\SponsorInfoResource\RelationManagers;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class SponsorInfoResource extends Resource
 {
@@ -23,6 +20,8 @@ class SponsorInfoResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $cluster = Sponsoring::class;
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -86,7 +85,7 @@ class SponsorInfoResource extends Resource
                                             ->required(),
                                     ]),
 
-                            ])
+                            ]),
                     ]),
             ]);
     }
