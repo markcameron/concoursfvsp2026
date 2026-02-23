@@ -8,9 +8,9 @@ use Filament\Support\Contracts\HasLabel;
 enum SponsorLevelColors: string implements HasLabel, HasColor
 {
     case HOSE_25 = 'black';
-    case HOSE_45 = 'green';
+    case HOSE_40 = 'green';
     case HOSE_55 = 'orange';
-    case HOSE_70 = 'yellow';
+    case HOSE_75 = 'yellow';
 
     public function getLabel(): string
     {
@@ -21,9 +21,9 @@ enum SponsorLevelColors: string implements HasLabel, HasColor
     {
         return match ($this) {
             self::HOSE_25 => 'black',
-            self::HOSE_45 => 'green',
+            self::HOSE_40 => 'green',
             self::HOSE_55 => 'orange',
-            self::HOSE_70 => 'yellow',
+            self::HOSE_75 => 'yellow',
         };
     }
 }

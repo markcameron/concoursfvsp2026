@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\SponsorListController;
 use App\Http\Controllers\TugOfWarController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,12 @@ Route::controller(SponsorController::class)->group(function () {
         Route::get('devenir-sponsor', 'info')->name('info');
         Route::get('contact', 'form')->name('contact');
         Route::post('contact', 'store')->name('store');
+    });
+});
+
+Route::controller(SponsorListController::class)->group(function () {
+    Route::prefix('sponsors')->name('sponsors.')->group(function () {
+        Route::get('', 'index')->name('index');
     });
 });
 

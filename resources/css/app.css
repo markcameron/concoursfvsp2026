@@ -83,6 +83,13 @@
   text-transform: uppercase;
 }
 
+.section-title-plain {
+  font-size: 1.875rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .btn {
   padding: 16px 40px;
   display: inline-flex;
