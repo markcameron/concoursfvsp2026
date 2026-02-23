@@ -10,6 +10,7 @@ class SponsorListController extends Controller
     public function index()
     {
         $sponsorsByLevel = Sponsor::where('type', SponsorType::PARRAINAGE)
+            ->orderBy('sort', 'asc')
             ->get()
             ->groupBy('sponsor_level_id');
 

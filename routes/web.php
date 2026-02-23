@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SponsorCommunesController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorListController;
 use App\Http\Controllers\TugOfWarController;
@@ -47,6 +48,12 @@ Route::controller(SponsorController::class)->group(function () {
 Route::controller(SponsorListController::class)->group(function () {
     Route::prefix('sponsors')->name('sponsors.')->group(function () {
         Route::get('', 'index')->name('index');
+    });
+});
+
+Route::controller(SponsorCommunesController::class)->group(function () {
+    Route::prefix('communes')->name('sponsors.')->group(function () {
+        Route::get('', 'index')->name('communes');
     });
 });
 

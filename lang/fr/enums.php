@@ -18,6 +18,7 @@ return [
     ],
     'sponsor_type' => [
         'commune' => 'Commune',
+        'commune_no_logo' => 'Commune (sans logo)',
         'parrainage' => 'Sponsor Tuyau',
         'livret_fete' => 'Livret de fête',
     ],

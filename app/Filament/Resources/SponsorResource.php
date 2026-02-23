@@ -59,7 +59,6 @@ class SponsorResource extends Resource
 
                         SpatieMediaLibraryFileUpload::make('logo')
                             ->label(__('fields.logo'))
-                            ->required()
                             ->collection('logo')
                             ->conversion('logo_small')
                             ->visibility('public')

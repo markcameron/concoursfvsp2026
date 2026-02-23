@@ -8,6 +8,7 @@ use Filament\Support\Contracts\HasLabel;
 enum SponsorType: string implements HasColor, HasLabel
 {
     case COMMUNE = 'commune';
+    case COMMUNE_NO_LOGO = 'commune_no_logo';
     case PARRAINAGE = 'parrainage';
     case LIVRET_FETE = 'livret_fete';
 
@@ -20,6 +21,7 @@ enum SponsorType: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::COMMUNE => 'success',
+            self::COMMUNE_NO_LOGO => 'default',
             self::PARRAINAGE => 'info',
             self::LIVRET_FETE => 'warning',
         };
