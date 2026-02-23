@@ -15,9 +15,11 @@ use App\Enums\SponsorLevelColors;
             <section class="container mx-auto px-4">
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(4) as $sponsor)
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_75'))
                         <a href="{{ $sponsor->url }}" target="_blank" class="flex h-32 items-center justify-center">
                             <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_75') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </section>
@@ -30,9 +32,11 @@ use App\Enums\SponsorLevelColors;
             <section class="container mx-auto px-4">
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(3) as $sponsor)
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_55'))
                         <a href="{{ $sponsor->url }}" target="_blank" class="flex h-20 items-center justify-center">
                             <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_55') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-20">
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </section>
@@ -45,9 +49,11 @@ use App\Enums\SponsorLevelColors;
             <section class="container mx-auto px-4">
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(2) as $sponsor)
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_40'))
                         <a href="{{ $sponsor->url }}" target="_blank" class="flex h-15 items-center justify-center">
                             <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_40') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-15">
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </section>
@@ -60,9 +66,11 @@ use App\Enums\SponsorLevelColors;
             <section class="container mx-auto px-4">
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(1) as $sponsor)
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_25'))
                         <a href="{{ $sponsor->url }}" target="_blank" class="flex h-12 items-center justify-center">
                             <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_25') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-12">
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </section>

@@ -28,11 +28,6 @@ class Sponsor extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Skip all conversions for SVGs
-        if ($media?->mime_type === 'image/svg+xml') {
-            return;
-        }
-
         $this->addMediaConversion('logo_small')
             ->height(62)
             ->nonQueued()

@@ -15,9 +15,11 @@
             <section class="container mx-auto px-4">
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsWithPhotos as $sponsor)
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_small'))
                         <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
                             <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </section>
