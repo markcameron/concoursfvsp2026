@@ -23,7 +23,7 @@
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-16 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsWithPhotos as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
-                            <a href="{{ $sponsor->url }}" target="_blank" class="flex flex-col items-center justify-center w-32">
+                            <a href="{{ $sponsor->url }}" target="_blank" class="flex flex-col items-center justify-center">
                                 <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
                                 <h3 class="mt-2 text-center font-semibold">{{ $sponsor->name }}</h3>
                             </a>

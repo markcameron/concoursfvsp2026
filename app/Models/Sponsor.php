@@ -58,4 +58,21 @@ class Sponsor extends Model implements HasMedia
             ->nonQueued()
             ->keepOriginalImageFormat();
     }
+
+    public function getImageUrl(string $collection, string $conversion = 'logo_small'): string
+    {
+        $media = $this->getFirstMedia($collection);
+
+        if (!$media) {
+            return '';
+        }
+
+        if ($media->mime_type === 'image/svg+xml') {
+            return $media->getUrl();
+        }
+
+        return $media->hasGeneratedConversion($conversion)
+            ? $media->getUrl($conversion)
+            : $media->getUrl();
+    }
 }
