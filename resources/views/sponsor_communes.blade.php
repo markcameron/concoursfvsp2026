@@ -9,18 +9,18 @@
         <h1 class="section-title text-center">Nos soutiens communaux</h1>
     </div>
 
-    <section class="section-spacing container mx-auto px-4">
-        <section class="container mx-auto w-48 px-4">
-            <a href="https://www.terresainte.ch" target="_blank" class="flex h-48 items-center justify-center">
+    <section class="section-spacing container mx-auto px-4 my-4!">
+        <section class="container mx-auto w-64 sm:w-84 px-4">
+            <a href="https://www.terresainte.ch" target="_blank" class="flex h-64 sm:h-84 items-center justify-center">
                 <img src="{{ asset('images/logo-terre-sainte.png') }}" alt="Terre Sainte logo" class="max-h-full max-w-full object-contain">
             </a>
         </section>
     </section>
 
     @if ($sponsorsWithPhotos)
-        <section class="section-spacing container mx-auto px-4">
-            <section class="container mx-auto max-w-2xl px-4">
-                <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-16 sm:gap-16 lg:gap-20">
+        <section class="section-spacing container mx-auto px-4 mt-12!">
+            <section class="container mx-auto max-w-2xl px-0 sm:px-4">
+                <div class="sponsors-logo-sizing mt-3 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-16 lg:gap-x-20 gap-y-8 sm:gap-y-8 lg:gap-y-12 grid grid-cols-2 md:grid-cols-3">
                     @foreach ($sponsorsWithPhotos as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
                             <a href="{{ $sponsor->url }}" target="_blank" class="flex flex-col items-center justify-center">
@@ -37,7 +37,7 @@
     @if ($sponsorsWithoutPhotos)
         <section class="section-spacing container mx-auto px-4">
             <section class="space-between container mx-auto flex justify-center px-4">
-                <div class="md:max-w-(--breakpoint-md) grid grid-cols-1 gap-x-16 gap-y-4 text-xl sm:grid-cols-2 md:grid-cols-3">
+                <div class="md:max-w-(--breakpoint-md) grid gap-x-16 gap-y-4 text-xl grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($sponsorsWithoutPhotos as $sponsor)
                         <a href="{{ $sponsor->url }}" target="_blank" class="text-theme-blue text-center font-semibold">
                             {{ $sponsor->name }}
