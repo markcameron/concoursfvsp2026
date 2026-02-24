@@ -165,7 +165,7 @@
             <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                 @foreach ($sponsors as $sponsor)
                     <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
-                        <img src="{{ $sponsor->getFirstMediaUrl('logo') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
+                        <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
                     </a>
                 @endforeach
             </div>
