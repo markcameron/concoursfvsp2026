@@ -23,12 +23,10 @@
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-16 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsWithPhotos as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
-                            <div class="flex flex-col items-center">
-                                <a href="{{ $sponsor->url }}" target="_blank" class="flex w-32 items-center justify-center">
-                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
-                                </a>
-                                <h3 class="text-center mt-2 font-semibold">{{ $sponsor->name }}</h3>
-                            </div>
+                            <a href="{{ $sponsor->url }}" target="_blank" class="flex flex-col items-center justify-center w-32">
+                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
+                                <h3 class="mt-2 text-center font-semibold">{{ $sponsor->name }}</h3>
+                            </a>
                         @endif
                     @endforeach
                 </div>
@@ -39,9 +37,9 @@
     @if ($sponsorsWithoutPhotos)
         <section class="section-spacing container mx-auto px-4">
             <section class="space-between container mx-auto flex justify-center px-4">
-                <div class="md:max-w-(--breakpoint-md) grid grid-cols-2 gap-x-16 gap-y-4 text-xl sm:grid-cols-3">
+                <div class="md:max-w-(--breakpoint-md) grid grid-cols-1 gap-x-16 gap-y-4 text-xl sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($sponsorsWithoutPhotos as $sponsor)
-                        <a href="{{ $sponsor->url }}" target="_blank" class="text-theme-blue font-semibold text-center">
+                        <a href="{{ $sponsor->url }}" target="_blank" class="text-theme-blue text-center font-semibold">
                             {{ $sponsor->name }}
                         </a>
                     @endforeach
