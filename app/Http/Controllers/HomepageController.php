@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SponsorType;
 use App\Models\Page;
+use App\Models\Sponsor;
 use App\Models\SponsorLevel;
 use App\Models\Variable;
 use Illuminate\Http\Request;
@@ -23,9 +25,12 @@ class HomepageController extends Controller
 
         $showSponsorListHomepage = Variable::where('key', 'sponsor_list_home')->first()?->value;
 
+        $sponsors = Sponsor::where('type', SponsorType::PARRAINAGE->value)->get();
+
         return view('welcome')
             ->with('programBlock', $programBlock)
             ->with('sponsorLevels', $sponsorLevels)
-            ->with('showSponsorListHomepage', $showSponsorListHomepage);
+            ->with('showSponsorListHomepage', $showSponsorListHomepage)
+            ->with('sponsors', $sponsors);
     }
 }

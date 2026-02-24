@@ -161,7 +161,7 @@
     @endif
 
     @if ($showSponsorListHomepage)
-        <section class="container mx-auto px-4">
+        <section class="section-spacing container mx-auto px-4">
             <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                 @foreach ($sponsors as $sponsor)
                     <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
