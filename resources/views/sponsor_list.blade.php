@@ -33,8 +33,8 @@
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(3) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
-                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-24">
-                                <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-24">
+                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-32">
+                                <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                             </a>
                         @endif
                     @endforeach
@@ -50,8 +50,8 @@
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(2) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
-                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-24">
-                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-24">
+                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-32">
+                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                             </a>
                         @endif
                     @endforeach
@@ -67,8 +67,8 @@
                 <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsByLevel?->get(1) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
-                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-24">
-                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-24">
+                            <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-32">
+                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                             </a>
                         @endif
                     @endforeach
