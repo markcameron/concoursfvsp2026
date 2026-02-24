@@ -9,16 +9,26 @@
         <h1 class="section-title text-center">Nos soutiens communaux</h1>
     </div>
 
+    <section class="section-spacing container mx-auto px-4">
+        <section class="container mx-auto w-48 px-4">
+            <a href="https://www.terresainte.ch" target="_blank" class="flex h-48 items-center justify-center">
+                <img src="{{ asset('images/logo-terre-sainte.png') }}" alt="Terre Sainte logo" class="max-h-full max-w-full object-contain">
+            </a>
+        </section>
+    </section>
+
     @if ($sponsorsWithPhotos)
         <section class="section-spacing container mx-auto px-4">
-            <h2 class="section-title-plain mb-12 text-center">Les communes de Terre Sainte</h2>
-            <section class="container mx-auto px-4">
-                <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-20">
+            <section class="container mx-auto max-w-2xl px-4">
+                <div class="sponsors-logo-sizing xs:gap-12 mt-3 flex flex-wrap items-center justify-center gap-16 sm:gap-16 lg:gap-20">
                     @foreach ($sponsorsWithPhotos as $sponsor)
-                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_small'))
-                        <a href="{{ $sponsor->url }}" target="_blank" class="flex h-24 items-center justify-center">
-                            <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
-                        </a>
+                        @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
+                            <div class="flex flex-col items-center">
+                                <a href="{{ $sponsor->url }}" target="_blank" class="flex w-32 items-center justify-center">
+                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain">
+                                </a>
+                                <h3 class="text-center mt-2 font-semibold">{{ $sponsor->name }}</h3>
+                            </div>
                         @endif
                     @endforeach
                 </div>
@@ -28,10 +38,10 @@
 
     @if ($sponsorsWithoutPhotos)
         <section class="section-spacing container mx-auto px-4">
-            <section class="container mx-auto px-4 flex justify-center space-between">
-                <div class="md:max-w-(--breakpoint-md) grid grid-cols-2 gap-x-20 gap-y-4 sm:grid-cols-3 text-xl">
+            <section class="space-between container mx-auto flex justify-center px-4">
+                <div class="md:max-w-(--breakpoint-md) grid grid-cols-2 gap-x-16 gap-y-4 text-xl sm:grid-cols-3">
                     @foreach ($sponsorsWithoutPhotos as $sponsor)
-                        <a href="{{ $sponsor->url }}" target="_blank" class="font-semibold text-theme-blue">
+                        <a href="{{ $sponsor->url }}" target="_blank" class="text-theme-blue font-semibold text-center">
                             {{ $sponsor->name }}
                         </a>
                     @endforeach
