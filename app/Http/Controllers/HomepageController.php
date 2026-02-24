@@ -25,7 +25,9 @@ class HomepageController extends Controller
 
         $showSponsorListHomepage = Variable::where('key', 'sponsor_list_home')->first()?->value;
 
-        $sponsors = Sponsor::where('type', SponsorType::PARRAINAGE->value)->get();
+        $sponsors = Sponsor::where('type', SponsorType::PARRAINAGE->value)
+            ->orderBy('sort', 'asc')
+            ->get();
 
         return view('welcome')
             ->with('programBlock', $programBlock)
