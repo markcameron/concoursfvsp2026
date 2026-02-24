@@ -91,7 +91,7 @@ class SponsorResource extends Resource
 
                 SpatieMediaLibraryImageColumn::make('logo')
                     ->label(__('fields.logo'))
-                    ->conversion('logo_small')
+                    // ->conversion('logo_small')
                     ->height(62)
                     ->grow(false),
 
