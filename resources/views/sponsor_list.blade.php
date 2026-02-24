@@ -17,7 +17,7 @@
                     @foreach ($sponsorsByLevel?->get(4) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
                             <a href="{{ $sponsor->url }}" target="_blank" class="flex h-32 items-center justify-center">
-                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="h-32 max-h-full max-w-full object-contain">
+                                <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="h-32 max-h-full max-w-full object-contain">
                             </a>
                         @endif
                     @endforeach
@@ -51,7 +51,7 @@
                     @foreach ($sponsorsByLevel?->get(2) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
                             <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-32">
-                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
+                                <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                             </a>
                         @endif
                     @endforeach
@@ -68,7 +68,7 @@
                     @foreach ($sponsorsByLevel?->get(1) as $sponsor)
                         @if ($sponsor->getFirstMedia('logo')?->hasGeneratedConversion('logo_large'))
                             <a href="{{ $sponsor->url }}" target="_blank" class="flex items-center justify-center h-32">
-                                <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
+                                <img src="{{ $sponsor->getImageUrl('logo', 'logo_large') }}" alt="{{ $sponsor->name }} logo" class="max-h-full max-w-full object-contain h-32">
                             </a>
                         @endif
                     @endforeach
