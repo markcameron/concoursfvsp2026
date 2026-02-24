@@ -7,23 +7,27 @@
 
     <title>FVSP Terre Sainte 2026</title>
 
-    @vite(['resources/css/app.css', 'resources/js/countdown.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @yield('top-scripts')
 
     <!-- Matomo -->
     <script>
-    var _paq = window._paq = window._paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        var u="//matomo.kram.xyz/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u = "//matomo.kram.xyz/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '2']);
+            var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
+            g.async = true;
+            g.src = u + 'matomo.js';
+            s.parentNode.insertBefore(g, s);
+        })();
     </script>
     <!-- End Matomo Code -->
 
@@ -46,18 +50,47 @@
                     </svg>
                 </button>
             </div>
-            <div class="font-display text-theme-blue hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12 xl:text-md">
+            <div class="font-display text-theme-blue xl:text-md hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12">
                 <div class="flex flex-1 items-center justify-end gap-x-8 xl:gap-x-12">
                     <a href="{{ route('pages.committee') }}">Comité</a>
                     <a href="{{ route('sponsor.index') }}">Sponsoring</a>
-                    <a href="{{ route('sponsors.index') }}">Sponsors</a>
+                    <el-dropdown class="inline-block">
+                        <button class="inline-flex items-center uppercase">
+                            Sponsors
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-6">
+                                <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <el-menu anchor="bottom end" popover
+                            class="transition-discrete data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition [--anchor-gap:--spacing(2)] dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+                            <div class="py-1">
+                                <a href="{{ route('sponsors.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Nos partenaires</a>
+                                <a href="{{ route('sponsors.communes') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Les communes</a>
+                            </div>
+                        </el-menu>
+                    </el-dropdown>
                 </div>
                 <a href="/">
-                <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
+                    <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
                 </a>
                 <div class="justify-left flex flex-1 items-center gap-x-8 xl:gap-x-12">
                     <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
-                    <a href="{{ route('pages.volunteers') }}">Infos Utiles</a>
+                    <el-dropdown class="inline-block">
+                        <button class="inline-flex items-center uppercase">
+                            Infos Utiles
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-6">
+                                <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <el-menu anchor="bottom end" popover
+                            class="transition-discrete data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition [--anchor-gap:--spacing(2)] dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+                            <div class="py-1">
+                                <a href="{{ route('contact.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Contact</a>
+                                <a href="{{ route('housing.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Hébergement</a>
+                                <a href="{{ route('tir-au-tuyau.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Tir au tuyau</a>
+                            </div>
+                        </el-menu>
+                    </el-dropdown>
                     <a href="{{ route('contact.index') }}" class="">Livret Fête</a>
                     {{-- <a href="/admin">Login</a> --}}
                 </div>
