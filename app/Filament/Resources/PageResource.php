@@ -57,6 +57,16 @@ class PageResource extends Resource
                                 Builder\Block::make('download_file')
                                     ->label('Bloc avec fichier à télécharger')
                                     ->schema([
+                                        Forms\Components\Select::make('orientation')
+                                            ->label('Orientation du bloc')
+                                            ->options([
+                                                'left' => 'Texte à gauche',
+                                                'right' => 'Texte à droite',
+                                                'top' => 'Texte en haut',
+                                            ])
+                                            ->default('left')
+                                            ->required(),
+
                                         Forms\Components\TextInput::make('title')
                                             ->label('Titre')
                                             ->required(),

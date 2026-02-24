@@ -4,7 +4,7 @@
 
         <div class="">
             <div class="mx-auto max-w-7xl lg:flex lg:items-center lg:justify-between">
-                <h2 class="max-w-2xl text-sm font-semibold tracking-tight text-gray-900 sm:text-lg">
+                <h2 class="max-w-2xl text-sm font-medium tracking-tight text-gray-600 sm:text-lg">
                     {!! \Str::of($block->body)->markdown() !!}
                 </h2>
                 <div class="mt-10 flex items-center gap-x-6 lg:mt-0 lg:shrink-0">
