@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="bg-linear-to-b from-[#0C75DF]/12 to-blue-[#0C75DF]/0">
+        <x-marquee />
         <div class="md:max-w-(--breakpoint-md) pt-18 container mx-auto px-4 pb-24">
+
             <div class="mb-14 text-balance text-center">
                 <h1 class="font-display text-theme-blue mb-1 text-4xl font-semibold">CONCOURS FVSP 2026</h1>
                 <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Terre-sainte</div>
@@ -49,25 +51,6 @@
                 </div>
 
                 <p class="mt-6 text-lg font-medium text-gray-500">Merci pour votre soutien et votre engagement à nos côtés !</p>
-
-                @if ($showMarqueeHomepage)
-                    <div class="mt-12">
-                        <div class="marquee">
-                            <div class="marquee__group">
-                                @foreach ($sponsors as $sponsor)
-                                <a href="{{ $sponsor->url }}" target="_blank">
-                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
-                                </a>
-                                @endforeach
-                            </div>
-                            <div aria-hidden="true" class="marquee__group">
-                                @foreach ($sponsors as $sponsor)
-                                    <img src="{{ $sponsor->getFirstMediaUrl('logo', 'logo_small') }}" alt="{{ $sponsor->name }} logo">
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endif
 
                 <p class="mt-12 text-lg font-medium text-gray-500">En attendant plus d'informations sur l'événement, prenez un moment pour regarder la vidéo de présentation de notre magnifique région !</p>
             </div>
