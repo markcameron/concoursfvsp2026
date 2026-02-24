@@ -34,4 +34,12 @@ class PageController extends Controller
         return view('pages.basic')
             ->with('page', $page);
     }
+
+    public function livret()
+    {
+        $page = Page::where('machine_name', 'livret')->first();
+
+        return view('pages.basic')
+            ->with('page', $page);
+    }
 }

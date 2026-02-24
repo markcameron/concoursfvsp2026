@@ -46,6 +46,14 @@ class PageResource extends Resource
                                             ->required(),
                                     ]),
 
+                                Builder\Block::make('markdown_intro_centered')
+                                    ->label('Texte libre centré')
+                                    ->schema([
+                                        Forms\Components\MarkdownEditor::make('body')
+                                            ->label('Texte')
+                                            ->required(),
+                                    ]),
+
                                 Builder\Block::make('download_file')
                                     ->label('Bloc avec fichier à télécharger')
                                     ->schema([

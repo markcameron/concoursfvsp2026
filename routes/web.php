@@ -72,6 +72,7 @@ Route::controller(PageController::class)->group(function () {
         Route::get('benevoles', 'volunteers')->name('volunteers');
         Route::get('affichage-caserne', 'station')->name('station');
         Route::get('donations', 'donations')->name('donations');
+        Route::get('livret', 'livret')->name('livret');
     });
 });
 

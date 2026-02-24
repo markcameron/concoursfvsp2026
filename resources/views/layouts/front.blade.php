@@ -61,7 +61,7 @@
                                 <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                             </svg>
                         </button>
-                        <el-menu anchor="bottom end" popover
+                        <el-menu anchor="bottom center" popover
                             class="transition-discrete data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition [--anchor-gap:--spacing(2)] dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
                             <div class="py-1">
                                 <a href="{{ route('sponsors.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Nos partenaires</a>
@@ -82,7 +82,7 @@
                                 <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                             </svg>
                         </button>
-                        <el-menu anchor="bottom end" popover
+                        <el-menu anchor="bottom center" popover
                             class="transition-discrete data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition [--anchor-gap:--spacing(2)] dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
                             <div class="py-1">
                                 <a href="{{ route('contact.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Contact</a>
@@ -91,7 +91,7 @@
                             </div>
                         </el-menu>
                     </el-dropdown>
-                    <a href="{{ route('contact.index') }}" class="">Livret Fête</a>
+                    <a href="{{ route('pages.livret') }}" class="">Livret Fête</a>
                     {{-- <a href="/admin">Login</a> --}}
                 </div>
             </div>
@@ -101,12 +101,15 @@
             <div aria-hidden="true" class="popover-shadow absolute inset-0 top-1/2 bg-white ring-1 ring-gray-900/5"></div>
             <div class="font-display text-theme-blue relative grid justify-items-start gap-y-3 bg-white px-4 pb-5 pt-10 text-sm font-medium uppercase">
                 <a href="/">Accueil</a>
-                <a href="{{ route('pages.committee') }}">Organisation</a>
+                <a href="{{ route('pages.committee') }}">Comité</a>
                 {{-- <a href="programme.html">Programme</a> --}}
                 <a href="{{ route('sponsor.index') }}">Sponsors</a>
-                <a href="{{ route('sponsors.index') }}">Nos Sponsors</a>
+                <a href="{{ route('sponsors.index') }}">Nos partenaires</a>
+                <a href="{{ route('sponsors.communes') }}">Les communes</a>
                 <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                 <a href="{{ route('contact.index') }}">Contact</a>
+                <a href="{{ route('housing.index') }}">Hébergement</a>
+                <a href="{{ route('tir-au-tuyau.index') }}">Tir au tuyau</a>
                 <a href="/admin">Login</a>
             </div>
         </el-popover>
