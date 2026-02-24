@@ -46,19 +46,20 @@
                     </svg>
                 </button>
             </div>
-            <div class="font-display text-theme-blue hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12 xl:text-lg">
+            <div class="font-display text-theme-blue hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12 xl:text-md">
                 <div class="flex flex-1 items-center justify-end gap-x-8 xl:gap-x-12">
-                    {{-- <a href="/">Accueil</a> --}}
-                    <a href="{{ route('pages.committee') }}">Organisation</a>
+                    <a href="{{ route('pages.committee') }}">Comité</a>
                     <a href="{{ route('sponsor.index') }}">Sponsoring</a>
+                    <a href="{{ route('sponsors.index') }}">Sponsors</a>
                 </div>
                 <a href="/">
                 <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
                 </a>
                 <div class="justify-left flex flex-1 items-center gap-x-8 xl:gap-x-12">
                     <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
-                    <a href="{{ route('contact.index') }}" class="">Contact</a>
-                    <a href="/admin">Login</a>
+                    <a href="{{ route('pages.volunteers') }}">Infos Utiles</a>
+                    <a href="{{ route('contact.index') }}" class="">Livret Fête</a>
+                    {{-- <a href="/admin">Login</a> --}}
                 </div>
             </div>
         </nav>
@@ -70,6 +71,7 @@
                 <a href="{{ route('pages.committee') }}">Organisation</a>
                 {{-- <a href="programme.html">Programme</a> --}}
                 <a href="{{ route('sponsor.index') }}">Sponsors</a>
+                <a href="{{ route('sponsors.index') }}">Nos Sponsors</a>
                 <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                 <a href="{{ route('contact.index') }}">Contact</a>
                 <a href="/admin">Login</a>

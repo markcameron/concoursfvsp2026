@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
 use App\Models\Document;
 use App\Models\User;
 
@@ -37,9 +36,9 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document): bool
     {
-        if (!$user->can('update Document')) {
+        if (! $user->can('update Document')) {
             return false;
-        };
+        }
 
         if ($document->user_id === $user->id) {
             return true;
@@ -53,9 +52,9 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): bool
     {
-        if (!$user->can('delete Document')) {
+        if (! $user->can('delete Document')) {
             return false;
-        };
+        }
 
         if ($document->user_id === $user->id) {
             return true;

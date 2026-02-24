@@ -14,7 +14,7 @@ enum SponsorType: string implements HasColor, HasLabel
 
     public function getLabel(): string
     {
-        return __('enums.sponsor_type.'.$this->value);
+        return __('enums.sponsor_type.' . $this->value);
     }
 
     public function getColor(): string

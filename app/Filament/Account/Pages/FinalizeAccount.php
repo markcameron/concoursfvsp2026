@@ -2,15 +2,13 @@
 
 namespace App\Filament\Account\Pages;
 
-use Filament\Forms;
 use App\Models\User;
+use Filament\Forms;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
 use Illuminate\Http\Request;
-use Filament\Facades\Filament;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Concerns\InteractsWithForms;
 
 class FinalizeAccount extends Page implements HasForms
 {
@@ -25,9 +23,13 @@ class FinalizeAccount extends Page implements HasForms
     public ?User $user;
 
     public string $email;
+
     public string $first_name;
+
     public string $last_name;
+
     public string $password;
+
     public string $token;
 
     public function mount(Request $request)

@@ -2,15 +2,12 @@
 
 namespace App\Filament\Resources\CommitteeResource\RelationManagers;
 
-use Filament\Forms;
 use App\Models\Task;
-use Filament\Tables;
+use Filament\Forms;
 use Filament\Forms\Form;
-use App\Enums\StatusTask;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class TasksRelationManager extends RelationManager
 {
@@ -70,7 +67,7 @@ class TasksRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('deadline')
                     ->label(__('fields.deadline'))
                     ->badge()
-                    ->color(fn (Task $task) => $task->deadlineColor())
+                    ->color(fn(Task $task) => $task->deadlineColor())
                     ->date()
                     ->sortable(),
 
@@ -102,7 +99,7 @@ class TasksRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\Action::make('view')
                     ->label(__('fields.view'))
-                    ->url(fn (Task $record): string => route('filament.admin.resources.tasks.view', $record->id))
+                    ->url(fn(Task $record): string => route('filament.admin.resources.tasks.view', $record->id))
                     ->icon('heroicon-s-eye'),
                 Tables\Actions\DetachAction::make(),
             ])

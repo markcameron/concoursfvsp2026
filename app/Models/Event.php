@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Support\Helpers;
-use Spatie\Tags\HasTags;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\Tags\HasTags;
 
 class Event extends Model
 {
@@ -58,7 +58,7 @@ class Event extends Model
     protected function date(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): string => Helpers::formatDateRange($this->started_at, $this->ended_at),
+            get: fn($value): string => Helpers::formatDateRange($this->started_at, $this->ended_at),
         );
     }
 
@@ -68,7 +68,7 @@ class Event extends Model
     protected function participantCount(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): int => $this->users->count(),
+            get: fn($value): int => $this->users->count(),
         );
     }
 }

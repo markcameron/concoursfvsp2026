@@ -4,12 +4,13 @@ namespace App\Support;
 
 use Carbon\Carbon;
 
-class Helpers {
+class Helpers
+{
     public static function formatDateRange(
         ?Carbon $start,
         ?Carbon $end,
-        string $dateFormat = "ddd D MMM, YYYY",
-        string $timeFormat = "HH:mm",
+        string $dateFormat = 'ddd D MMM, YYYY',
+        string $timeFormat = 'HH:mm',
         string $timezone = 'Europe/Zurich',
     ) {
         $dateTimeFormat = $dateFormat . ' ' . $timeFormat;

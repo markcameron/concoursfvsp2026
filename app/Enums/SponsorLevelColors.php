@@ -5,7 +5,7 @@ namespace App\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum SponsorLevelColors: string implements HasLabel, HasColor
+enum SponsorLevelColors: string implements HasColor, HasLabel
 {
     case HOSE_25 = 'black';
     case HOSE_40 = 'green';

@@ -2,13 +2,11 @@
 
 namespace App\Filament\Actions\Tables;
 
-use Filament\Tables\Table;
-use Illuminate\Support\Arr;
-use Filament\Tables\Actions\Action;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Actions\Concerns\CanCustomizeProcess;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class DocumentDownloadAction extends Action
 {
@@ -30,7 +28,7 @@ class DocumentDownloadAction extends Action
         $this->icon('heroicon-o-arrow-down-tray');
 
         $this->hidden(static function (Model $record): bool {
-            return !$record->hasMedia();
+            return ! $record->hasMedia();
         });
 
         $this->action(function (): BinaryFileResponse {

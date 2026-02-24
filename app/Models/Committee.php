@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Arr;
 use Filament\Support\Colors\Color;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Committee extends Model
 {
@@ -46,16 +45,17 @@ class Committee extends Model
     {
         $colors = array_keys(Color::all());
         sort($colors);
-        return array_combine($colors, array_map(fn ($item) => ucfirst($item), $colors));
+
+        return array_combine($colors, array_map(fn($item) => ucfirst($item), $colors));
     }
 
     public function badge(): string
     {
-        if (!in_array($this->color, array_keys(Color::all()))) {
+        if (! in_array($this->color, array_keys(Color::all()))) {
             return '<span>' . strtolower($this->name) . '</span>';
         }
         $cssVariables = \Illuminate\Support\Arr::toCssStyles([
-            \Filament\Support\get_color_css_variables(Color::all()[$this->color], shades: [50, 400, 600]) => true
+            \Filament\Support\get_color_css_variables(Color::all()[$this->color], shades: [50, 400, 600]) => true,
         ]);
 
         $classes = implode(' ', [
@@ -63,6 +63,7 @@ class Committee extends Model
             'min-w-[theme(spacing.6)] py-1',
             'bg-custom-50 text-custom-400 ring-custom-600/10',
         ]);
+
         return '<span
             style="' . $cssVariables . '"
             class="' . $classes . '">' . strtolower($this->name) . '</span>';
@@ -74,7 +75,7 @@ class Committee extends Model
     protected function memberCount(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): int => $this->users->count(),
+            get: fn($value): int => $this->users->count(),
         );
     }
 }

@@ -29,6 +29,11 @@ Route::controller(ContactController::class)->group(function () {
     });
 });
 
+Route::controller(ContactController::class)->prefix('hebergement')->name('housing.')->group(function () {
+    Route::get('', 'housing')->name('index');
+    Route::post('', 'storeHousing')->name('store');
+});
+
 Route::controller(TugOfWarController::class)->group(function () {
     Route::prefix('tir-au-tuyau')->name('tir-au-tuyau.')->group(function () {
         Route::get('', 'index')->name('index');

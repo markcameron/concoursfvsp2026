@@ -2,16 +2,12 @@
 
 namespace App\Filament\Widgets;
 
-use Closure;
-use App\Models\Task;
-use Filament\Tables;
-use App\Models\Event;
-use App\Enums\StatusTask;
-use App\Models\Committee;
-use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\TaskResource;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Task;
+use Closure;
+use Filament\Tables;
 use Filament\Widgets\TableWidget as BaseWidget;
+use Illuminate\Database\Eloquent\Builder;
 
 class MyOpenTasks extends BaseWidget
 {
@@ -22,7 +18,7 @@ class MyOpenTasks extends BaseWidget
     protected function getTableQuery(): Builder
     {
         return TaskResource::getEloquentQuery()
-            ->whereHas('users', fn ($q) => $q->where('user_id', auth()->user()->id));
+            ->whereHas('users', fn($q) => $q->where('user_id', auth()->user()->id));
     }
 
     protected function getTableColumns(): array
@@ -39,22 +35,22 @@ class MyOpenTasks extends BaseWidget
                 ]),
                 Tables\Columns\TextColumn::make('committees')
                     ->label(__('fields.committees'))
-                    ->formatStateUsing(fn (Task $record): string => $record->committees->map(fn ($committee) => $committee->badge())->implode(''))
+                    ->formatStateUsing(fn(Task $record): string => $record->committees->map(fn($committee) => $committee->badge())->implode(''))
                     ->html()
                     ->alignCenter(),
                 Tables\Columns\TextColumn::make('deadline')
                     ->label(__('fields.deadline'))
                     ->badge()
-                    ->color(fn (Task $task) => $task->deadlineColor())
+                    ->color(fn(Task $task) => $task->deadlineColor())
                     ->date()
                     ->alignEnd(),
-            ])
+            ]),
         ];
     }
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Task $record): string => TaskResource::getUrl('view', ['record' => $record]);
+        return fn(Task $record): string => TaskResource::getUrl('view', ['record' => $record]);
     }
 
     protected function isTablePaginationEnabled(): bool

@@ -51,7 +51,7 @@ class SponsorResource extends Resource
                             ->label(__('fields.sponsor_level'))
                             ->relationship('sponsorLevel', 'name')
                             ->nullable()
-                            ->visible(fn (Forms\Get $get) => $get('type') === SponsorType::PARRAINAGE->value),
+                            ->visible(fn(Forms\Get $get) => $get('type') === SponsorType::PARRAINAGE->value),
 
                         Forms\Components\Toggle::make('active')
                             ->label(__('fields.active'))

@@ -2,12 +2,12 @@
 
 namespace App\Filament\Widgets;
 
+use App\Filament\Resources\EventResource;
+use App\Models\Event;
 use Closure;
 use Filament\Tables;
-use App\Models\Event;
-use App\Filament\Resources\EventResource;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Widgets\TableWidget as BaseWidget;
+use Illuminate\Database\Eloquent\Builder;
 
 class MyUpcomingEvents extends BaseWidget
 {
@@ -18,7 +18,7 @@ class MyUpcomingEvents extends BaseWidget
     protected function getTableQuery(): Builder
     {
         return EventResource::getEloquentQuery()
-            ->whereHas('users', fn ($q) => $q->where('user_id', auth()->user()->id))
+            ->whereHas('users', fn($q) => $q->where('user_id', auth()->user()->id))
             ->whereDate('started_at', '>=', now());
     }
 
@@ -31,20 +31,20 @@ class MyUpcomingEvents extends BaseWidget
                         ->weight('semibold')
                         ->label(__('fields.name')),
                     Tables\Columns\TextColumn::make('started_at')
-                        ->formatStateUsing(fn (Event $record) => $record->date),
+                        ->formatStateUsing(fn(Event $record) => $record->date),
                 ]),
                 Tables\Columns\TextColumn::make('participant_count')
                     ->badge()
                     ->prefix('Convoquées : ')
-                    ->color(static fn ($state): string => $state > 1 ? 'success' : 'danger')
+                    ->color(static fn($state): string => $state > 1 ? 'success' : 'danger')
                     ->alignEnd(),
-            ])
+            ]),
         ];
     }
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Event $record): string => EventResource::getUrl('edit', ['record' => $record]);
+        return fn(Event $record): string => EventResource::getUrl('edit', ['record' => $record]);
     }
 
     protected function isTablePaginationEnabled(): bool

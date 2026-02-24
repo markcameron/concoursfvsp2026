@@ -2,23 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use App\Models\Committee;
-use Filament\Tables\Table;
-use Filament\Infolists\Infolist;
-use Filament\Resources\Resource;
-use Filament\Infolists\Components;
-use Filament\Support\Colors\Color;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Resources\CommitteeResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\CommitteeResource\RelationManagers;
 use App\Filament\Resources\CommitteeResource\RelationManagers\TasksRelationManager;
 use App\Filament\Resources\CommitteeResource\RelationManagers\UsersRelationManager;
+use App\Models\Committee;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Infolists\Components;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CommitteeResource extends Resource
 {
@@ -28,7 +26,7 @@ class CommitteeResource extends Resource
 
     protected static ?string $modelLabel = 'Commission';
 
-    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
         return $record->name;
     }
@@ -51,10 +49,10 @@ class CommitteeResource extends Resource
 
                         Forms\Components\Select::make('color')
                             ->label(__('fields.color'))
-                            ->options(fn () => (new Committee())->colors())
+                            ->options(fn() => (new Committee())->colors())
                             ->searchable()
                             ->allowHtml(),
-                    ])
+                    ]),
             ]);
     }
 
@@ -82,7 +80,7 @@ class CommitteeResource extends Resource
 
                     Tables\Columns\TextColumn::make('name')
                         ->label(__('fields.name'))
-                        ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
+                        ->formatStateUsing(fn(Model $model, string $state): string => $model->badge())
                         ->html()
                         ->searchable()
                         ->sortable()
@@ -91,7 +89,7 @@ class CommitteeResource extends Resource
                     Tables\Columns\TextColumn::make('member_count')
                         ->label(__('fields.member_count'))
                         ->badge()
-                        ->color(static fn ($state): string => $state ? 'success' : 'danger')
+                        ->color(static fn($state): string => $state ? 'success' : 'danger')
                         ->alignCenter(),
 
                     // Tables\Columns\TextColumn::make('created_at')
@@ -141,11 +139,11 @@ class CommitteeResource extends Resource
                             Components\Grid::make(2)
                                 ->schema([
                                     Components\TextEntry::make('name')
-                                        ->formatStateUsing(fn (Model $model, string $state): string => $model->badge())
+                                        ->formatStateUsing(fn(Model $model, string $state): string => $model->badge())
                                         ->html(),
 
                                     Components\TextEntry::make('email')
-                                        ->formatStateUsing(fn (string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
+                                        ->formatStateUsing(fn(string $state): string => '<b><a href="mailto:' . $state . '">' . $state . '</a></b>')
                                         ->html()
                                         ->color('primary'),
                                 ]),

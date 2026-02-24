@@ -2,18 +2,15 @@
 
 namespace App\Filament\Clusters\Committee\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Person;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
 use App\Filament\Clusters\Committee;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Clusters\Committee\Resources\PersonResource\Pages;
-use App\Filament\Clusters\Committee\Resources\PersonResource\RelationManagers;
+use App\Models\Person;
+use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class PersonResource extends Resource
 {

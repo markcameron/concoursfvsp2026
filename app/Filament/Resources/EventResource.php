@@ -2,24 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Spatie\Tags\Tag;
-use App\Models\Event;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Support\Htmlable;
-use Filament\Tables\Columns\SpatieTagsColumn;
-use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\EventResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\EventResource\RelationManagers;
-use App\Filament\Resources\EventResource\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\EventResource\RelationManagers\DocumentsRelationManager;
+use App\Filament\Resources\EventResource\RelationManagers\UsersRelationManager;
+use App\Models\Event;
+use Filament\Forms;
+use Filament\Forms\Components\SpatieTagsInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieTagsColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Tags\Tag;
 
 class EventResource extends Resource
 {
@@ -29,17 +27,17 @@ class EventResource extends Resource
 
     protected static ?string $modelLabel = 'Événement';
 
-    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
         return $record->name;
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
-{
-    return [
-        'Date' => $record->date,
-    ];
-}
+    {
+        return [
+            'Date' => $record->date,
+        ];
+    }
 
     public static function form(Form $form): Form
     {
@@ -68,7 +66,7 @@ class EventResource extends Resource
                                     ->label(__('fields.ended_at'))
                                     ->required()
                                     ->timezone('Europe/Zurich'),
-                            ])
+                            ]),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()
                     ->schema([
@@ -78,7 +76,7 @@ class EventResource extends Resource
                                     ->label(__('fields.tags'))
                                     ->type('events'),
                             ]),
-                    ])
+                    ]),
             ])
             ->columns(3);
     }
@@ -99,7 +97,7 @@ class EventResource extends Resource
 
                 Tables\Columns\TextColumn::make('started_at')
                     ->label(__('fields.when'))
-                    ->formatStateUsing(fn (Event $record) => $record->date)
+                    ->formatStateUsing(fn(Event $record) => $record->date)
                     ->sortable(),
 
                 SpatieTagsColumn::make('tags')->type('events'),
@@ -130,7 +128,7 @@ class EventResource extends Resource
                         return $query->when($data['values'], function (Builder $query, $data): Builder {
                             return $query->withAnyTags(array_values($data), 'events');
                         });
-                    })
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

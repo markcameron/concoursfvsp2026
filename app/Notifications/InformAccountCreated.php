@@ -4,9 +4,8 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class InformAccountCreated extends Notification
 {
@@ -17,8 +16,7 @@ class InformAccountCreated extends Notification
      */
     public function __construct(
         protected User $user,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the notification's delivery channels.
@@ -52,7 +50,7 @@ class InformAccountCreated extends Notification
         return (new MailMessage())
             ->subject('Votre compte pour fvsp-terre-sainte-2026.ch')
             ->line("Un compte a été créé sur le site du Councours FVSP 2026 à Terre Sainte, pour l'addresse " . $this->user->email)
-            ->line("Il vous suffit de cliquer sur le bouton ci dessous pour finaliser la création de votre compte")
+            ->line('Il vous suffit de cliquer sur le bouton ci dessous pour finaliser la création de votre compte')
             ->action('Finaliser votre compte', route('filament.account.pages.finalize-account', ['token' => $this->user->create_token]))
             ->line('Merci!');
     }

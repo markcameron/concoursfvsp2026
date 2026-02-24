@@ -4,15 +4,13 @@ namespace App\Filament\Resources\EventResource\RelationManagers;
 
 use App\Filament\Actions\Tables\DocumentDownloadAction;
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Columns\SpatieTagsColumn;
-use Filament\Forms\Components\SpatieTagsInput;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
+use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieTagsColumn;
+use Filament\Tables\Table;
 
 class DocumentsRelationManager extends RelationManager
 {

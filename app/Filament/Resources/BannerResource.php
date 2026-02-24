@@ -87,7 +87,7 @@ class BannerResource extends Resource
                 Tables\Columns\TextColumn::make('color')
                     ->label('Couleur')
                     ->badge()
-                    ->color(fn (BannerColor $state): string => $state->getColor()),
+                    ->color(fn(BannerColor $state): string => $state->getColor()),
 
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Actif')

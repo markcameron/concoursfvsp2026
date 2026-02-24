@@ -41,7 +41,7 @@ class ContactResource extends Resource
                     ->label(__('fields.company_name'))
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (Contact $contact) => ! empty($contact->company_name)),
+                    ->visible(fn(Contact $contact) => ! empty($contact->company_name)),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('fields.name'))
@@ -56,12 +56,12 @@ class ContactResource extends Resource
                 Tables\Columns\TextColumn::make('telephone')
                     ->label(__('fields.telephone'))
                     ->searchable()
-                    ->visible(fn (Contact $contact) => ! empty($contact->telephone)),
+                    ->visible(fn(Contact $contact) => ! empty($contact->telephone)),
 
                 Tables\Columns\TextColumn::make('message')
                     ->label(__('fields.message'))
                     ->limit(50)
-                    ->visible(fn (Contact $contact) => ! empty($contact->message)),
+                    ->visible(fn(Contact $contact) => ! empty($contact->message)),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('fields.created_at'))
@@ -97,7 +97,7 @@ class ContactResource extends Resource
 
                         Components\TextEntry::make('company_name')
                             ->label(__('fields.company_name'))
-                            ->visible(fn (Contact $contact) => ! empty($contact->company_name)),
+                            ->visible(fn(Contact $contact) => ! empty($contact->company_name)),
 
                         Components\TextEntry::make('name')
                             ->label(__('fields.name')),
@@ -107,7 +107,7 @@ class ContactResource extends Resource
 
                         Components\TextEntry::make('telephone')
                             ->label(__('fields.telephone'))
-                            ->visible(fn (Contact $contact) => ! empty($contact->telephone)),
+                            ->visible(fn(Contact $contact) => ! empty($contact->telephone)),
                     ])->columns(2),
 
                 Components\Section::make(__('fields.message'))
@@ -116,7 +116,7 @@ class ContactResource extends Resource
                             ->prose()
                             ->hiddenLabel(),
                     ])
-                    ->visible(fn (Contact $contact) => ! empty($contact->message))
+                    ->visible(fn(Contact $contact) => ! empty($contact->message))
                     ->collapsible(),
             ]);
     }

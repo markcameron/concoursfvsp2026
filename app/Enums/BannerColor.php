@@ -12,7 +12,7 @@ enum BannerColor: string implements HasColor, HasLabel
 
     public function getLabel(): string
     {
-        return __('enums.banner_color.'.$this->value);
+        return __('enums.banner_color.' . $this->value);
     }
 
     public function getColor(): string

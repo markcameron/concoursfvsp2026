@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
 use App\Models\Committee;
 use App\Models\User;
 
@@ -37,9 +36,9 @@ class CommitteePolicy
      */
     public function update(User $user, Committee $committee): bool
     {
-        if (!$user->can('update Committee')) {
+        if (! $user->can('update Committee')) {
             return false;
-        };
+        }
 
         if ($committee->users()->where('users.id', $user->id)->first()) {
             return true;

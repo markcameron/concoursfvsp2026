@@ -2,24 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\User;
-use Filament\Tables;
-use Filament\Actions;
-use Filament\Forms\Form;
+use App\Filament\Imports\UserImporter;
+use App\Filament\Resources\UserResource\Pages;
 use App\Models\Committee;
-use Filament\Tables\Table;
+use App\Models\Role;
+use App\Models\User;
 use App\Services\UserService;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
-use Illuminate\Support\Collection;
-use App\Filament\Imports\UserImporter;
-use Illuminate\Database\Eloquent\Model;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\Role;
+use Illuminate\Support\Collection;
 
 class UserResource extends Resource
 {
@@ -60,7 +57,7 @@ class UserResource extends Resource
                             ->label(__('fields.roles'))
                             ->multiple()
                             ->relationship('roles', 'name'),
-                    ])
+                    ]),
             ]);
     }
 
@@ -94,7 +91,7 @@ class UserResource extends Resource
                         ->label(__('fields.committees'))
                         ->limitList(3)
                         ->badge()
-                        ->color(fn (string $state) => Color::all()[Committee::where('name', $state)->first()->color]),
+                        ->color(fn(string $state) => Color::all()[Committee::where('name', $state)->first()->color]),
 
                     Tables\Columns\TextColumn::make('roles.name')
                         ->label(__('fields.roles'))
@@ -108,13 +105,13 @@ class UserResource extends Resource
             ->headerActions([
                 Tables\Actions\ImportAction::make()
                     ->importer(UserImporter::class)
-                    ->visible(fn () => auth()->user()->hasRole('Super Admin')),
+                    ->visible(fn() => auth()->user()->hasRole('Super Admin')),
             ])
             ->actions([
                 Tables\Actions\Action::make('E-mail')
                     ->iconButton()
                     ->icon('heroicon-o-envelope')
-                    ->url(fn (User $record) => 'mailto:'. $record->email),
+                    ->url(fn(User $record) => 'mailto:' . $record->email),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
@@ -125,12 +122,12 @@ class UserResource extends Resource
                 Tables\Actions\ActionGroup::make([
 
                     Tables\Actions\BulkAction::make('sendResetPasswordLink')
-                        ->action(fn (Collection $collection, $data) => $collection->each(function (User $user) {
-                                $token = app('auth.password.broker')->createToken($user);
-                                $notification = new \Filament\Notifications\Auth\ResetPassword($token);
-                                $notification->url = \Filament\Facades\Filament::getResetPasswordUrl($token, $user);
-                                $user->notify($notification);
-                            })),
+                        ->action(fn(Collection $collection, $data) => $collection->each(function (User $user) {
+                            $token = app('auth.password.broker')->createToken($user);
+                            $notification = new \Filament\Notifications\Auth\ResetPassword($token);
+                            $notification->url = \Filament\Facades\Filament::getResetPasswordUrl($token, $user);
+                            $user->notify($notification);
+                        })),
 
                     Tables\Actions\BulkAction::make('assignRole')
                         ->form([
@@ -140,19 +137,19 @@ class UserResource extends Resource
                                 ->options(Role::query()->pluck('name', 'id'))
                                 ->required(),
                         ])
-                        ->action(fn (Collection $collection, $data) => $collection->each(
-                            fn (User $user) => $user->assignRole(Role::whereIn('id', $data['roles'])->get())
+                        ->action(fn(Collection $collection, $data) => $collection->each(
+                            fn(User $user) => $user->assignRole(Role::whereIn('id', $data['roles'])->get()),
                         ))
-                        ->visible(fn () => auth()->user()->can('create-user'))
+                        ->visible(fn() => auth()->user()->can('create-user'))
                         ->deselectRecordsAfterCompletion(),
 
                     Tables\Actions\BulkAction::make('informAccountCreated')
-                        ->action(fn (Collection $collection) => $collection->each(
-                            fn (User $user) => resolve(UserService::class)->informAccountCreated($user)
+                        ->action(fn(Collection $collection) => $collection->each(
+                            fn(User $user) => resolve(UserService::class)->informAccountCreated($user),
                         ))
-                        ->visible(fn () => auth()->user()->can('create-user'))
+                        ->visible(fn() => auth()->user()->can('create-user'))
                         ->deselectRecordsAfterCompletion(),
-                ])
+                ]),
             ])
             ->defaultSort('last_name', 'asc');
     }

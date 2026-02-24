@@ -4,18 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Enums\StatusTask;
 use App\Filament\Resources\TaskResource\Pages;
-use App\Filament\Resources\TaskResource\RelationManagers;
 use App\Filament\Resources\TaskResource\RelationManagers\UsersRelationManager;
 use App\Models\Task;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Infolists\Components;
 use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TaskResource extends Resource
 {
@@ -72,7 +69,7 @@ class TaskResource extends Resource
                 Tables\Columns\TextColumn::make('deadline')
                     ->label(__('fields.deadline'))
                     ->badge()
-                    ->color(fn (Task $task) => $task->deadlineColor())
+                    ->color(fn(Task $task) => $task->deadlineColor())
                     ->date()
                     ->sortable(),
 
@@ -129,11 +126,11 @@ class TaskResource extends Resource
                                         ->label(__('fields.deadline'))
                                         ->badge()
                                         ->date()
-                                        ->color(fn (Task $task) => $task->deadlineColor()),
+                                        ->color(fn(Task $task) => $task->deadlineColor()),
 
                                     Components\TextEntry::make('status')
                                         ->label(__('fields.status'))
-                                        ->badge()
+                                        ->badge(),
                                 ]),
                         ])->from('lg'),
                     ]),

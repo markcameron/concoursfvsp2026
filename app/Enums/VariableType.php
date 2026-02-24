@@ -13,6 +13,6 @@ enum VariableType: string implements HasLabel
 
     public function getLabel(): string
     {
-        return __('enums.variable_type.'.$this->value);
+        return __('enums.variable_type.' . $this->value);
     }
 }

@@ -11,6 +11,7 @@ return [
         'contact' => 'Contact',
         'sponsoring' => 'Sponsoring',
         'tug_of_war' => 'Tir au tuyau',
+        'housing' => 'Hébergement',
     ],
     'banner_color' => [
         'blue' => 'Theme Blue',

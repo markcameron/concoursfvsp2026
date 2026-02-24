@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Enums\ContactType;
-use App\Models\SponsorInfo;
-use App\Models\SponsorLevel;
+use App\Http\Requests\SponsorFormRequest;
 use App\Mail\SponsorFormReply;
 use App\Mail\SponsorFormSubmission;
+use App\Models\Contact;
+use App\Models\SponsorInfo;
+use App\Models\SponsorLevel;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\SponsorFormRequest;
 
 class SponsorController extends Controller
 {

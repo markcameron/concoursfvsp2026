@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\CommitteeResource\Pages;
 
 use App\Filament\Resources\CommitteeResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateCommittee extends CreateRecord

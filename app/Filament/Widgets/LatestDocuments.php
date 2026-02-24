@@ -3,12 +3,12 @@
 namespace App\Filament\Widgets;
 
 use App\Filament\Actions\Tables\DocumentDownloadAction;
+use App\Filament\Resources\DocumentResource;
+use App\Models\Document;
 use Closure;
 use Filament\Tables;
-use App\Models\Document;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\DocumentResource;
 use Filament\Widgets\TableWidget as BaseWidget;
+use Illuminate\Database\Eloquent\Builder;
 
 class LatestDocuments extends BaseWidget
 {
@@ -45,9 +45,9 @@ class LatestDocuments extends BaseWidget
                         ->weight('semibold')
                         ->label(__('fields.name')),
                     Tables\Columns\TextColumn::make('created_at')
-                        ->dateTime("d M Y"),
-                ])
-            ])
+                        ->dateTime('d M Y'),
+                ]),
+            ]),
         ];
     }
 
@@ -60,7 +60,7 @@ class LatestDocuments extends BaseWidget
 
     protected function getTableRecordUrlUsing(): ?Closure
     {
-        return fn (Document $record): string => DocumentResource::getUrl('edit', ['record' => $record]);
+        return fn(Document $record): string => DocumentResource::getUrl('edit', ['record' => $record]);
     }
 
     protected function isTablePaginationEnabled(): bool

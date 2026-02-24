@@ -63,7 +63,7 @@ class Sponsor extends Model implements HasMedia
     {
         $media = $this->getFirstMedia($collection);
 
-        if (!$media) {
+        if (! $media) {
             return '';
         }
 

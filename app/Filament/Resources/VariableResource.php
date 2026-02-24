@@ -45,20 +45,20 @@ class VariableResource extends Resource
 
                         Forms\Components\TextInput::make('value')
                             ->label('Valeur')
-                            ->visible(fn (Forms\Get $get) => $get('type') !== VariableType::TEXT && $get('type') !== null)
-                            ->visible(fn (Forms\Get $get) => $get('type') !== VariableType::BOOL)
-                            ->numeric(fn (Forms\Get $get) => $get('type') === VariableType::INT)
-                            ->required(fn (Forms\Get $get) => $get('type') !== VariableType::TEXT),
+                            ->visible(fn(Forms\Get $get) => $get('type') !== VariableType::TEXT && $get('type') !== null)
+                            ->visible(fn(Forms\Get $get) => $get('type') !== VariableType::BOOL)
+                            ->numeric(fn(Forms\Get $get) => $get('type') === VariableType::INT)
+                            ->required(fn(Forms\Get $get) => $get('type') !== VariableType::TEXT),
 
                         Forms\Components\Toggle::make('value')
                             ->label('Valeur')
-                            ->visible(fn (Forms\Get $get) => $get('type') === VariableType::BOOL)
-                            ->required(fn (Forms\Get $get) => $get('type') === VariableType::BOOL),
+                            ->visible(fn(Forms\Get $get) => $get('type') === VariableType::BOOL)
+                            ->required(fn(Forms\Get $get) => $get('type') === VariableType::BOOL),
 
                         Forms\Components\Textarea::make('value')
                             ->label('Valeur')
-                            ->visible(fn (Forms\Get $get) => $get('type') === VariableType::TEXT)
-                            ->required(fn (Forms\Get $get) => $get('type') === VariableType::TEXT)
+                            ->visible(fn(Forms\Get $get) => $get('type') === VariableType::TEXT)
+                            ->required(fn(Forms\Get $get) => $get('type') === VariableType::TEXT)
                             ->rows(3),
 
                         Forms\Components\TextInput::make('description')
@@ -85,7 +85,7 @@ class VariableResource extends Resource
                 Tables\Columns\TextColumn::make('value')
                     ->label('Valeur')
                     ->limit(50)
-                    ->formatStateUsing(fn (Variable $record): string => match ($record->type) {
+                    ->formatStateUsing(fn(Variable $record): string => match ($record->type) {
                         VariableType::BOOL => $record->value ? 'Oui' : 'Non',
                         default => (string) $record->value,
                     }),

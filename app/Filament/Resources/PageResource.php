@@ -2,17 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
+use App\Filament\Resources\PageResource\Pages;
 use App\Models\Page;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
+use Filament\Forms;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
-use App\Filament\Resources\PageResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PageResource\RelationManagers;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class PageResource extends Resource
 {
@@ -122,9 +120,9 @@ class PageResource extends Resource
                                                     ->imageResizeMode('cover')
                                                     ->imageCropAspectRatio('4:5')
                                                     ->imageResizeTargetWidth('328')
-                                                    ->imageResizeTargetHeight('410')
+                                                    ->imageResizeTargetHeight('410'),
                                             ])
-                                            ->columns(1)
+                                            ->columns(1),
                                     ]),
 
                                 Builder\Block::make('program')
@@ -151,7 +149,7 @@ class PageResource extends Resource
                                                 Forms\Components\TextInput::make('title')
                                                     ->required(),
                                             ])
-                                            ->columns(2)
+                                            ->columns(2),
                                     ]),
                             ]),
                     ]),

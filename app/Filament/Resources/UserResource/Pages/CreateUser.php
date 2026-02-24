@@ -2,13 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
-use Filament\Pages\Actions;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\UserResource;
 use Filament\Resources\Pages\CreateRecord;
-use App\Notifications\InformAccountCreated;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CreateUser extends CreateRecord
 {

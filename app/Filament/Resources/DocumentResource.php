@@ -2,24 +2,23 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Spatie\Tags\Tag;
-use App\Models\Document;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Support\Htmlable;
-use Filament\Tables\Columns\SpatieTagsColumn;
-use Filament\Forms\Components\SpatieTagsInput;
-use App\Filament\Resources\DocumentResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Actions\Tables\DocumentDownloadAction;
+use App\Filament\Resources\DocumentResource\Pages;
+use App\Models\Document;
+use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\Resources\DocumentResource\RelationManagers;
+use Filament\Forms\Components\SpatieTagsInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieTagsColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Spatie\Tags\Tag;
 
 class DocumentResource extends Resource
 {
@@ -29,7 +28,7 @@ class DocumentResource extends Resource
 
     protected static ?string $modelLabel = 'Document';
 
-    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
         return $record->name;
     }
@@ -60,7 +59,7 @@ class DocumentResource extends Resource
                                     ->label(__('fields.tags'))
                                     ->type('documents'),
                             ]),
-                    ])
+                    ]),
             ])
             ->columns(3);
     }
@@ -105,7 +104,7 @@ class DocumentResource extends Resource
                         return $query->when($data['values'], function (Builder $query, $data): Builder {
                             return $query->withAnyTags(array_values($data), 'documents');
                         });
-                    })
+                    }),
             ])
             ->actions([
                 DocumentDownloadAction::make(),

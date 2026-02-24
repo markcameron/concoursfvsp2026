@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\SponsorType;
 use App\Models\Page;
-use App\Models\Sponsor;
 use App\Models\SponsorLevel;
 use App\Models\Variable;
 use Illuminate\Http\Request;
