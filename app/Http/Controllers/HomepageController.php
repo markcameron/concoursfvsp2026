@@ -16,11 +16,6 @@ class HomepageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $programBlock = collect(Page::where('machine_name', 'program')
-            ->first()
-            ?->content)
-            ?->firstWhere('type', 'program');
-
         $sponsorLevels = SponsorLevel::orderBy('price', 'asc')->get();
 
         $showSponsorListHomepage = Variable::where('key', 'sponsor_list_home')->first()?->value;
@@ -30,7 +25,6 @@ class HomepageController extends Controller
             ->get();
 
         return view('welcome')
-            ->with('programBlock', $programBlock)
             ->with('sponsorLevels', $sponsorLevels)
             ->with('showSponsorListHomepage', $showSponsorListHomepage)
             ->with('sponsors', $sponsors);

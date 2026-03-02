@@ -42,4 +42,12 @@ class PageController extends Controller
         return view('pages.basic')
             ->with('page', $page);
     }
+
+    public function programme()
+    {
+        $page = Page::where('machine_name', 'program')->first();
+
+        return view('pages.programme')
+            ->with('page', $page);
+    }
 }

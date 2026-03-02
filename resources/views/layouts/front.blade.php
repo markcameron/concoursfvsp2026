@@ -86,6 +86,7 @@
                             class="transition-discrete data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition [--anchor-gap:--spacing(2)] dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
                             <div class="py-1">
                                 <a href="{{ route('contact.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Contact</a>
+                                <a href="{{ route('pages.programme') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Programme</a>
                                 <a href="{{ route('housing.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Hébergement</a>
                                 <a href="{{ route('tir-au-tuyau.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Tir au tuyau</a>
                             </div>
