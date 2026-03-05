@@ -103,14 +103,19 @@
             <div class="font-display text-theme-blue relative grid justify-items-start gap-y-3 bg-white px-4 pb-5 pt-10 text-sm font-medium uppercase">
                 <a href="/">Accueil</a>
                 <a href="{{ route('pages.committee') }}">Comité</a>
-                {{-- <a href="programme.html">Programme</a> --}}
+                <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
+                <div class="separator"></div>
                 <a href="{{ route('sponsor.index') }}">Sponsors</a>
                 <a href="{{ route('sponsors.index') }}">Nos partenaires</a>
                 <a href="{{ route('sponsors.communes') }}">Les communes</a>
-                <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
+                <div class="separator"></div>
                 <a href="{{ route('contact.index') }}">Contact</a>
+                <a href="{{ route('pages.programme') }}">Programme</a>
                 <a href="{{ route('housing.index') }}">Hébergement</a>
                 <a href="{{ route('tir-au-tuyau.index') }}">Tir au tuyau</a>
+                <div class="separator"></div>
+                <a href="{{ route('pages.livret') }}">Livret de fête</a>
+                <div class="separator"></div>
                 <a href="/admin">Login</a>
             </div>
         </el-popover>
