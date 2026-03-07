@@ -12,11 +12,11 @@
                             @if ($event['time'])
                                 <li class="flex gap-x-6 py-3">
                                     <time class="w-[60px]" datetime="{{ $event['time'] }}">{{ \Carbon\Carbon::parse($event['time'])->format('H\hi') }}</time>
-                                    <span class="flex-1">{{ $event['title'] }}</span>
+                                    <span class="flex-1">{!! $event['title'] !!}</span>
                                 </li>
                             @else
                                 <li class="flex gap-x-6 py-3">
-                                    <span class="text-light-gray flex-1 italic">{{ $event['title'] }}</span>
+                                    <span class="text-light-gray flex-1 italic">{!! $event['title'] !!}</span>
                                 </li>
                             @endif
                         @endforeach
@@ -32,11 +32,11 @@
                             @if ($event['time'])
                                 <li class="flex gap-x-6 py-3">
                                     <time class="w-[60px]" datetime="{{ $event['time'] }}">{{ \Carbon\Carbon::parse($event['time'])->format('H\hi') }}</time>
-                                    <span class="flex-1">{{ $event['title'] }}</span>
+                                    <span class="flex-1">{!! $event['title'] !!}</span>
                                 </li>
                             @else
                                 <li class="flex gap-x-6 py-3">
-                                    <span class="text-light-gray flex-1 italic">{{ $event['title'] }}</span>
+                                    <span class="text-light-gray flex-1 italic">{!! $event['title'] !!}</span>
                                 </li>
                             @endif
                         @endforeach
