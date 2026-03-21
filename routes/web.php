@@ -38,12 +38,12 @@ Route::controller(ContactController::class)->group(function () {
 //     Route::post('', 'storeHousing')->name('store');
 // });
 
-Route::controller(TugOfWarController::class)->group(function () {
-    Route::prefix('tir-au-tuyau')->name('tir-au-tuyau.')->group(function () {
-        Route::get('', 'index')->name('index');
-        Route::post('', 'store')->name('store');
-    });
-});
+// Route::controller(TugOfWarController::class)->group(function () {
+//     Route::prefix('tir-au-tuyau')->name('tir-au-tuyau.')->group(function () {
+//         Route::get('', 'index')->name('index');
+//         Route::post('', 'store')->name('store');
+//     });
+// });
 
 Route::controller(SponsorController::class)->group(function () {
     Route::prefix('sponsor')->name('sponsor.')->group(function () {
