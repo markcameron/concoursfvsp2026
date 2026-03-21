@@ -7,6 +7,7 @@ use App\Http\Controllers\SponsorCommunesController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorListController;
 use App\Http\Controllers\TugOfWarController;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,3 +81,15 @@ Route::controller(PageController::class)->group(function () {
 Route::get('/finaliser-compte', function () {
     return view('admin/finalize_account/{{token}}');
 })->name('finalize_account');
+
+Route::get('plan-de-fete', function () {
+    return Blade::render('Plan de fête');
+})->name('plan_de_fete');
+
+Route::get('diaporama', function () {
+    return Blade::render('Diaporama');
+})->name('diaporama');
+
+Route::get('diaporama/soumettre', function () {
+    return Blade::render('Diaporama');
+})->name('diaporama.submit');
