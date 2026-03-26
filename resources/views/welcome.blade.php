@@ -10,25 +10,7 @@
                 <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Terre-sainte</div>
                 <p class="mt-6 text-lg font-medium text-gray-500">Il s’agit d’un événement d’envergure qui nécessite une organisation rigoureuse et un <strong>investissement financier conséquent</strong> afin de garantir, la qualité des infrastructures, la sécurité des participants et le bon déroulement
                     de la manifestation et que si vous souhaitez soutenir cet événement unique</p>
-                <p class="mt-6 text-lg font-medium font-semibold text-gray-500">Vous pouvez nous aider de deux manières :</p>
-
-                <div class="lg:max-w-(--breakpoint-lg) container mx-auto my-12 px-4">
-                    <h2 class="text-theme-red font-display mb-6 text-xl font-semibold uppercase">Sponsor officiel</h2>
-                    <div class="mb-10">
-
-                        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6">
-                            <h2 class="max-w-2xl text-lg tracking-tight text-gray-500">
-                                Remplissez le formulaire pour devenir sponsor officiel (possibilité de sponsoring des CHF 100.-!)
-                            </h2>
-                            <div class="mt-0 flex items-center gap-x-6">
-                                <a href="{{ route('sponsor.info') }}" class="shadow-xs bg-theme-blue rounded-md px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
-                                    Devenir sponsor
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <p class="mt-6 text-lg font-medium font-semibold text-gray-500">Vous pouvez nous aider en faisant un don :</p>
 
                 <div class="lg:max-w-(--breakpoint-lg) container mx-auto my-12 px-4">
                     <h2 class="text-theme-red font-display mb-6 text-xl font-semibold uppercase">Faire un don</h2>
