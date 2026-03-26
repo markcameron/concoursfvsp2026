@@ -1,9 +1,9 @@
 {
     "agents": [
-        "opencode"
+        "opencode",
+        "claude_code"
     ],
     "guidelines": true,
-    "herd_mcp": false,
     "mcp": true,
     "nightwatch_mcp": false,
     "packages": [
@@ -12,6 +12,7 @@
     ],
     "sail": true,
     "skills": [
+        "laravel-best-practices",
         "tailwindcss-development",
         "medialibrary-development"
     ]
