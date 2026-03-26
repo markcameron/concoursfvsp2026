@@ -6,6 +6,7 @@ use App\Enums\ContactType;
 use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\HousingFormRequest;
 use App\Mail\ContactFormSubmission;
+use App\Mail\HousingFormReply;
 use App\Mail\HousingFormSubmission;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
@@ -42,6 +43,7 @@ class ContactController extends Controller
         ));
 
         Mail::to(explode(',', config('site.housing_emails')))->send(new HousingFormSubmission($contact));
+        Mail::to($contact->email)->send(new HousingFormReply($contact));
 
         return redirect()->back()->with('success', 'Votre demande d\'hébergement a été envoyée avec succès !');
     }
