@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\QrRedirectController;
 use App\Http\Controllers\SponsorCommunesController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorListController;
@@ -91,3 +92,6 @@ Route::get('diaporama', function () {
 Route::get('diaporama/soumettre', function () {
     return Blade::render('Diaporama');
 })->name('diaporama.submit');
+
+Route::get('qr/{slug}', QrRedirectController::class)->name('qr.redirect')
+    ->where('slug', '.+');
