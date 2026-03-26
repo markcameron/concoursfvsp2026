@@ -53,8 +53,9 @@
             <div class="font-display text-theme-blue xl:text-md hidden font-medium uppercase lg:flex lg:w-full lg:items-center lg:gap-x-12">
                 <div class="flex flex-1 items-center justify-end gap-x-8 xl:gap-x-12">
                     <a href="{{ route('pages.committee') }}">Comité</a>
-                    <a href="{{ route('sponsor.index') }}">Sponsoring</a>
-                    <el-dropdown class="inline-block">
+                    <a href="{{ route('sponsors.index') }}">Nos partenaires</a>
+                    <a href="{{ route('sponsors.communes') }}">Communes</a>
+                    {{-- <el-dropdown class="inline-block">
                         <button class="inline-flex items-center uppercase">
                             Sponsors
                             <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-6">
@@ -68,7 +69,7 @@
                                 <a href="{{ route('sponsors.communes') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Les communes</a>
                             </div>
                         </el-menu>
-                    </el-dropdown>
+                    </el-dropdown> --}}
                 </div>
                 <a href="/">
                     <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="xl:size-[150px]" alt="Logo FVSP Terre-Sainte 2026">
@@ -104,7 +105,6 @@
                 <a href="{{ route('pages.committee') }}">Comité</a>
                 <a href="{{ route('pages.volunteers') }}">Bénévoles</a>
                 <div class="separator"></div>
-                <a href="{{ route('sponsor.index') }}">Sponsors</a>
                 <a href="{{ route('sponsors.index') }}">Nos partenaires</a>
                 <a href="{{ route('sponsors.communes') }}">Les communes</a>
                 <div class="separator"></div>
