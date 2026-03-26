@@ -50,4 +50,12 @@ class PageController extends Controller
         return view('pages.programme')
             ->with('page', $page);
     }
+
+    public function map()
+    {
+        $page = Page::where('machine_name', 'map')->first();
+
+        return view('pages.map')
+            ->with('page', $page);
+    }
 }

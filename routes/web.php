@@ -75,16 +75,13 @@ Route::controller(PageController::class)->group(function () {
         Route::get('donations', 'donations')->name('donations');
         Route::get('livret', 'livret')->name('livret');
         Route::get('programme', 'programme')->name('programme');
+        Route::get('plan-de-fete', 'map')->name('map');
     });
 });
 
 Route::get('/finaliser-compte', function () {
     return view('admin/finalize_account/{{token}}');
 })->name('finalize_account');
-
-Route::get('plan-de-fete', function () {
-    return Blade::render('Plan de fête');
-})->name('plan_de_fete');
 
 Route::get('diaporama', function () {
     return Blade::render('Diaporama');

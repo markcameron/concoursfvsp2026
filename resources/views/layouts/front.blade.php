@@ -89,6 +89,7 @@
                                 <a href="{{ route('contact.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Contact</a>
                                 <a href="{{ route('pages.programme') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Programme</a>
                                 <a href="{{ route('housing.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Hébergement</a>
+                                <a href="{{ route('pages.map') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Plan de fête</a>
                             </div>
                         </el-menu>
                     </el-dropdown>
@@ -111,6 +112,8 @@
                 <a href="{{ route('contact.index') }}">Contact</a>
                 <a href="{{ route('pages.programme') }}">Programme</a>
                 <a href="{{ route('housing.index') }}">Hébergement</a>
+                <div class="separator"></div>
+                <a href="{{ route('pages.map') }}">Plan de fête</a>
                 <div class="separator"></div>
                 <a href="{{ route('pages.livret') }}">Livret de fête</a>
                 <div class="separator"></div>
