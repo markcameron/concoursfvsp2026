@@ -76,6 +76,7 @@ Route::controller(PageController::class)->group(function () {
         Route::get('livret', 'livret')->name('livret');
         Route::get('programme', 'programme')->name('programme');
         Route::get('plan-de-fete', 'map')->name('map');
+        Route::get('cortege', 'procession')->name('procession');
     });
 });
 

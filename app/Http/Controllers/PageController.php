@@ -58,4 +58,12 @@ class PageController extends Controller
         return view('pages.map')
             ->with('page', $page);
     }
+
+    public function procession()
+    {
+        $page = Page::where('machine_name', 'procession')->first();
+
+        return view('pages.procession')
+            ->with('page', $page);
+    }
 }
