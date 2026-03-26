@@ -3,9 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\QrCodeResource\Pages;
+use App\Filament\Resources\QrCodeResource\Widgets\QrVisitsChart;
 use App\Models\QrCode;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -46,6 +49,26 @@ class QrCodeResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Components\Section::make()
+                    ->schema([
+                        Components\TextEntry::make('slug')
+                            ->label('Slug')
+                            ->fontFamily('mono')
+                            ->copyable(),
+
+                        Components\TextEntry::make('destination')
+                            ->label('Destination'),
+
+                        Components\TextEntry::make('visits_count')
+                            ->label('Total des visites'),
+                    ])->columns(3),
+            ]);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -73,7 +96,9 @@ class QrCodeResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->recordUrl(fn(QrCode $record): string => static::getUrl('view', ['record' => $record]))
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -85,11 +110,19 @@ class QrCodeResource extends Resource
             ->defaultSort('slug');
     }
 
+    public static function getWidgets(): array
+    {
+        return [
+            QrVisitsChart::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListQrCodes::route('/'),
             'create' => Pages\CreateQrCode::route('/create'),
+            'view' => Pages\ViewQrCode::route('/{record}'),
             'edit' => Pages\EditQrCode::route('/{record}/edit'),
         ];
     }
