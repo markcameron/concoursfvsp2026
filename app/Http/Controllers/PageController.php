@@ -39,7 +39,7 @@ class PageController extends Controller
     {
         $page = Page::where('machine_name', 'livret')->first();
 
-        return view('pages.basic')
+        return view('pages.livret')
             ->with('page', $page);
     }
 
