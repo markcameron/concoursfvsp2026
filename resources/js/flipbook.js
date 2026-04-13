@@ -17,7 +17,7 @@ function createPdfBook(pdfUrl, callback) {
         .catch(err => callback(err || 'PDF loading failed'))
 
     function renderPage(pdf, n, cb) {
-        if (!n) return cb(null, null) // page 0 = blank (pdfjs is 1-indexed)
+        if (!n || n > pdf.numPages) return cb(null, null) // pdfjs is 1-indexed; out-of-range = blank
         if (cache[n]) return cb(null, cache[n])
 
         pdf.getPage(n)
