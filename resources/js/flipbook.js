@@ -36,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfUrl = container.dataset.pdfUrl
     if (!pdfUrl) return
 
+    if (/SamsungBrowser/i.test(navigator.userAgent)) {
+        document.getElementById('flipbook-loading').remove()
+        document.getElementById('flipbook-viewer').remove()
+        document.getElementById('flipbook-download').classList.remove('hidden')
+        return
+    }
+
     const loadingText = document.getElementById('flipbook-loading-text')
     const loadingBar = document.getElementById('flipbook-loading-bar')
     const loadingSection = document.getElementById('flipbook-loading')

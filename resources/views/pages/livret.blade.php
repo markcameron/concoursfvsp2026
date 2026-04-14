@@ -9,6 +9,17 @@
     <div class="bg-gray-900 py-8">
         <div id="flipbook-container" class="mx-auto max-w-7xl px-4" data-pdf-url="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}">
 
+            <div id="flipbook-download" class="hidden flex flex-col items-center justify-center gap-4 py-20 text-white">
+                <p class="text-white/70">La visionneuse n'est pas compatible avec votre navigateur.</p>
+                <a href="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}" download
+                   class="flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
+                    <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Télécharger le livret (PDF)
+                </a>
+            </div>
+
             <div id="flipbook-loading" class="flex flex-col items-center justify-center gap-4 py-20 text-white">
                 <div class="flex items-center gap-3">
                     <svg class="size-6 animate-spin" fill="none" viewBox="0 0 24 24">
