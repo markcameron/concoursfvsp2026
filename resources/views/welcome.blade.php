@@ -7,7 +7,7 @@
 
             <div class="mb-14 text-balance text-center">
                 <h1 class="font-display text-theme-blue mb-1 text-4xl font-semibold">CONCOURS FVSP 2026</h1>
-                <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Terre-sainte</div>
+                <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Coppet</div>
                 <p class="mt-6 text-lg font-medium text-gray-500">Il s’agit d’un événement d’envergure qui nécessite une organisation rigoureuse et un <strong>investissement financier conséquent</strong> afin de garantir, la qualité des infrastructures, la sécurité des participants et le bon déroulement
                     de la manifestation et que si vous souhaitez soutenir cet événement unique</p>
                 <p class="mt-6 text-lg font-medium font-semibold text-gray-500">Vous pouvez nous aider en faisant un don :</p>
