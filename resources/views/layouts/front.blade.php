@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>FVSP Terre Sainte 2026</title>
+    {!! isset($seoData) ? seo($seoData) : seo() !!}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
