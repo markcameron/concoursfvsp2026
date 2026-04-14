@@ -43,6 +43,7 @@ import '@tailwindplus/elements';
 // var x = setInterval(setCountdown, 1000, countDownDate);
 
 window.addEventListener('DOMContentLoaded', function() {
+  if (!document.getElementById('countdown')) return;
   // Define the target date/time (May 8, 2026 07:30:00)
   var targetDate = new Date("May 8, 2026 07:30:00").getTime();
 

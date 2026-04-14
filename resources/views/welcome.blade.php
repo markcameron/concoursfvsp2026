@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto my-24 px-4">
+    <div class="container mx-auto my-24 px-4" id="countdown">
         <div class="before:bg-theme-light-blue relative max-w-xs p-4 before:absolute before:bottom-0 before:left-[-50vw] before:right-0 before:top-0 before:rounded-r-[24px] sm:max-w-xl lg:max-w-4xl">
             <div class="relative items-center gap-x-8 lg:flex">
                 <p class="py-4 text-xl font-semibold text-gray-600">Restez à l'écoute pour plus de détails sur l'événement</p>
