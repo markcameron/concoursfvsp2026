@@ -35,6 +35,22 @@ class PageResource extends Resource
                             ->maxLength(255)
                             ->required(),
 
+                        Forms\Components\Section::make('SEO')
+                            ->collapsed()
+                            ->schema([
+                                Forms\Components\TextInput::make('meta_title')
+                                    ->label('Titre SEO')
+                                    ->placeholder(fn($get) => $get('title'))
+                                    ->maxLength(60)
+                                    ->helperText('Laissez vide pour utiliser le titre de la page. Maximum 60 caractères.'),
+
+                                Forms\Components\Textarea::make('meta_description')
+                                    ->label('Description SEO')
+                                    ->maxLength(160)
+                                    ->rows(3)
+                                    ->helperText('Laissez vide pour utiliser la description par défaut. Maximum 160 caractères.'),
+                            ]),
+
                         Forms\Components\Builder::make('content')
                             ->blocks([
 

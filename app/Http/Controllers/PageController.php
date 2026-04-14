@@ -13,7 +13,7 @@ class PageController extends Controller
 
         return view('pages.committee')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function volunteers()
@@ -22,7 +22,7 @@ class PageController extends Controller
 
         return view('pages.basic')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function station()
@@ -36,7 +36,7 @@ class PageController extends Controller
 
         return view('pages.basic')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function livret()
@@ -45,7 +45,7 @@ class PageController extends Controller
 
         return view('pages.livret')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function programme()
@@ -54,7 +54,7 @@ class PageController extends Controller
 
         return view('pages.programme')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function map()
@@ -63,7 +63,7 @@ class PageController extends Controller
 
         return view('pages.map')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
     public function procession()
@@ -72,6 +72,6 @@ class PageController extends Controller
 
         return view('pages.procession')
             ->with('page', $page)
-            ->with('seoData', new SEOData(title: $page?->title));
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 }
