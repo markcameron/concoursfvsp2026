@@ -48,6 +48,11 @@ class PageController extends Controller
             ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
 
+    public function livretViewer()
+    {
+        return view('pages.livret_viewer');
+    }
+
     public function programme()
     {
         $page = Page::where('machine_name', 'program')->first();

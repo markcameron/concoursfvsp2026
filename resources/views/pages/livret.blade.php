@@ -6,55 +6,23 @@
         <h1 class="section-title text-center">{{ $page->title }}</h1>
     </div>
 
-    <div class="bg-gray-900 py-8">
-        <div id="flipbook-container" class="mx-auto max-w-7xl px-4" data-pdf-url="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}">
+    <div class="bg-gray-900 py-16">
+        <div class="mx-auto flex max-w-sm flex-col gap-4 px-4">
+            <a href="{{ route('pages.livret.viewer') }}"
+               class="flex items-center justify-center gap-3 rounded-xl bg-white/10 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/20">
+                <svg class="size-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Lire le livret
+            </a>
 
-            <div id="flipbook-loading" class="flex flex-col items-center justify-center gap-4 py-20 text-white">
-                <div class="flex items-center gap-3">
-                    <svg class="size-6 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                    </svg>
-                    <span id="flipbook-loading-text">Chargement...</span>
-                </div>
-                <div class="h-2 w-64 overflow-hidden rounded-full bg-white/20">
-                    <div id="flipbook-loading-bar" class="h-full rounded-full bg-white transition-all duration-150" style="width: 0%"></div>
-                </div>
-            </div>
-
-            <div id="flipbook-viewer" class="hidden">
-                <div class="flex justify-center overflow-hidden">
-                    <div id="flipbook-book"></div>
-                </div>
-
-                <div class="mt-6 flex items-center justify-center gap-4">
-                    <button id="flipbook-prev" class="flex items-center gap-2 rounded-lg bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/20">
-                        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        Précédent
-                    </button>
-                    <span id="flipbook-page-counter" class="text-sm text-white/60"></span>
-                    <button id="flipbook-next" class="flex items-center gap-2 rounded-lg bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/20">
-                        Suivant
-                        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="mt-6 flex flex-col items-center gap-2">
-                <p id="flipbook-incompatible-msg" class="hidden text-sm text-white/70">La visionneuse n'est pas compatible avec votre navigateur.</p>
-                <a href="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}" download
-                   class="flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
-                    <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Télécharger le livret (PDF)
-                </a>
-            </div>
-
+            <a href="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}" download
+               class="flex items-center justify-center gap-3 rounded-xl bg-white/10 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/20">
+                <svg class="size-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Télécharger le livret (PDF)
+            </a>
         </div>
     </div>
 
@@ -62,8 +30,4 @@
         @includeIf('blocks.' . $block['type'], ['block' => (object) $block['data']])
     @endforeach
 
-@endsection
-
-@section('bottom-scripts')
-    @vite('resources/js/flipbook.js')
 @endsection

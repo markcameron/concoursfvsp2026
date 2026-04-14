@@ -75,6 +75,7 @@ Route::controller(PageController::class)->group(function () {
         Route::get('affichage-caserne', 'station')->name('station');
         Route::get('donations', 'donations')->name('donations');
         Route::get('livret', 'livret')->name('livret');
+        Route::get('livret/lire', 'livretViewer')->name('livret.viewer');
         Route::get('programme', 'programme')->name('programme');
         Route::get('plan-de-fete', 'map')->name('map');
         Route::get('cortege', 'procession')->name('procession');
