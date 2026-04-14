@@ -44,8 +44,8 @@ import '@tailwindplus/elements';
 
 window.addEventListener('DOMContentLoaded', function() {
   if (!document.getElementById('countdown')) return;
-  // Define the target date/time (May 8, 2026 07:30:00)
-  var targetDate = new Date("May 8, 2026 07:30:00").getTime();
+  // Define the target date/time (May 9, 2026 07:30:00)
+  var targetDate = new Date("May 9, 2026 07:30:00").getTime();
 
   // Extend the Number prototype to include a `pad` method.
   // This method converts a number to a string and adds leading zeros
