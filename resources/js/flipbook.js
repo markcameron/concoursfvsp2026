@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (/SamsungBrowser/i.test(navigator.userAgent)) {
         document.getElementById('flipbook-loading').remove()
-        document.getElementById('flipbook-viewer').remove()
-        document.getElementById('flipbook-download').classList.remove('hidden')
+        document.getElementById('flipbook-incompatible-msg').classList.remove('hidden')
         return
     }
 
