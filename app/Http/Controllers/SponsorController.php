@@ -10,6 +10,7 @@ use App\Models\Contact;
 use App\Models\SponsorInfo;
 use App\Models\SponsorLevel;
 use Illuminate\Support\Facades\Mail;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class SponsorController extends Controller
 {
@@ -18,7 +19,11 @@ class SponsorController extends Controller
         $sponsorLevels = SponsorLevel::orderBy('price', 'asc')->get();
 
         return view('sponsoring')
-            ->with('sponsorLevels', $sponsorLevels);
+            ->with('sponsorLevels', $sponsorLevels)
+            ->with('seoData', new SEOData(
+                title: 'Sponsoring',
+                description: 'Devenez sponsor du Concours FVSP 2026 et soutenez les sapeurs-pompiers vaudois à Coppet.',
+            ));
     }
 
     public function info()
@@ -26,12 +31,20 @@ class SponsorController extends Controller
         $sponsorInfo = SponsorInfo::first();
 
         return view('sponsoring_info')
-            ->with('sponsorInfo', $sponsorInfo);
+            ->with('sponsorInfo', $sponsorInfo)
+            ->with('seoData', new SEOData(
+                title: 'Devenir sponsor',
+                description: 'Découvrez les modalités pour devenir sponsor et partenaire du Concours FVSP 2026 à Coppet.',
+            ));
     }
 
     public function form()
     {
-        return view('sponsoring_form');
+        return view('sponsoring_form')
+            ->with('seoData', new SEOData(
+                title: 'Demande de sponsoring',
+                description: 'Soumettez votre demande de sponsoring pour le Concours FVSP 2026 à Coppet.',
+            ));
     }
 
     public function store(SponsorFormRequest $request)

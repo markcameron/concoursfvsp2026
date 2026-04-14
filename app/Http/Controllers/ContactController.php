@@ -10,12 +10,17 @@ use App\Mail\HousingFormReply;
 use App\Mail\HousingFormSubmission;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact');
+        return view('contact')
+            ->with('seoData', new SEOData(
+                title: 'Contact',
+                description: 'Contactez le comité d\'organisation du Concours FVSP 2026 à Coppet.',
+            ));
     }
 
     public function store(ContactFormRequest $request)
@@ -32,7 +37,11 @@ class ContactController extends Controller
 
     public function housing()
     {
-        return view('housing');
+        return view('housing')
+            ->with('seoData', new SEOData(
+                title: 'Hébergement',
+                description: 'Trouvez un hébergement pour le Concours FVSP 2026, les 8 et 9 mai à Coppet.',
+            ));
     }
 
     public function storeHousing(HousingFormRequest $request)
