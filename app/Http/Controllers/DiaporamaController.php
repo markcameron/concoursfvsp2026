@@ -76,7 +76,7 @@ class DiaporamaController extends Controller
             $submission->addMediaFromRequest('photo')->toMediaCollection('photo');
 
             if (app()->isProduction()) {
-                exec(PHP_BINARY . ' ' . base_path('artisan') . ' app:moderate-diaporama-submissions > /dev/null 2>&1 &');
+                exec('/opt/php8.4/bin/php ' . base_path('artisan') . ' app:moderate-diaporama-submissions > /dev/null 2>&1 &');
             } else {
                 $moderation->moderate($submission->fresh(['media']));
             }
