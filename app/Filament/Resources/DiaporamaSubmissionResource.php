@@ -109,56 +109,8 @@ class DiaporamaSubmissionResource extends Resource
 
                 Infolists\Components\Section::make('Scores de modération')
                     ->schema([
-                        Infolists\Components\TextEntry::make('moderation_scores_display')
-                            ->hiddenLabel()
-                            ->html()
-                            ->columnSpanFull()
-                            ->getStateUsing(function (DiaporamaSubmission $record): string {
-                                $scores = $record->moderation_scores;
-
-                                if (empty($scores)) {
-                                    return 'Aucune analyse disponible.';
-                                }
-
-                                $labels = [
-                                    'sexual' => 'Contenu sexuel',
-                                    'sexual/minors' => 'Contenu sexuel (mineurs)',
-                                    'violence' => 'Violence',
-                                    'violence/graphic' => 'Violence graphique',
-                                    'hate' => 'Haine',
-                                    'hate/threatening' => 'Haine menaçante',
-                                    'harassment' => 'Harcèlement',
-                                    'harassment/threatening' => 'Harcèlement menaçant',
-                                    'self-harm' => 'Automutilation',
-                                    'self-harm/intent' => 'Automutilation (intention)',
-                                    'self-harm/instructions' => 'Automutilation (instructions)',
-                                    'illicit' => 'Contenu illicite',
-                                    'illicit/violent' => 'Contenu illicite violent',
-                                ];
-
-                                $rows = '';
-                                foreach ($labels as $key => $label) {
-                                    $score = $scores[$key] ?? null;
-                                    if ($score === null) {
-                                        continue;
-                                    }
-                                    $pct = number_format($score * 100, 1);
-                                    $width = min((int) round($score * 100), 100);
-                                    $colour = match (true) {
-                                        $score >= 0.7 => '#ef4444',
-                                        $score >= 0.3 => '#f59e0b',
-                                        default => '#22c55e',
-                                    };
-                                    $rows .= "<div style='margin-bottom:6px'>"
-                                        . "<div style='display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:2px'>"
-                                        . "<span>{$label}</span><span>{$pct}%</span></div>"
-                                        . "<div style='background:#e5e7eb;border-radius:4px;height:6px'>"
-                                        . "<div style='width:{$width}%;background:{$colour};border-radius:4px;height:6px'></div>"
-                                        . "</div></div>";
-                                }
-
-                                return $rows;
-                            }),
+                        Infolists\Components\View::make('filament.infolists.moderation-scores')
+                            ->columnSpanFull(),
                     ])
                     ->collapsible()
                     ->collapsed()
