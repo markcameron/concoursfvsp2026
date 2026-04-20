@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DiaporamaController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\QrRedirectController;
@@ -8,7 +9,6 @@ use App\Http\Controllers\SponsorCommunesController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorListController;
 use App\Http\Controllers\TugOfWarController;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,13 +86,11 @@ Route::get('/finaliser-compte', function () {
     return view('admin/finalize_account/{{token}}');
 })->name('finalize_account');
 
-Route::get('diaporama', function () {
-    return Blade::render('Diaporama');
-})->name('diaporama');
-
-Route::get('diaporama/soumettre', function () {
-    return Blade::render('Diaporama');
-})->name('diaporama.submit');
+Route::get('diaporama', [DiaporamaController::class, 'index'])->name('diaporama');
+Route::get('diaporama/soumettre', [DiaporamaController::class, 'submit'])->name('diaporama.submit');
+Route::post('diaporama/soumettre', [DiaporamaController::class, 'store'])->name('diaporama.store');
+Route::post('diaporama/{submission}/vote', [DiaporamaController::class, 'vote'])->name('diaporama.vote');
+Route::post('diaporama/{submission}/report', [DiaporamaController::class, 'report'])->name('diaporama.report');
 
 Route::get('qr/{slug}', QrRedirectController::class)->name('qr.redirect')
     ->where('slug', '.+');
