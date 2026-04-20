@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\DiaporamaModerationLog;
 use App\Models\DiaporamaSubmission;
 use App\Models\ModerationSetting;
 use Illuminate\Support\Facades\Log;
@@ -38,10 +39,22 @@ class DiaporamaModerationService
                 'moderation_scores' => $raw,
             ]);
 
+            DiaporamaModerationLog::create([
+                'diaporama_submission_id' => $submission->id,
+                'status' => $status,
+                'scores' => $raw,
+            ]);
+
             return $status;
         } catch (\Exception $e) {
             Log::error('Diaporama moderation failed', [
                 'submission_id' => $submission->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            DiaporamaModerationLog::create([
+                'diaporama_submission_id' => $submission->id,
+                'status' => 'error',
                 'error' => $e->getMessage(),
             ]);
 

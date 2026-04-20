@@ -52,6 +52,11 @@ class DiaporamaSubmission extends Model implements HasMedia
         return $this->hasMany(DiaporamaReport::class);
     }
 
+    public function moderationLogs(): HasMany
+    {
+        return $this->hasMany(DiaporamaModerationLog::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')
