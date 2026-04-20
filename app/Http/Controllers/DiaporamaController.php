@@ -6,6 +6,7 @@ use App\Http\Requests\DiaporamaSubmitRequest;
 use App\Models\DiaporamaReport;
 use App\Models\DiaporamaSubmission;
 use App\Models\DiaporamaVote;
+use App\Services\DiaporamaModerationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -68,11 +69,12 @@ class DiaporamaController extends Controller
             ));
     }
 
-    public function store(DiaporamaSubmitRequest $request): RedirectResponse
+    public function store(DiaporamaSubmitRequest $request, DiaporamaModerationService $moderation): RedirectResponse
     {
         try {
             $submission = DiaporamaSubmission::create($request->safe()->only(['name', 'caption']));
             $submission->addMediaFromRequest('photo')->toMediaCollection('photo');
+            defer(fn() => $moderation->moderate($submission->fresh(['media'])));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', "Une erreur est survenue lors de l'envoi de votre photo. Veuillez réessayer plus tard.");
         }
