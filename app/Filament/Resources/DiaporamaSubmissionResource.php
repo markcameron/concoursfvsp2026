@@ -83,17 +83,84 @@ class DiaporamaSubmissionResource extends Resource
                             ->label('Légende')
                             ->placeholder('—'),
 
-                        Infolists\Components\TextEntry::make('approved_at')
+                        Infolists\Components\TextEntry::make('status')
                             ->label('Statut')
                             ->badge()
-                            ->formatStateUsing(fn($state) => $state ? 'Approuvé' : 'En attente')
-                            ->color(fn($state) => $state ? 'success' : 'warning'),
+                            ->formatStateUsing(fn(string $state) => match ($state) {
+                                'pending' => 'En attente',
+                                'flagged' => 'Signalée',
+                                'rejected' => 'Rejetée',
+                                'approved' => 'Approuvée',
+                            })
+                            ->color(fn(string $state) => match ($state) {
+                                'pending' => 'gray',
+                                'flagged' => 'warning',
+                                'rejected' => 'danger',
+                                'approved' => 'success',
+                            }),
 
                         Infolists\Components\TextEntry::make('created_at')
                             ->label('Soumis le')
                             ->dateTime(),
                     ])
                     ->columns(2),
+
+                Infolists\Components\Section::make('Scores de modération')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('moderation_scores_display')
+                            ->hiddenLabel()
+                            ->html()
+                            ->columnSpanFull()
+                            ->getStateUsing(function (DiaporamaSubmission $record): string {
+                                $scores = $record->moderation_scores;
+
+                                if (empty($scores)) {
+                                    return 'Aucune analyse disponible.';
+                                }
+
+                                $labels = [
+                                    'sexual' => 'Contenu sexuel',
+                                    'sexual/minors' => 'Contenu sexuel (mineurs)',
+                                    'violence' => 'Violence',
+                                    'violence/graphic' => 'Violence graphique',
+                                    'hate' => 'Haine',
+                                    'hate/threatening' => 'Haine menaçante',
+                                    'harassment' => 'Harcèlement',
+                                    'harassment/threatening' => 'Harcèlement menaçant',
+                                    'self-harm' => 'Automutilation',
+                                    'self-harm/intent' => 'Automutilation (intention)',
+                                    'self-harm/instructions' => 'Automutilation (instructions)',
+                                    'illicit' => 'Contenu illicite',
+                                    'illicit/violent' => 'Contenu illicite violent',
+                                ];
+
+                                $rows = '';
+                                foreach ($labels as $key => $label) {
+                                    $score = $scores[$key] ?? null;
+                                    if ($score === null) {
+                                        continue;
+                                    }
+                                    $pct = number_format($score * 100, 1);
+                                    $width = min((int) round($score * 100), 100);
+                                    $colour = match (true) {
+                                        $score >= 0.7 => '#ef4444',
+                                        $score >= 0.3 => '#f59e0b',
+                                        default => '#22c55e',
+                                    };
+                                    $rows .= "<div style='margin-bottom:6px'>"
+                                        . "<div style='display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:2px'>"
+                                        . "<span>{$label}</span><span>{$pct}%</span></div>"
+                                        . "<div style='background:#e5e7eb;border-radius:4px;height:6px'>"
+                                        . "<div style='width:{$width}%;background:{$colour};border-radius:4px;height:6px'></div>"
+                                        . "</div></div>";
+                                }
+
+                                return $rows;
+                            }),
+                    ])
+                    ->collapsible()
+                    ->collapsed()
+                    ->visible(fn(DiaporamaSubmission $record) => ! empty($record->moderation_scores)),
             ]);
     }
 
@@ -118,11 +185,21 @@ class DiaporamaSubmissionResource extends Resource
                     ->limit(40)
                     ->placeholder('—'),
 
-                Tables\Columns\TextColumn::make('approved_at')
+                Tables\Columns\TextColumn::make('status')
                     ->label('Statut')
                     ->badge()
-                    ->formatStateUsing(fn($state) => $state ? 'Approuvé' : 'En attente')
-                    ->color(fn($state) => $state ? 'success' : 'warning'),
+                    ->formatStateUsing(fn(string $state) => match ($state) {
+                        'pending' => 'En attente',
+                        'flagged' => 'Signalée',
+                        'rejected' => 'Rejetée',
+                        'approved' => 'Approuvée',
+                    })
+                    ->color(fn(string $state) => match ($state) {
+                        'pending' => 'gray',
+                        'flagged' => 'warning',
+                        'rejected' => 'danger',
+                        'approved' => 'success',
+                    }),
 
                 Tables\Columns\TextColumn::make('upvotes_count')
                     ->label('👍')
@@ -151,15 +228,15 @@ class DiaporamaSubmissionResource extends Resource
                     ->label('Approuver')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
-                    ->action(fn(DiaporamaSubmission $record) => $record->update(['approved_at' => now()]))
-                    ->visible(fn(DiaporamaSubmission $record) => $record->approved_at === null),
+                    ->action(fn(DiaporamaSubmission $record) => $record->update(['status' => 'approved']))
+                    ->visible(fn(DiaporamaSubmission $record) => $record->status !== 'approved'),
 
-                Tables\Actions\Action::make('unapprove')
-                    ->label('Retirer')
+                Tables\Actions\Action::make('reject')
+                    ->label('Rejeter')
                     ->icon('heroicon-o-x-circle')
-                    ->color('warning')
-                    ->action(fn(DiaporamaSubmission $record) => $record->update(['approved_at' => null]))
-                    ->visible(fn(DiaporamaSubmission $record) => $record->approved_at !== null),
+                    ->color('danger')
+                    ->action(fn(DiaporamaSubmission $record) => $record->update(['status' => 'rejected']))
+                    ->visible(fn(DiaporamaSubmission $record) => $record->status !== 'rejected'),
 
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),

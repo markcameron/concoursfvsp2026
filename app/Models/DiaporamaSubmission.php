@@ -18,13 +18,28 @@ class DiaporamaSubmission extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'approved_at' => 'datetime',
+            'moderation_scores' => 'array',
         ];
     }
 
     public function scopeApproved(Builder $query): void
     {
-        $query->whereNotNull('approved_at');
+        $query->where('status', 'approved');
+    }
+
+    public function scopePending(Builder $query): void
+    {
+        $query->where('status', 'pending');
+    }
+
+    public function scopeFlagged(Builder $query): void
+    {
+        $query->where('status', 'flagged');
+    }
+
+    public function scopeRejected(Builder $query): void
+    {
+        $query->where('status', 'rejected');
     }
 
     public function votes(): HasMany

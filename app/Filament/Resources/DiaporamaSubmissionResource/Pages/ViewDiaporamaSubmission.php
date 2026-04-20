@@ -18,15 +18,15 @@ class ViewDiaporamaSubmission extends ViewRecord
                 ->label('Approuver')
                 ->icon('heroicon-o-check-circle')
                 ->color('success')
-                ->action(fn(DiaporamaSubmission $record) => $record->update(['approved_at' => now()]))
-                ->visible(fn(DiaporamaSubmission $record) => $record->approved_at === null),
+                ->action(fn(DiaporamaSubmission $record) => $record->update(['status' => 'approved']))
+                ->visible(fn(DiaporamaSubmission $record) => $record->status !== 'approved'),
 
-            Actions\Action::make('unapprove')
-                ->label('Retirer')
+            Actions\Action::make('reject')
+                ->label('Rejeter')
                 ->icon('heroicon-o-x-circle')
-                ->color('warning')
-                ->action(fn(DiaporamaSubmission $record) => $record->update(['approved_at' => null]))
-                ->visible(fn(DiaporamaSubmission $record) => $record->approved_at !== null),
+                ->color('danger')
+                ->action(fn(DiaporamaSubmission $record) => $record->update(['status' => 'rejected']))
+                ->visible(fn(DiaporamaSubmission $record) => $record->status !== 'rejected'),
 
             Actions\DeleteAction::make(),
         ];

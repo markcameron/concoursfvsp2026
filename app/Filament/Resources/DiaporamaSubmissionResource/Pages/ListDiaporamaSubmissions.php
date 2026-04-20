@@ -17,19 +17,25 @@ class ListDiaporamaSubmissions extends ListRecords
             'all' => Tab::make('Toutes'),
 
             'pending' => Tab::make('En attente')
-                ->modifyQueryUsing(fn(Builder $query) => $query->whereNull('approved_at')),
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'pending')),
+
+            'flagged' => Tab::make('Signalées par IA')
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'flagged')),
+
+            'rejected' => Tab::make('Rejetées')
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'rejected')),
 
             'approved' => Tab::make('Approuvées')
-                ->modifyQueryUsing(fn(Builder $query) => $query->whereNotNull('approved_at')),
+                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', 'approved')),
 
-            'reported' => Tab::make('Signalées')
+            'reported' => Tab::make('Signalées par utilisateurs')
                 ->modifyQueryUsing(fn(Builder $query) => $query->whereHas('reports')),
 
             'downvoted' => Tab::make('Beaucoup de 👎')
                 ->modifyQueryUsing(
                     fn(Builder $query) => $query
-                    ->whereHas('votes', fn(Builder $q) => $q->where('vote', 'down'))
-                    ->orderByDesc('downvotes_count'),
+                        ->whereHas('votes', fn(Builder $q) => $q->where('vote', 'down'))
+                        ->orderByDesc('downvotes_count'),
                 ),
         ];
     }
