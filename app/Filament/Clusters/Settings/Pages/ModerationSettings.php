@@ -23,6 +23,11 @@ class ModerationSettings extends Page implements HasForms
 
     protected static ?string $cluster = Settings::class;
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->checkPermissionTo('view ModerationSetting') ?? false;
+    }
+
     public ?array $data = [];
 
     public function mount(): void
