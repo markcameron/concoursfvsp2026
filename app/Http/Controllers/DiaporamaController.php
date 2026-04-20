@@ -74,7 +74,12 @@ class DiaporamaController extends Controller
         try {
             $submission = DiaporamaSubmission::create($request->safe()->only(['name', 'caption']));
             $submission->addMediaFromRequest('photo')->toMediaCollection('photo');
-            defer(fn() => $moderation->moderate($submission->fresh(['media'])));
+
+            if (app()->isProduction()) {
+                exec(PHP_BINARY . ' ' . base_path('artisan') . ' app:moderate-diaporama-submissions > /dev/null 2>&1 &');
+            } else {
+                $moderation->moderate($submission->fresh(['media']));
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', "Une erreur est survenue lors de l'envoi de votre photo. Veuillez réessayer plus tard.");
         }
