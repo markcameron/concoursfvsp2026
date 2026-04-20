@@ -52,6 +52,14 @@ return [
             'throw' => false,
         ],
 
+        'diaporama' => [
+            'driver' => 'local',
+            'root' => base_path('public/diaporama'),
+            'url' => env('APP_URL') . '/diaporama',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
