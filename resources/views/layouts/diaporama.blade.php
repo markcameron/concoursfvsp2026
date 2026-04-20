@@ -31,7 +31,7 @@
     <!-- End Matomo Code -->
 </head>
 
-<body class="h-screen overflow-hidden bg-black">
+<body class="h-svh overflow-hidden bg-black">
 
     @yield('content')
 

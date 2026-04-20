@@ -1,7 +1,7 @@
 @extends('layouts.diaporama')
 
 @section('content')
-    <div class="flex h-screen flex-col">
+    <div class="flex h-svh flex-col">
 
         {{-- Top bar --}}
         <div class="flex-none border-b border-white/10 bg-black/90 px-4 py-3 text-center text-white">
