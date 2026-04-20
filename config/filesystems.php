@@ -54,8 +54,8 @@ return [
 
         'diaporama' => [
             'driver' => 'local',
-            'root' => base_path('public/diaporama'),
-            'url' => env('APP_URL') . '/diaporama',
+            'root' => base_path('public/diaporama-images'),
+            'url' => env('APP_URL') . '/diaporama-images',
             'visibility' => 'public',
             'throw' => false,
         ],
