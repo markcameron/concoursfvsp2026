@@ -23,6 +23,8 @@ class DiaporamaSubmissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $navigationGroup = 'Diaporama';
+
     protected static ?string $modelLabel = 'Photo';
 
     protected static ?string $pluralModelLabel = 'Diaporama';
