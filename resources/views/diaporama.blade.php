@@ -31,9 +31,6 @@
             @else
                 <div class="text-center">
                     <p class="text-lg text-white/40">Aucune photo disponible pour le moment.</p>
-                    <a href="{{ route('diaporama.submit') }}" class="mt-6 inline-block rounded-full bg-white/10 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/20">
-                        Soumettre la première photo
-                    </a>
                 </div>
             @endif
         </div>
@@ -79,9 +76,6 @@
                 <div class="mt-3 flex items-center justify-center gap-3">
                     <a href="{{ route('diaporama') }}" class="rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20 transition">
                         Nouvelle photo
-                    </a>
-                    <a href="{{ route('diaporama.submit') }}" class="rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20 transition">
-                        Soumettre une photo
                     </a>
                 </div>
             @else
