@@ -11,8 +11,8 @@
     @endforeach
 
     <div>
-        <a href="{{ asset('images/plan_de_fete.png') }}" target="_blank">
-            <img src="{{ asset('images/plan_de_fete.png') }}" alt="Plan de fête" class="mx-auto my-12">
+        <a href="{{ asset('images/plan_de_fete-v2.png') }}" target="_blank">
+            <img src="{{ asset('images/plan_de_fete-v2.png') }}" alt="Plan de fête" class="mx-auto my-12">
         </a>
     </div>
 
