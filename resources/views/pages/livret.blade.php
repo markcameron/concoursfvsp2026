@@ -16,7 +16,7 @@
                 Lire le livret
             </a>
 
-            <a href="{{ asset('Concours FVSP 2026 - Livret complet.pdf') }}" download
+            <a href="{{ asset('Concours FVSP 2026 - Livret complet - 20260430.pdf') }}" download
                class="flex items-center justify-center gap-3 rounded-xl bg-white/10 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/20">
                 <svg class="size-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"/>
