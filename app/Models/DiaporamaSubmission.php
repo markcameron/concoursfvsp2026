@@ -68,7 +68,7 @@ class DiaporamaSubmission extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('display')
-            ->width(1200)
+            ->width(2160)
             ->nonQueued()
             ->keepOriginalImageFormat();
 
