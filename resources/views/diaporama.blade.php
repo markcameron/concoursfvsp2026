@@ -82,7 +82,7 @@
                 {{-- Navigation row --}}
                 <div class="mt-3 flex items-center justify-center gap-3">
                     <a href="{{ route('diaporama') }}" class="rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20 transition">
-                        Nouvelle photo
+                        Voir une nouvelle photo
                     </a>
                 </div>
             @else
