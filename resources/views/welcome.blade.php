@@ -16,7 +16,7 @@
     <div class="container mx-auto mb-24 px-4" id="countdown">
         <div class="before:bg-theme-light-blue relative max-w-xs p-4 before:absolute before:bottom-0 before:left-[-50vw] before:right-0 before:top-0 before:rounded-r-[24px] sm:max-w-xl lg:max-w-4xl">
             <div class="relative items-center gap-x-8 lg:flex">
-                <p class="py-4 text-xl font-semibold text-gray-600">Restez à l'écoute pour plus de détails sur l'événement</p>
+                <p class="py-4 text-xl font-semibold text-gray-600">Le concours démarre dans :</p>
                 <div class="grid w-max shrink-0 grid-cols-2 justify-items-center gap-3 sm:grid-cols-4">
                     <div class="font-display min-w-[110px] overflow-hidden rounded-[12px] text-center font-semibold text-white shadow-[-3px_3px_8px_rgba(0,0,0,0.25)]">
                         <div id="days" class="bg-theme-blue px-2 py-4 text-3xl tabular-nums">00</div>
