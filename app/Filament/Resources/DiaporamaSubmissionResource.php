@@ -76,7 +76,9 @@ class DiaporamaSubmissionResource extends Resource
                             ->collection('photo')
                             ->conversion('display')
                             ->hiddenLabel()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->url(fn(DiaporamaSubmission $record) => $record->getFirstMediaUrl('photo'))
+                            ->openUrlInNewTab(),
 
                         Infolists\Components\TextEntry::make('name')
                             ->label('Nom'),
