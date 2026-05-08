@@ -79,6 +79,7 @@ Route::controller(PageController::class)->group(function () {
         Route::get('programme', 'programme')->name('programme');
         Route::get('plan-de-fete', 'map')->name('map');
         Route::get('cortege', 'procession')->name('procession');
+        Route::get('navettes', 'navettes')->name('navettes');
     });
 });
 

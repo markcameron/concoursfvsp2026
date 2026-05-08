@@ -91,6 +91,7 @@
                                 <a href="{{ route('housing.index') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Hébergement</a>
                                 <a href="{{ route('pages.map') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Plan de fête</a>
                                 <a href="{{ route('pages.procession') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Cortège</a>
+                                <a href="{{ route('pages.navettes') }}" class="focus:outline-hidden block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900">Navettes</a>
                             </div>
                         </el-menu>
                     </el-dropdown>
@@ -116,6 +117,7 @@
                 <div class="separator"></div>
                 <a href="{{ route('pages.map') }}">Plan de fête</a>
                 <a href="{{ route('pages.procession') }}">Cortège</a>
+                <a href="{{ route('pages.navettes') }}">Navettes</a>
                 <div class="separator"></div>
                 <a href="{{ route('pages.livret') }}">Livret de fête</a>
                 <div class="separator"></div>
