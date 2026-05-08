@@ -13,6 +13,7 @@
         </div>
     </div>
 
+    @if (!$hideCountdown)
     <div class="container mx-auto mb-24 px-4" id="countdown">
         <div class="before:bg-theme-light-blue relative max-w-xs p-4 before:absolute before:bottom-0 before:left-[-50vw] before:right-0 before:top-0 before:rounded-r-[24px] sm:max-w-xl lg:max-w-4xl">
             <div class="relative items-center gap-x-8 lg:flex">
@@ -61,6 +62,7 @@
             </a>
         </div>
     </div>
+    @endif
 
     <x-programme />
 

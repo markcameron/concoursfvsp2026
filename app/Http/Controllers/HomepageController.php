@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\SponsorType;
-use App\Models\Page;
 use App\Models\Sponsor;
 use App\Models\SponsorLevel;
 use App\Models\Variable;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -24,9 +24,13 @@ class HomepageController extends Controller
             ->orderBy('sort', 'asc')
             ->get();
 
+        $hideCountdown = Carbon::now('Europe/Zurich')
+            ->isAfter(Carbon::parse('2026-05-09 07:30:00', 'Europe/Zurich'));
+
         return view('welcome')
             ->with('sponsorLevels', $sponsorLevels)
             ->with('showSponsorListHomepage', $showSponsorListHomepage)
-            ->with('sponsors', $sponsors);
+            ->with('sponsors', $sponsors)
+            ->with('hideCountdown', $hideCountdown);
     }
 }
