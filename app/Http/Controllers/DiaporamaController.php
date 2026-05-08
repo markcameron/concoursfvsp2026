@@ -6,6 +6,7 @@ use App\Http\Requests\DiaporamaSubmitRequest;
 use App\Models\DiaporamaReport;
 use App\Models\DiaporamaSubmission;
 use App\Models\DiaporamaVote;
+use App\Models\Variable;
 use App\Services\DiaporamaModerationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,9 +52,12 @@ class DiaporamaController extends Controller
                 ->value('vote')
             : null;
 
+        $refreshTimeout = (int) (Variable::where('key', 'diaporama_refresh_timout')->first()?->value ?? 0);
+
         return view('diaporama')
             ->with('submission', $submission)
             ->with('userVote', $userVote)
+            ->with('refreshTimeout', $refreshTimeout)
             ->with('seoData', new SEOData(
                 title: 'Diaporama',
                 description: 'Découvrez les photos soumises par les participants du Concours FVSP 2026 à Coppet.',

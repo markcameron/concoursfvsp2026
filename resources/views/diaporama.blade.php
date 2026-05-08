@@ -4,13 +4,20 @@
     <div class="flex h-svh flex-col">
 
         {{-- Top bar --}}
-        <div class="flex-none border-b border-white/10 bg-black/90 px-4 py-3 text-center text-white">
-            <p class="text-xs font-semibold uppercase tracking-widest text-white/40">Diaporama</p>
-            @if ($submission)
-                <p class="mt-0.5 font-semibold leading-tight">{{ $submission->name }}</p>
-                @if ($submission->caption)
-                    <p class="text-sm italic text-white/60">{{ $submission->caption }}</p>
+        <div class="flex-none border-b border-white/10 bg-black/90 text-center text-white">
+            <div class="px-4 py-3">
+                <p class="text-xs font-semibold uppercase tracking-widest text-white/40">Diaporama</p>
+                @if ($submission)
+                    <p class="mt-0.5 font-semibold leading-tight">{{ $submission->name }}</p>
+                    @if ($submission->caption)
+                        <p class="text-sm italic text-white/60">{{ $submission->caption }}</p>
+                    @endif
                 @endif
+            </div>
+            @if ($refreshTimeout > 0)
+                <div class="h-0.5 w-full bg-white/10">
+                    <div id="refresh-bar" class="h-full w-full bg-white/50"></div>
+                </div>
             @endif
         </div>
 
@@ -140,5 +147,19 @@
             lastScale = scale;
         }, { passive: false });
     })();
+
+    @if ($refreshTimeout > 0)
+    (function () {
+        const timeout = {{ $refreshTimeout }};
+        const bar = document.getElementById('refresh-bar');
+
+        setTimeout(() => {
+            bar.style.transition = `width ${timeout}s linear`;
+            bar.style.width = '0%';
+        }, 50);
+
+        setTimeout(() => window.location.reload(), timeout * 1000);
+    })();
+    @endif
 </script>
 @endsection
