@@ -39,6 +39,29 @@
         </div>
     </div>
 
+    <div class="container mx-auto mb-24 px-4">
+        <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
+            <a href="{{ route('pages.map') }}" class="shadow-xs bg-theme-blue flex flex-1 items-center gap-4 rounded-xl px-6 py-5 text-white transition hover:bg-blue-600">
+                <svg class="size-8 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                </svg>
+                <div>
+                    <p class="text-sm font-medium opacity-80">Orientation sur le site</p>
+                    <p class="text-lg font-semibold">Consulter le plan de fête</p>
+                </div>
+            </a>
+            <a href="{{ route('pages.livret') }}" class="shadow-xs bg-theme-red flex flex-1 items-center gap-4 rounded-xl px-6 py-5 text-white transition hover:bg-red-600">
+                <svg class="size-8 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+                <div>
+                    <p class="text-sm font-medium opacity-80">Toutes les informations</p>
+                    <p class="text-lg font-semibold">Voir le livret de fête</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
     <x-programme />
 
     <x-navettes with-title="true" />
