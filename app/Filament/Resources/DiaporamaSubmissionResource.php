@@ -171,6 +171,11 @@ class DiaporamaSubmissionResource extends Resource
                     ->alignCenter()
                     ->color(fn($state) => $state > 0 ? 'danger' : null),
 
+                Tables\Columns\TextColumn::make('display_count')
+                    ->label('Affichages')
+                    ->sortable()
+                    ->alignCenter(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Soumis le')
                     ->dateTime()

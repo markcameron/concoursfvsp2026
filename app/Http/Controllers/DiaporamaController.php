@@ -52,6 +52,8 @@ class DiaporamaController extends Controller
                 ->value('vote')
             : null;
 
+        $submission?->increment('display_count');
+
         $refreshTimeout = (int) (Variable::where('key', 'diaporama_refresh_timout')->first()?->value ?? 0);
 
         return view('diaporama')

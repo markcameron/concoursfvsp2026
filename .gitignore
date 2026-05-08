@@ -5,6 +5,7 @@
 /public/storage
 /public/files
 /public/diaporama
+/public/diaporama-images
 /storage/*.key
 /vendor
 .env
