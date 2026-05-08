@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Variable;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -18,11 +19,16 @@ class DiaporamaSubmitRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => 'required|string|max:255',
             'caption' => 'nullable|string|max:255',
             'photo' => 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
-            'cf-turnstile-response' => ['required', Rule::turnstile()],
         ];
+
+        if ((bool) Variable::where('key', 'diaporama_cloudflare_turnstile')->first()?->value) {
+            $rules['cf-turnstile-response'] = ['required', Rule::turnstile()];
+        }
+
+        return $rules;
     }
 }

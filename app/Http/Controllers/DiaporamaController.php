@@ -68,7 +68,10 @@ class DiaporamaController extends Controller
 
     public function submit(): View
     {
+        $turnstileEnabled = (bool) Variable::where('key', 'diaporama_cloudflare_turnstile')->first()?->value;
+
         return view('diaporama_submit')
+            ->with('turnstileEnabled', $turnstileEnabled)
             ->with('seoData', new SEOData(
                 title: 'Soumettre une photo',
                 description: 'Soumettez votre photo pour le diaporama du Concours FVSP 2026 à Coppet.',
@@ -78,13 +81,20 @@ class DiaporamaController extends Controller
     public function store(DiaporamaSubmitRequest $request, DiaporamaModerationService $moderation): RedirectResponse
     {
         try {
-            $submission = DiaporamaSubmission::create($request->safe()->only(['name', 'caption']));
+            $aiCheckEnabled = (bool) Variable::where('key', 'diaporama_ai_check')->first()?->value;
+
+            $submission = DiaporamaSubmission::create([
+                ...$request->safe()->only(['name', 'caption']),
+                'status' => $aiCheckEnabled ? 'pending' : 'approved',
+            ]);
             $submission->addMediaFromRequest('photo')->toMediaCollection('photo');
 
-            if (app()->isProduction()) {
-                exec('/opt/php8.4/bin/php ' . base_path('artisan') . ' app:moderate-diaporama-submissions > /dev/null 2>&1 &');
-            } else {
-                $moderation->moderate($submission->fresh(['media']));
+            if ($aiCheckEnabled) {
+                if (app()->isProduction()) {
+                    exec('/opt/php8.4/bin/php ' . base_path('artisan') . ' app:moderate-diaporama-submissions > /dev/null 2>&1 &');
+                } else {
+                    $moderation->moderate($submission->fresh(['media']));
+                }
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', "Une erreur est survenue lors de l'envoi de votre photo. Veuillez réessayer plus tard.");

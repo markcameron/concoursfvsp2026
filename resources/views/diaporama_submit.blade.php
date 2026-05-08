@@ -30,7 +30,7 @@
                     </div>
                 @endif
 
-                @if ($errors->has('cf-turnstile-response'))
+                @if ($turnstileEnabled && $errors->has('cf-turnstile-response'))
                     <div class="mb-6 rounded-lg bg-red-500/20 px-4 py-3 text-sm text-red-300">
                         {{ $errors->first('cf-turnstile-response') }}
                     </div>
@@ -85,9 +85,11 @@
                         @endif
                     </div>
 
-                    <div class="mt-2 text-center">
-                        <x-turnstile data-theme="dark" />
-                    </div>
+                    @if ($turnstileEnabled)
+                        <div class="mt-2 text-center">
+                            <x-turnstile data-theme="dark" />
+                        </div>
+                    @endif
 
                     <div class="mt-4 text-center">
                         <button type="submit" class="rounded-full bg-white px-8 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90">
@@ -101,6 +103,8 @@
     </div>
 @endsection
 
-@section('top-scripts')
-    @turnstileScripts()
-@endsection
+@if ($turnstileEnabled)
+    @section('top-scripts')
+        @turnstileScripts()
+    @endsection
+@endif
