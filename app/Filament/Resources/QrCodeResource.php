@@ -88,7 +88,9 @@ class QrCodeResource extends Resource
                 Tables\Columns\TextColumn::make('visits_count')
                     ->label('Visites')
                     ->sortable()
-                    ->alignEnd(),
+                    ->alignCenter()
+                    ->badge()
+                    ->color('info'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
