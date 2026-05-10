@@ -39,6 +39,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <div class="container mx-auto mb-24 px-4">
         <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
@@ -62,7 +63,6 @@
             </a>
         </div>
     </div>
-    @endif
 
     <x-programme />
 
