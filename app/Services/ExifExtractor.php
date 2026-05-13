@@ -15,7 +15,7 @@ class ExifExtractor
             return null;
         }
 
-        $raw = @exif_read_data($filePath, sections: 'ANY_TAG', arrays: false);
+        $raw = @exif_read_data($filePath, 'ANY_TAG', false);
 
         if ($raw === false) {
             return null;
