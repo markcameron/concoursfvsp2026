@@ -57,6 +57,7 @@ class ImportPhotos extends Command
         $photographer = $this->option('photographer');
         $imported = 0;
         $failed = 0;
+        $nextSortOrder = (int) $album->photos()->max('sort_order') + 1;
 
         $this->info('Importing ' . count($files) . " photo(s) into album \"{$album->title}\"...");
 
@@ -71,7 +72,7 @@ class ImportPhotos extends Command
                     'photo_album_id' => $album->id,
                     'title' => $title,
                     'photographer_name' => $photographer,
-                    'sort_order' => 0,
+                    'sort_order' => $nextSortOrder++,
                 ]);
 
                 $photo->addMedia($filePath)

@@ -41,10 +41,6 @@ class PhotosRelationManager extends RelationManager
                     ->nullable()
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('sort_order')
-                    ->label('Ordre')
-                    ->integer()
-                    ->default(0),
             ]);
     }
 
@@ -90,7 +86,12 @@ class PhotosRelationManager extends RelationManager
                     ->sortable(),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->mutateFormDataUsing(function (array $data): array {
+                        $data['sort_order'] = (int) $this->getOwnerRecord()->photos()->max('sort_order') + 1;
+
+                        return $data;
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
