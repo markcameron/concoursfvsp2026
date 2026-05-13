@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\SponsorType;
+use App\Models\PressItem;
 use App\Models\Sponsor;
 use App\Models\SponsorLevel;
 use App\Models\Variable;
@@ -27,10 +28,16 @@ class HomepageController extends Controller
         $hideCountdown = Carbon::now('Europe/Zurich')
             ->isAfter(Carbon::parse('2026-05-09 07:30:00', 'Europe/Zurich'));
 
+        $pressItems = PressItem::where('active', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
         return view('welcome')
             ->with('sponsorLevels', $sponsorLevels)
             ->with('showSponsorListHomepage', $showSponsorListHomepage)
             ->with('sponsors', $sponsors)
-            ->with('hideCountdown', $hideCountdown);
+            ->with('hideCountdown', $hideCountdown)
+            ->with('pressItems', $pressItems);
     }
 }

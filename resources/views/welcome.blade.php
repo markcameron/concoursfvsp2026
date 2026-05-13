@@ -66,9 +66,28 @@
         </div>
     </div>
 
-    <x-programme />
-
-    <x-navettes with-title="true" />
+    @if ($pressItems->isNotEmpty())
+    <section class="container mx-auto mb-24 px-4">
+        <h2 class="font-display text-theme-blue mb-6 text-2xl font-semibold">Revue de presse</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach ($pressItems as $item)
+                <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer"
+                   class="group flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-medium text-gray-400 uppercase tracking-wide">{{ $item->source }}</span>
+                        @php $color = match($item->type->getColor()) { 'info' => 'text-blue-500', 'danger' => 'text-red-500', 'warning' => 'text-amber-500', 'success' => 'text-green-500', default => 'text-gray-400' }; @endphp
+                        <x-dynamic-component :component="$item->type->getIcon()" class="size-5 {{ $color }}" />
+                    </div>
+                    <p class="flex-1 font-medium text-gray-800 group-hover:text-theme-blue transition-colors leading-snug">{{ $item->title }}</p>
+                    <span class="text-xs text-gray-400 flex items-center gap-1">
+                        <svg class="size-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+                        {{ parse_url($item->url, PHP_URL_HOST) }}
+                    </span>
+                </a>
+            @endforeach
+        </div>
+    </section>
+    @endif
 
     <div class="bg-linear-to-b from-[#0C75DF]/12 to-blue-[#0C75DF]/0">
         <div class="md:max-w-(--breakpoint-md) pt-18 container mx-auto px-4 pb-24">

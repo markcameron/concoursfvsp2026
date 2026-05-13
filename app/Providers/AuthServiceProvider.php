@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Models\Photo;
 use App\Models\PhotoAlbum;
+use App\Models\PressItem;
 use App\Models\Sponsor;
 use App\Models\User;
 use App\Models\Variable;
 use App\Policies\PermissionPolicy;
 use App\Policies\PhotoAlbumPolicy;
 use App\Policies\PhotoPolicy;
+use App\Policies\PressItemPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\SponsorPolicy;
 use App\Policies\VariablePolicy;
@@ -32,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         Variable::class => VariablePolicy::class,
         PhotoAlbum::class => PhotoAlbumPolicy::class,
         Photo::class => PhotoPolicy::class,
+        PressItem::class => PressItemPolicy::class,
     ];
 
     /**
