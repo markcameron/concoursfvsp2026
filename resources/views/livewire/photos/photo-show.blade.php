@@ -14,11 +14,35 @@
     </nav>
 
     {{-- Photo --}}
-    <div class="overflow-hidden rounded-xl bg-black shadow-lg">
+    <div class="group relative overflow-hidden rounded-xl bg-black shadow-lg">
         @if ($photo->hasMedia('photo'))
             <img src="{{ $photo->getFirstMediaUrl('photo', 'display') }}"
                  alt="{{ $photo->title ?? '' }}"
                  class="mx-auto max-h-[70vh] w-full object-contain">
+        @endif
+
+        @if ($prevPhoto)
+            <a href="{{ route('photos.photo', [$album, $prevPhoto]) }}" wire:navigate
+               class="absolute inset-y-0 left-0 flex w-1/4 items-center justify-start pl-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+               aria-label="Photo précédente">
+                <span class="flex size-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70">
+                    <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </span>
+            </a>
+        @endif
+
+        @if ($nextPhoto)
+            <a href="{{ route('photos.photo', [$album, $nextPhoto]) }}" wire:navigate
+               class="absolute inset-y-0 right-0 flex w-1/4 items-center justify-end pr-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+               aria-label="Photo suivante">
+                <span class="flex size-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70">
+                    <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </span>
+            </a>
         @endif
     </div>
 
@@ -27,11 +51,7 @@
 
         {{-- Left: title + metadata --}}
         <div class="min-w-0">
-            @if ($photo->title)
-                <h1 class="font-display text-theme-blue text-2xl font-semibold">{{ $photo->title }}</h1>
-            @endif
-
-            <dl class="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
+            <dl class="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500">
                 @if ($photo->photographer_name)
                     <div class="flex items-center gap-1">
                         <svg class="size-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
