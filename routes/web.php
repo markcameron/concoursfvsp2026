@@ -93,5 +93,9 @@ Route::post('diaporama/soumettre', [DiaporamaController::class, 'store'])->name(
 Route::post('diaporama/{submission}/vote', [DiaporamaController::class, 'vote'])->name('diaporama.vote');
 Route::post('diaporama/{submission}/report', [DiaporamaController::class, 'report'])->name('diaporama.report');
 
+Route::get('photos', \App\Livewire\Photos\AlbumList::class)->name('photos.index');
+Route::get('photos/{album}', \App\Livewire\Photos\AlbumShow::class)->name('photos.album');
+Route::get('photos/{album}/{photo}', \App\Livewire\Photos\PhotoShow::class)->name('photos.photo');
+
 Route::get('qr/{slug}', QrRedirectController::class)->name('qr.redirect')
     ->where('slug', '.+');
