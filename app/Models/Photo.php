@@ -15,6 +15,13 @@ class Photo extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected function casts(): array
+    {
+        return [
+            'exif_data' => 'array',
+        ];
+    }
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(PhotoAlbum::class, 'photo_album_id');
