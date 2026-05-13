@@ -81,6 +81,7 @@ class PhotoShow extends Component
     public function render()
     {
         $prevPhoto = $this->album->photos()
+            ->reorder()
             ->where(fn($q) => $q->where('sort_order', '<', $this->photo->sort_order)
                 ->orWhere(fn($q) => $q->where('sort_order', $this->photo->sort_order)->where('id', '<', $this->photo->id)))
             ->orderByDesc('sort_order')
@@ -88,6 +89,7 @@ class PhotoShow extends Component
             ->first();
 
         $nextPhoto = $this->album->photos()
+            ->reorder()
             ->where(fn($q) => $q->where('sort_order', '>', $this->photo->sort_order)
                 ->orWhere(fn($q) => $q->where('sort_order', $this->photo->sort_order)->where('id', '>', $this->photo->id)))
             ->orderBy('sort_order')
