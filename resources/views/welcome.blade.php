@@ -7,7 +7,9 @@
 
             <div class="text-balance text-center">
                 <h1 class="font-display text-theme-blue mb-1 text-4xl font-semibold">CONCOURS FVSP 2026</h1>
-                <div class="font-display text-theme-red mb-8 text-xl font-semibold">les 8 et 9 mai à Coppet</div>
+                <div class="font-display text-theme-red mb-6 text-xl font-semibold">les 8 et 9 mai à Coppet</div>
+                <p class="mx-auto max-w-xl text-lg text-gray-600">Un grand merci à toutes et à tous pour votre participation, votre investissement et votre présence à cet événement. Votre engagement a rendu ce concours inoubliable !</p>
+                <p class="mt-4 text-lg font-medium text-gray-700">À l'année prochaine à Chamberonne ! <a href="https://fvsp27.ch/" target="_blank" class="text-theme-blue hover:underline">fvsp27.ch</a></p>
             </div>
 
         </div>
