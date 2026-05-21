@@ -88,4 +88,13 @@ class PageController extends Controller
             ->with('page', $page)
             ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
     }
+
+    public function results()
+    {
+        $page = Page::where('machine_name', 'results')->first();
+
+        return view('pages.results')
+            ->with('page', $page)
+            ->with('seoData', new SEOData(title: $page?->meta_title ?? $page?->title, description: $page?->meta_description));
+    }
 }
