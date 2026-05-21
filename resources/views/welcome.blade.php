@@ -44,23 +44,14 @@
     @endif
 
     <div class="container mx-auto mb-24 px-4">
-        <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
-            <a href="{{ route('pages.map') }}" class="shadow-xs bg-theme-blue flex flex-1 items-center gap-4 rounded-xl px-6 py-5 text-white transition hover:bg-blue-600">
+        <div class="flex justify-center">
+            <a href="{{ route('photos.index') }}" class="shadow-xs bg-theme-blue flex w-full items-center gap-4 rounded-xl px-6 py-5 text-white transition hover:bg-blue-600 sm:w-1/2">
                 <svg class="size-8 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                 </svg>
                 <div>
-                    <p class="text-sm font-medium opacity-80">Orientation sur le site</p>
-                    <p class="text-lg font-semibold">Consulter le plan de fête</p>
-                </div>
-            </a>
-            <a href="{{ route('pages.livret') }}" class="shadow-xs bg-theme-red flex flex-1 items-center gap-4 rounded-xl px-6 py-5 text-white transition hover:bg-red-600">
-                <svg class="size-8 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
-                </svg>
-                <div>
-                    <p class="text-sm font-medium opacity-80">Toutes les informations</p>
-                    <p class="text-lg font-semibold">Voir le livret de fête</p>
+                    <p class="text-sm font-medium opacity-80">Photos du concours</p>
+                    <p class="text-lg font-semibold">Voir la galerie photos</p>
                 </div>
             </a>
         </div>
